@@ -1,0 +1,3 @@
+Options All -Indexes
+ErrorDocument 404 /proyectos/Sistema_Almacen/Views/Error/404.php
+ErrorDocument 403 /proyectos/Sistema_Almacen/Views/Error/403.php
