@@ -1,0 +1,14 @@
+.app-sidebar__user-avatar{
+    width: 48px;
+    height: 48px;
+    background-color: gray;
+    padding: 6px;
+}
+.nav-principal{
+    background-image: linear-gradient(to bottom right, #F57B27 , #7AD7FA);
+}
+.banner-color{
+    
+    color: white;
+
+}

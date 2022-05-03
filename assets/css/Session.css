@@ -1,0 +1,35 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+body{
+    text-align: center;
+    background: black;
+    color: white;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+form{
+    background: #202020;
+    border-radius: 20px;
+    padding:50px;
+    font-size: 18px;
+    
+    
+   
+}
+label{
+    width: 50%;
+}
+input{
+    width: 50%;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 8px; 
+}
+a{
+    color: turquoise;
+}
+
