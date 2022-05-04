@@ -2,68 +2,125 @@
 
 class CrearTablaProduto{
 
-    public function CrearTablaDetalleVenta(){
+    public function CrearTablaIngresos(){
+        /*Tabla ingresos  */
         include_once "Conectar.php";
         $conexion = new Conexiondb();
         $conexion->Conectar();
         //var_dump($conexion->Conectar());
-        $sql = "CREATE TABLE IF NOT EXISTS `vw_DetalleVenta` (
+        $sql = "CREATE TABLE IF NOT EXISTS `Ingresos` (
                 `id` int(11) NOT NULL AUTO_INCREMENT,
-                `ProductoId` int NOT NULL,
+                `Fecha` datetime NOT NULL,
                 `Cantidad` int NOT NULL,
-                `Precio` decimal(20,2) NOT NULL,
-                `ClienteId` int ,
+                /*`Especifica` varchar, incluido en la tabla categorias*/
+                `Precio` int,
+                `Total` int,
+                `Orden_Compra` int,
+                `Producto` int,/*Clave foranea tabla productos  */
+                `Categoria` int,/*clave foranea tabla categorias */
+                `Usuario` int ,/*clave foranea tabla usuarios */
+
                 PRIMARY KEY (`id`),
                 
                 FOREIGN KEY (ProductoId)      REFERENCES vw_productos(id),
-            FOREIGN KEY (ClienteId)            REFERENCES vw_cliente(id),
+                FOREIGN KEY (ClienteId)            REFERENCES vw_cliente(id),
          
                 )";
 
         $conexion->Conectar()->exec($sql);
     }
-    public function CrearTablaVenta(){
+    public function CrearTablaSalidas(){
+        /*Tabla salidas */
         include_once "Conectar.php";
         $conexion = new Conexiondb();
         $conexion->Conectar();
         //var_dump($conexion->Conectar());
-        $sql = "CREATE TABLE IF NOT EXISTS `vw_ventas` (
+        $sql = "CREATE TABLE IF NOT EXISTS `Salidas` (
                 `id` int(11) NOT NULL AUTO_INCREMENT,
-                `DetalleVenta` int NOT NULL,
-                `EstadoVenta` varchar NOT NULL,
                 `Fecha` datetime NOT NULL,
-                `Total` int NOT NULL,
+                `Cantidad` int NOT NULL,
+                `Producto` int NOT NULL,/*Clave foranea tabla usuarios */
+                `usuario` int NOT NULL,/*Clave foranea tabla usuarios */
                 FOREIGN KEY fk_DetalleVenta_id(DetalleVenta)
-            REFERENCES vw_DetalleVenta(id),
+                REFERENCES vw_DetalleVenta(id),
                 PRIMARY KEY (`id`)
                 ) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1";
 
         $conexion->Conectar()->exec($sql);
     }
-    public function CrearTablaCliente(){
+    public function CrearTablaServicios(){
+        /*tabla servicios */
         include_once "Conectar.php";
         $conexion = new Conexiondb();
         $conexion->Conectar();
-        $sql = "CREATE TABLE IF NOT EXISTS `vw_Cliente` (
+        $sql = "CREATE TABLE IF NOT EXISTS `Servicios` (
                 `id` int(11) NOT NULL AUTO_INCREMENT,
-                `Nombre` varchar(100) NOT NULL,
-                `apPaterno` varchar(100) NOT NULL,
-                `apMaterno` varchar(100) NOT NULL,
-                `Direccion` varchar(100) NOT NULL,
-                `Correo` varchar(100) NOT NULL,
-                `Telefono` int(9) NOT NULL,
+                `Fecha` datetime NOT NULL,
+                `Detalle` int NOT NULL,
+                `Unidad_Medida` varchar(100) NOT NULL,/*clave foranea tabla unidades de medida */
+                `Cantidad` int(100) NOT NULL,
+                `Precio` int(100) NOT NULL,
+                `Total` int(9) NOT NULL,
+                `O/S` int(9) NOT NULL,
+                `Usuario` int(9) NOT NULL,/*clave foranea tabla usuarios */
+                `Categoria` int(9) NOT NULL,/*clave foranea tabla categorias */
+
 
                 PRIMARY KEY (`id`)
                 ) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1";
 
         $conexion->Conectar()->exec($sql);
     }
-    public function CrearTablaCategoria(){
+    public function CrearTablaCategoriaServicios(){
+        /*Tabla categoria servicios */
         $conexion = new Conexiondb();
         $conexion->Conectar();
-        $sql = "CREATE TABLE IF NOT EXISTS `vw_categoria` (
+        $sql = "CREATE TABLE IF NOT EXISTS `CategoriaServicios` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `Nombre` varchar(300) NOT NULL,
+            `Especifica` varchar(300) NOT NULL,
+            `Total` varchar(300) NOT NULL,
+            PRIMARY KEY (`id`)
+            ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1";
+
+        $conexion->Conectar()->exec($sql);
+    }
+    public function CrearTablaCategoriaProductos(){
+        /*Tabla categoria productos */
+        $conexion = new Conexiondb();
+        $conexion->Conectar();
+        $sql = "CREATE TABLE IF NOT EXISTS `CategoriaProductos` (
+            `id` int(11) NOT NULL AUTO_INCREMENT,
+            `Nombre` varchar(300) NOT NULL,
+            `Especifica` varchar(300) NOT NULL,
+            `Total` varchar(300) NOT NULL,
+            PRIMARY KEY (`id`)
+            ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1";
+
+        $conexion->Conectar()->exec($sql);
+    }
+    public function CrearTablaCategoriaIngresos(){
+        /*Tabla categoria ingresos */
+        $conexion = new Conexiondb();
+        $conexion->Conectar();
+        $sql = "CREATE TABLE IF NOT EXISTS `CategoriaIngresos` (
+            `id` int(11) NOT NULL AUTO_INCREMENT,
+            `Nombre` varchar(300) NOT NULL,
+            `Especifica` varchar(300) NOT NULL,
+            `Total` varchar(300) NOT NULL,
+            PRIMARY KEY (`id`)
+            ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1";
+
+        $conexion->Conectar()->exec($sql);
+    }
+    public function CrearTablaCategoriaSalidas(){
+        /*Tabla categoria salidas */
+        $conexion = new Conexiondb();
+        $conexion->Conectar();
+        $sql = "CREATE TABLE IF NOT EXISTS `CategoriaSalidas` (
+            `id` int(11) NOT NULL AUTO_INCREMENT,
+            `Nombre` varchar(300) NOT NULL,
+            
             PRIMARY KEY (`id`)
             ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1";
 
@@ -71,17 +128,18 @@ class CrearTablaProduto{
     }
     
     public function CrearTablaProducto(){
+        /*Tabla Productos */
         include_once "Conectar.php";
         $conexion = new Conexiondb();
         $conexion->Conectar();
         //var_dump($conexion->Conectar());
         $sql = "CREATE TABLE IF NOT EXISTS `vw_productos` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
-            `Nombre` varchar(300) NOT NULL,
-            `Precio` int(11) NOT NULL,
-            `Imagen` mediumblob NOT NULL,
-            `Categoria` int NOT NULL,
             `Detalle` varchar(300) NOT NULL,
+            `Unidad_Medida` int(11) NOT NULL,/*clave foranea tabla unidad de medida */
+            `Cantidad` int NOT NULL,
+            `Almacen` int NOT NULL,/*clave foranea tabla almacenes */
+            `categoria` varchar(300) NOT NULL,/*clave foranea tabla categoria producto */
             `Stock` int(30) NOT NULL,  
             FOREIGN KEY fk_categoria_id(Categoria)
             REFERENCES vw_categoria(id),        
@@ -93,44 +151,33 @@ class CrearTablaProduto{
     } 
     
 
-    public function CrearTablaDepartamento(){
+    public function CrearTablaAlmacenes(){
+        /*tabla almacenes */
         include_once "Conectar.php";
         $conexion = new Conexiondb();
         $conexion->Conectar();
         //var_dump($conexion->Conectar());
-        $sql = "CREATE TABLE `vw_departamento` (
-                `idDepa` int(5) NOT NULL DEFAULT 0,
-                `departamento` varchar(50) DEFAULT NULL
+        $sql = "CREATE TABLE `Almacenes` (
+                `id` int(5) NOT NULL DEFAULT 0,
+                `Nombre` varchar(50) DEFAULT NULL
+                ) ENGINE=MyISAM DEFAULT CHARSET=utf8";
+
+        $conexion->Conectar()->exec($sql);
+    }
+    public function CrearTablaUnidadMedida(){
+        /*tabla unidad de medida */
+        include_once "Conectar.php";
+        $conexion = new Conexiondb();
+        $conexion->Conectar();
+        //var_dump($conexion->Conectar());
+        $sql = "CREATE TABLE `Unidad_Medida` (
+                `id` int(5) NOT NULL DEFAULT 0,
+                `Nombre` varchar(50) DEFAULT NULL
                 ) ENGINE=MyISAM DEFAULT CHARSET=utf8";
 
         $conexion->Conectar()->exec($sql);
     }
 
-    public function CrearTablaProvincia(){
-        include_once "Conectar.php";
-        $conexion = new Conexiondb();
-        $conexion->Conectar();
-        //var_dump($conexion->Conectar());
-        $sql = "CREATE TABLE `vw_provincia` (
-                `idProv` int(5) NOT NULL DEFAULT 0,
-                `provincia` varchar(50) DEFAULT NULL,
-                `idDepa` int(5) DEFAULT NULL
-                ) ENGINE=MyISAM DEFAULT CHARSET=utf8";
-
-        $conexion->Conectar()->exec($sql);
-    }
-    public function CrearTablaDistrito(){
-        include_once "Conectar.php";
-        $conexion = new Conexiondb();
-        $conexion->Conectar();
-        //var_dump($conexion->Conectar());
-        $sql = "CREATE TABLE IF NOT EXISTS`vw_distrito` (
-            `idDist` int(5) NOT NULL DEFAULT 0,
-            `distrito` varchar(50) DEFAULT NULL,
-            `idProv` int(5) DEFAULT NULL
-          ) ENGINE=MyISAM DEFAULT CHARSET=utf8";
-
-        $conexion->Conectar()->exec($sql);
-    }
+   
 
 }
