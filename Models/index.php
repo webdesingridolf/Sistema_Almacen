@@ -6,8 +6,8 @@ include_once "CRUDUsuario.php";
 //$Conexion = new Conexiondb();
 //$Conexion->Conectar();
 
-//$creartabla = new CreateTabla(); 
-//$creartabla->CrearTablaUsuario();
+/*$creartabla = new CreateTabla(); 
+$creartabla->CrearTablaUsuario();//Primero*/
 
 
 //$creartabla->InsertUsuario("dni","123","ejemplo@gmail.com");
@@ -19,15 +19,23 @@ include_once "CRUDUsuario.php";
 //$creartabla->InsertUsuario("O","123","ejemplo@gmail.com");
 
 $creartablaproducto = new CrearTablaProduto();
-//$creartablaproducto->CrearTablaDetalleVenta();
-//$creartablaproducto->CrearTablaProducto();
-//$creartablaproducto->CrearTablaCliente();
-//$creartablaproducto->CrearTablaDetalleVenta();
-//$creartablaproducto->CrearTablaVenta();
 
-//$creartablaproducto->CrearTablaVenta();
-//$creartablaproducto->CrearTablaDepartamento();
-//$creartablaproducto->CrearTablaProvincia();
+//tablas independientes Segundo
+/*$creartablaproducto->CrearTablaUnidadMedida();
+$creartablaproducto->CrearTablaAlmacenes();
+$creartablaproducto->CrearTablaCategoriaSalidas();
+$creartablaproducto->CrearTablaCategoriaIngresos();
+$creartablaproducto->CrearTablaCategoriaProductos();
+$creartablaproducto->CrearTablaCategoriaServicios();
+$creartablaproducto->CrearTablaCategoriaProductos();*/
+
+
+// tablas dependientes claves foraneas tercero
+
+$creartablaproducto->CrearTablaProducto();
+$creartablaproducto->CrearTablaIngresos();//necesita la tabla usuarios
+$creartablaproducto->CrearTablaServicios();
+$creartablaproducto->CrearTablaSalidas();
 //$creartablaproducto->CrearTablaDistrito();
 //$creartablaproducto->CrearTablaCategoria();
 

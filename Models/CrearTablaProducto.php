@@ -19,11 +19,10 @@ class CrearTablaProduto{
                 `Producto` int,/*Clave foranea tabla productos  */
                 `Categoria` int,/*clave foranea tabla categorias */
                 `Usuario` int ,/*clave foranea tabla usuarios */
-
                 PRIMARY KEY (`id`),
-                
-                FOREIGN KEY (ProductoId)      REFERENCES vw_productos(id),
-                FOREIGN KEY (ClienteId)            REFERENCES vw_cliente(id),
+                FOREIGN KEY (Producto)      REFERENCES Productos(id),
+                FOREIGN KEY (Categoria)     REFERENCES CategoriaIngresos(id),
+                FOREIGN KEY (Usuario)       REFERENCES Usuario(id)
          
                 )";
 
@@ -40,9 +39,10 @@ class CrearTablaProduto{
                 `Fecha` datetime NOT NULL,
                 `Cantidad` int NOT NULL,
                 `Producto` int NOT NULL,/*Clave foranea tabla usuarios */
-                `usuario` int NOT NULL,/*Clave foranea tabla usuarios */
-                FOREIGN KEY fk_DetalleVenta_id(DetalleVenta)
-                REFERENCES vw_DetalleVenta(id),
+                `Usuario` int NOT NULL,/*Clave foranea tabla usuarios */
+                FOREIGN KEY (Usuario)       REFERENCES Usuario(id),
+                FOREIGN KEY (Producto)       REFERENCES Productos(id),
+                
                 PRIMARY KEY (`id`)
                 ) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1";
 
@@ -56,14 +56,17 @@ class CrearTablaProduto{
         $sql = "CREATE TABLE IF NOT EXISTS `Servicios` (
                 `id` int(11) NOT NULL AUTO_INCREMENT,
                 `Fecha` datetime NOT NULL,
-                `Detalle` int NOT NULL,
-                `Unidad_Medida` varchar(100) NOT NULL,/*clave foranea tabla unidades de medida */
-                `Cantidad` int(100) NOT NULL,
-                `Precio` int(100) NOT NULL,
-                `Total` int(9) NOT NULL,
-                `O/S` int(9) NOT NULL,
-                `Usuario` int(9) NOT NULL,/*clave foranea tabla usuarios */
-                `Categoria` int(9) NOT NULL,/*clave foranea tabla categorias */
+                `Detalle` varchar NOT NULL,
+                `Unidad_Medida` int NOT NULL,/*clave foranea tabla unidades de medida */
+                `Cantidad` int NOT NULL,
+                `Precio` int NOT NULL,
+                `Total` int NOT NULL,
+                `O/S` varchar NOT NULL,
+                `Usuario` int NOT NULL,/*clave foranea tabla usuarios */
+                `Categoria` int NOT NULL,/*clave foranea tabla categorias */
+                FOREIGN KEY (Unidad_Medida)       REFERENCES Unidad_Medida(id),
+                FOREIGN KEY (Usuario)             REFERENCES Usuario(id),
+                FOREIGN KEY (Categoria)           REFERENCES CategoriaServicios(id),
 
 
                 PRIMARY KEY (`id`)
@@ -133,16 +136,17 @@ class CrearTablaProduto{
         $conexion = new Conexiondb();
         $conexion->Conectar();
         //var_dump($conexion->Conectar());
-        $sql = "CREATE TABLE IF NOT EXISTS `vw_productos` (
+        $sql = "CREATE TABLE IF NOT EXISTS `Productos` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `Detalle` varchar(300) NOT NULL,
-            `Unidad_Medida` int(11) NOT NULL,/*clave foranea tabla unidad de medida */
+            `Unidad_Medida` int ,/*clave foranea tabla unidad de medida */
             `Cantidad` int NOT NULL,
-            `Almacen` int NOT NULL,/*clave foranea tabla almacenes */
-            `categoria` varchar(300) NOT NULL,/*clave foranea tabla categoria producto */
+            `Almacen` int ,/*clave foranea tabla almacenes */
+           /* `categoria` varchar(300) NOT NULL,clave foranea tabla categoria producto */
             `Stock` int(30) NOT NULL,  
-            FOREIGN KEY fk_categoria_id(Categoria)
-            REFERENCES vw_categoria(id),        
+           /*  FOREIGN KEY fk_categoria_id(Categoria)           REFERENCES categoria(id),*/
+            FOREIGN KEY fk_unidad_medida(Unidad_Medida)           REFERENCES Unidad_Medida(id),  
+            FOREIGN KEY fk_almacen(Almacen)                       REFERENCES Almacenes(id),          
             PRIMARY KEY (`id`)
             ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1";
 
@@ -158,7 +162,7 @@ class CrearTablaProduto{
         $conexion->Conectar();
         //var_dump($conexion->Conectar());
         $sql = "CREATE TABLE `Almacenes` (
-                `id` int(5) NOT NULL DEFAULT 0,
+                `id` int(11) NOT NULL DEFAULT 0,
                 `Nombre` varchar(50) DEFAULT NULL
                 ) ENGINE=MyISAM DEFAULT CHARSET=utf8";
 
@@ -171,7 +175,7 @@ class CrearTablaProduto{
         $conexion->Conectar();
         //var_dump($conexion->Conectar());
         $sql = "CREATE TABLE `Unidad_Medida` (
-                `id` int(5) NOT NULL DEFAULT 0,
+                `id` int(11) NOT NULL DEFAULT 0,
                 `Nombre` varchar(50) DEFAULT NULL
                 ) ENGINE=MyISAM DEFAULT CHARSET=utf8";
 

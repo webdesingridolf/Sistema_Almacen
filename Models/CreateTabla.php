@@ -3,7 +3,7 @@
         public function CrearTablaUsuario(){
             include_once "Conectar.php";
             $conexion = new Conexiondb();
-            $sql= "CREATE TABLE IF NOT EXISTS vw_usuario(
+            $sql= "CREATE TABLE IF NOT EXISTS Usuario(
                 id int(6) unsigned AUTO_INCREMENT primary key,
                 usuario varchar(30) not null,
                 pasword varchar(30) not null,
@@ -21,7 +21,7 @@
             include_once "Conectar.php";
             $conexion = new Conexiondb();
             $con = $conexion->Conectar();
-            $sql = "INSERT INTO vw_usuario(usuario,pasword,e_mail) 
+            $sql = "INSERT INTO Usuario(usuario,pasword,e_mail) 
                     VALUES ( :usuario, :pasword, :e_mail)";
             $stmt = $con->prepare($sql); 
             $stmt->bindParam(":usuario",$usuario);
