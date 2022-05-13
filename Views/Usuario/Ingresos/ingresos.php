@@ -1,11 +1,10 @@
 <?php 
-    include_once("../Header.php");
-    
+    include_once("../Header.php")
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-<title>Dashboard</title>
+<title>Ingresos</title>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
@@ -23,7 +22,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4 nav-vertical">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4 nav-vertical ">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="<?=BASE_URL?>assets/img/Logo_GRTPE.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -31,21 +30,21 @@
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar nav-vertical">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex nav-vertical">
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<?=BASE_URL?>assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="../../../assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">Alexander Pierce</a>
         </div>
       </div>
 
-    
+     
 
       <!-- Sidebar Menu  nav -->
-      <nav class="mt-2">
+      <nav class="mt-2 ">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
       <?php 
         include_once("../Nav_Vertical.php")
@@ -61,7 +60,7 @@
   <div class="content-wrapper">
     <!-- /.content-header -->
     <?php
-      include_once("Inicio_Content.php")
+      include_once("ingresos_content.php")
     ?>
     <!-- Main content -->
     
