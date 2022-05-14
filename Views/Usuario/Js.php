@@ -2,6 +2,7 @@
   include_once("../../../config/config.php");
 ?>
 
+
 <!-- jQuery -->
 <script src="<?=BASE_URL?>assets/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->

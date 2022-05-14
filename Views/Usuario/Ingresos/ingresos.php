@@ -14,59 +14,164 @@
   </div>
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light nav-vertical">
-   <?php
-    include_once("../Nav_Horizontal.php")
-   ?>
-  </nav>
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4 nav-vertical ">
-    <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="<?=BASE_URL?>assets/img/Logo_GRTPE.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
-    </a>
-
-    <!-- Sidebar -->
-    <div class="sidebar nav-vertical">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="../../../assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
-        </div>
-      </div>
-
-     
-
-      <!-- Sidebar Menu  nav -->
-      <nav class="mt-2 ">
-      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+ 
+ 
+  
       <?php 
-        include_once("../Nav_Vertical.php")
+        include_once("../NavUsuario.php")
       ?>
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
 
-  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- /.content-header -->
-    <?php
-      include_once("ingresos_content.php")
-    ?>
-    <!-- Main content -->
-    
-    <!-- /.content -->
+      <!-- pagina de  contenido -->
+     <!-- Content Header (Page header) -->
+     <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Ingresos</h1>
+          </div><!-- /.col -->
+         <!-- <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Dashboard v1</li>
+            </ol>
+          </div>--><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+
+<section class="content">
+
+<div class="card">
+              <div class="card-header">
+                <h3 class="card-title"></h3>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-primary">
+                  Nuevo Ingreso
+                </button>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Fecha</th>
+                    <th>Cantidad</th>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Total</th>
+                    <th>Orden de Compra</th>
+                    <th>Usuario</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>Trident</td>
+                    <td>Internet
+                      Explorer 4.0
+                    </td>
+                    <td>Win 95+</td>
+                    <td> 4</td>
+                    <td>X</td>
+                    <td>X</td>
+                    <td>X</td>
+                    <td>X</td>
+                  </tr>
+                  <tr>
+                    <td>Trident</td>
+                    <td>Internet
+                      Explorer 5.0
+                    </td>
+                    <td>Win 95+</td>
+                    <td>5</td>
+                    <td>C</td>
+                    <td>X</td>
+                    <td>X</td>
+                    <td>X</td>
+                  </tr>
+                  <tr>
+                    <td>Trident</td>
+                    <td>Internet
+                      Explorer 5.5
+                    </td>
+                    <td>Win 95+</td>
+                    <td>5.5</td>
+                    <td>A</td>
+                    <td>X</td>
+                    <td>X</td>
+                    <td>X</td>
+                  </tr>
+                  <tr>
+                    <td>Trident</td>
+                    <td>Internet
+                      Explorer 6
+                    </td>
+                    <td>Win 98+</td>
+                    <td>6</td>
+                    <td>A</td>
+                    <td>X</td>
+                    <td>X</td>
+                    <td>X</td>
+                  </tr>
+                  <tr>
+                    <td>Trident</td>
+                    <td>Internet Explorer 7</td>
+                    <td>Win XP SP2+</td>
+                    <td>7</td>
+                    <td>A</td>
+                    <td>X</td>
+                    <td>X</td>
+                    <td>X</td>
+                  </tr>
+
+
+                  </tbody>
+                  <!--<tfoot>
+                  <tr>
+                    <th>Rendering engine</th>
+                    <th>Browser</th>
+                    <th>Platform(s)</th>
+                    <th>Engine version</th>
+                    <th>CSS grade</th>
+                  </tr>
+                  </tfoot>-->
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+       
+
+    </section>
+    <div class="modal fade" id="modal-primary">
+        <div class="modal-dialog">
+          <div class="modal-content bg-primary">
+            <div class="modal-header">
+              <h4 class="modal-title">Success Modal</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>One fine body&hellip;</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-outline-light">Save changes</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+   
   </div>
-  <!-- footer /.content-wrapper -->
+
+
+
+
+
+
+  <!-- footer  -->
   <footer class="main-footer">
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
     All rights reserved.
@@ -75,18 +180,33 @@
     </div>
   </footer>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
+  
 </div>
-<!-- ./wrapper -->
+
+
 
 
 </body>
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+    console.log(buttons)
+  });
+</script>
 </html>
 
 <?php
- include_once("../Footer.php");
+ include_once("../Js.php");
 ?>
