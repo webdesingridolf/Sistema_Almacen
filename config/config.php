@@ -1,5 +1,5 @@
 <?php
-    const BASE_URL ="/proyectos/Sistema_Almacen/";
+    const BASE_URL ="/Sistema_Almacen/";
     //zona horaria 
     date_default_timezone_set("America/Lima");
     //datos de conexion
@@ -11,7 +11,7 @@
     CONST SPM=",";//separador de millar24,999.00
     const SMONEY=" S/";*/
     define('servidor', 'localhost');
-    define('nombre_bd', 'sistema_almacen');
+    define('nombre_bd', 'grtpe_almacen');
     define('usuario', 'root');
     define('password', '');	
 
