@@ -32,7 +32,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="../dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <img src="assets/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Brad Diesel
@@ -48,7 +48,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="../../dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="assets/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   John Pierce
@@ -112,6 +112,30 @@
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+        <i class="fa-solid fa-gear"></i>
+          
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <a href="#" class="dropdown-item">
+            
+            Perfil de usuario
+            
+          </a>
+          
+         
+         
+        </div>
+      </li>
+     
+      <li class="nav-item">
+        <a class="nav-link"  href="#" role="button">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        </a>
+      </li>
+    
+      
       
     </ul>
    </nav>
@@ -127,7 +151,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="../../../assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">Alexander Pierce</a>
@@ -136,11 +160,10 @@
       <nav class="mt-2 ">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item ">
-            <a href="#" class="nav-link ">
+            <a href="Dashboard" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
-                
               </p>
             </a>
             
@@ -158,24 +181,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../Ingresos/ingresos.php" class="nav-link">
+                <a href="Ingresos" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Ingresos</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                <a href="Ingresos/ListaIngresos" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Historial de Ingresos</p>
                 </a>
               </li>
             
-              <li class="nav-item">
-                <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>dispnible</p>
-                </a>
-              </li>
+              
             </ul>
           </li>
          <!--Salidas-->
@@ -192,39 +210,13 @@
               <li class="nav-item">
                 <a href="pages/forms/general.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Nueva Salida</p>
+                  <p>Salidas</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/forms/advanced.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Reporte de salidas</p>
-                </a>
-              </li>
-              
-            </ul>
-          </li>
-          <!--Productos-->
-         
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon  fa-brands fa-product-hunt"></i>
-              <p>
-                Productos
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Nuevo Producto</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>por ver</p>
+                  <p>Historial de salidas</p>
                 </a>
               </li>
               
@@ -243,7 +235,7 @@
               <li class="nav-item">
                 <a href="pages/forms/general.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Nuevo Servicio</p>
+                  <p>Servicios</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -252,15 +244,38 @@
                   <p>Lista de Servicios</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="pages/forms/editors.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>por ver</p>
-                </a>
-              </li>
+              
              
             </ul>
           </li>
+          <!--Productos-->
+         
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon  fa-brands fa-product-hunt"></i>
+              <p>
+                Productos
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="pages/forms/general.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Productos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/forms/advanced.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Lista de Productos</p>
+                </a>
+              </li>
+              
+            </ul>
+          </li>
+          
+         
           <!--Categorias-->
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -274,7 +289,7 @@
               <li class="nav-item">
                 <a href="pages/forms/general.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Nueva Categoria</p>
+                  <p>Categorias</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -283,12 +298,7 @@
                   <p>Lista de Categorias</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="pages/forms/editors.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>por ver</p>
-                </a>
-              </li>
+              
              
             </ul>
           </li>
@@ -305,7 +315,7 @@
               <li class="nav-item">
                 <a href="pages/forms/general.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Nuevo almacen</p>
+                  <p>Almacenes</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -314,12 +324,7 @@
                   <p>Lista de almacenes</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="pages/forms/editors.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>por ver</p>
-                </a>
-              </li>
+             
 
             </ul>
           </li>

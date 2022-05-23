@@ -1,4 +1,3 @@
-CREATE DATABASE grtpe_almacen;
 
 CREATE TABLE Ingreso(
     id_Ingreso int(11) not null AUTO_INCREMENT  primary key,  
@@ -34,7 +33,7 @@ CREATE Table Servicio(
 
 CREATE TABLE Almacen(
     id_Almacen int AUTO_INCREMENT primary key,
-    nombre varchar(30)
+    nombre varchar(30),
     fecha_Registro datetime not null default curtime()
 );
 
