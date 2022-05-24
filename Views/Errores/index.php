@@ -6,9 +6,9 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="/proyectos/Sistema_Almacen/assets/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="/Sistema_Almacen/assets/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="/proyectos/Sistema_Almacen/assets/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="/Sistema_Almacen/assets/dist/css/adminlte.min.css">
 </head>
 <div class="content">
     <!-- Content Header (Page header) -->
@@ -36,7 +36,7 @@
           <h3><i class="fas fa-exclamation-triangle text-warning"></i> La página que intentas solicitar no se encuentra en el servidor.</h3>
 
           <p>
-             <a href="../../index.html">Regresar  al inicio</a>
+             <a href="Dashboard">Regresar  al inicio</a>
           </p>
 
           
@@ -49,8 +49,8 @@
   </div>
 
   <!-- jQuery -->
-<script src="/proyectos/Sistema_Almacen/assets/plugins/jquery/jquery.min.js"></script>
+<script src="/Sistema_Almacen/assets/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="/proyectos/Sistema_Almacen/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/Sistema_Almacen/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
-<script src="/proyectos/Sistema_Almacen/assets/../../dist/js/adminlte.min.js"></script>
+<script src="/Sistema_Almacen/assets/dist/js/adminlte.min.js"></script>
