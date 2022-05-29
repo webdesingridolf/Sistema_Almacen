@@ -11,9 +11,9 @@
     CONST SPM=",";//separador de millar24,999.00
     const SMONEY=" S/";*/
     define('servidor', 'localhost');
-    define('nombre_bd', 'grtpe_almacen');
+    define('db', 'grtpe_almacen');
     define('usuario', 'root');
-    define('password', '');	
+    define('contraseña', '');	
 
 
 ?>

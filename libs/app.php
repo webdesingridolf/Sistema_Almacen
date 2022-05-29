@@ -11,12 +11,14 @@ class App{
          if (file_exists($ArchivoController)) {
              require_once $ArchivoController;
              $controller= new $url['0'];
+             $controller->loadModel($url[0]);
              if (isset($url[1])) {
                  $controller->{$url[1]}();
              }
          }else {
              if ($url[0]=="") {
                  header('location:Dashboard');
+                 $controller->loadModel('dashboard');
              }else {
                 $controller= new Errores();
              }
