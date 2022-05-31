@@ -2,19 +2,26 @@
 class Ingresos extends Controller{
     function __construct(){
         parent::__construct();
-        $this->view->render('Ingresos/ingresos');
+        $this->view->mensaje="";
+       
       
 
     }
+
+    function render(){
+        $this->view->render('Ingresos/example');
+    }
+
     function RegistrarIngreso(){
         $fecha=date('Y-m-d h:i:s',time());
         $cantidad=12;
-        $producto='dsbvds';
+        $producto=1;
         $precio= 19;
         $total=254;
         $ordenCompra=2121;
-        $especifica='especifica';
+        $especifica=2;
         $usuario=1;
+        $mensaje="";
        /* $producto=$_POST['Producto'];
         $cantidad=$_POST['Cantidad'];
         $precio=$_POST['precio'];
@@ -22,7 +29,7 @@ class Ingresos extends Controller{
         $ordenCompra=$_POST['OrdenCompra'];
         $especifica=$_POST['especifica'];*/
         
-        echo "ingreos registreado ";
+        if (
         $this->model->insertar([
             'fecha'=>$fecha,
             'cantidad'=>$cantidad,
@@ -32,6 +39,13 @@ class Ingresos extends Controller{
             'ordenCompra'=>$ordenCompra,
             'especifica'=>$especifica,
             'usuario'=>$usuario,
-        ]);
+        ])) {
+            $mensaje="Ingreso Registrado";
+        }else {
+            $mensaje="Ingreso no Registrado";
+        }
+        $this->view->mensaje=$mensaje;
+        $this->render();
     }
+    
 }

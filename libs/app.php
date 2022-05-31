@@ -15,10 +15,14 @@ class App{
              if (isset($url[1])) {
                  $controller->{$url[1]}();
              }
+             else{
+                 $controller->render();
+             }
          }else {
              if ($url[0]=="") {
                  header('location:Dashboard');
                  $controller->loadModel('dashboard');
+                 $controller->render();
              }else {
                 $controller= new Errores();
              }

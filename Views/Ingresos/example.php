@@ -33,3 +33,8 @@
                         <button type="submit" class="btn btn-primary">Agregar ingreso</button>
 
                     </form>
+                    <div>
+                        <?php 
+                        echo $this->mensaje;
+                        ?>
+                    </div>

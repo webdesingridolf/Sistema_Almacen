@@ -65,64 +65,24 @@
                   </tr>
                   </thead>
                   <tbody>
+                    <?php foreach($this->datos as $row){
+                      $ingreso=new ingresos();
+                      $ingreso=$row;
+                    
+                    ?>
                   <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 4.0
-                    </td>
-                    <td>Win 95+</td>
-                    <td> 4</td>
-                    <td>X</td>
-                    <td>X</td>
-                    <td>X</td>
-                    <td>X</td>
+                    <td><?php echo $ingreso->id ?>  </td>
+                    <td><?php echo $ingreso->fecha ?>  </td>
+                    <td><?php echo $ingreso->cantidad ?> </td>
+                    <td><?php echo $ingreso->producto ?> </td>
+                    <td><?php echo $ingreso->precio ?> </td>
+                    <td><?php echo $ingreso->total ?> </td>
+                    <td><?php echo $ingreso->ordenCompra ?> </td>
+                    <td><?php echo $ingreso->usuario ?> </td>
                   </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.0
-                    </td>
-                    <td>Win 95+</td>
-                    <td>5</td>
-                    <td>C</td>
-                    <td>X</td>
-                    <td>X</td>
-                    <td>X</td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.5
-                    </td>
-                    <td>Win 95+</td>
-                    <td>5.5</td>
-                    <td>A</td>
-                    <td>X</td>
-                    <td>X</td>
-                    <td>X</td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 6
-                    </td>
-                    <td>Win 98+</td>
-                    <td>6</td>
-                    <td>A</td>
-                    <td>X</td>
-                    <td>X</td>
-                    <td>X</td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet Explorer 7</td>
-                    <td>Win XP SP2+</td>
-                    <td>7</td>
-                    <td>A</td>
-                    <td>X</td>
-                    <td>X</td>
-                    <td>X</td>
-                  </tr>
+                 
+                  
+                  <?php  } ?>
 
 
                   </tbody>
@@ -138,6 +98,8 @@
                 </table>
               </div>
               <!-- /.card-body -->
+            </div>
+            <div> 
             </div>
        
 
