@@ -187,7 +187,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="Ingresos/ListaIngresos" class="nav-link">
+                <a href="HistorialIngresos" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Historial de Ingresos</p>
                 </a>

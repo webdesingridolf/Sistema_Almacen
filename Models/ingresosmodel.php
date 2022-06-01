@@ -1,4 +1,6 @@
 <?php
+include_once 'Models/ingresos.php';
+
 class IngresosModel extends Model{
     public function __construct(){
         parent::__construct();
@@ -29,6 +31,42 @@ class IngresosModel extends Model{
        
         
 
+    }
+    public function MostrarProductos(){
+        $items=[];
+        try {
+            $query=$this->db->conect()->query("SELECT*FROM producto");
+             while ($row=$query->fetch()) {
+                 $item=new productos();
+                 $item->idProducto=$row['id_Producto'];
+                 $item->detalle=$row['detalle'];
+                 
+                 array_push($items,$item);
+ 
+             }
+             return $items;
+        } catch (PDOException $e) {
+            return [];
+        }
+
+    }
+    public function MostrarEspecifica(){
+        $items=[];
+        try {
+            $query=$this->db->conect()->query("SELECT*FROM especifica");
+             while ($row=$query->fetch()) {
+                 $item=new especifica();
+                 $item->idEspecifica=$row['id_Especifica'];
+                 $item->detalle_especifica=$row['detalle_Especifica'];
+             
+                 array_push($items,$item);
+ 
+             }
+             return $items;
+        } catch (PDOException $e) {
+            return [];
+        }
+        
     }
     
 

@@ -3,13 +3,16 @@ class Ingresos extends Controller{
     function __construct(){
         parent::__construct();
         $this->view->mensaje="";
+        $this->view->mp=[];
        
       
 
     }
 
     function render(){
-        $this->view->render('Ingresos/example');
+        $MProductos=$this->model->MostrarProductos();
+        $this->view->mp=$MProductos;
+        $this->view->render('Ingresos/ingresos');
     }
 
     function RegistrarIngreso(){

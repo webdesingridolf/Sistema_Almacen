@@ -1,15 +1,13 @@
 <?php
-class ingresos{
-    public $id;
-    public $fecha;
-    public $cantidad;
-    public $producto;
-    public $precio;
-    public $total;
-    public $ordenCompra;
-    public $Especifica;
-    public $usuario;
+
+class productos{
+    public $idProducto;
+    public $detalle;
+    
+}
+class especifica{
+    public $idEspecifica;
+    public $detalle_especifica;
 
 }
-
 ?>

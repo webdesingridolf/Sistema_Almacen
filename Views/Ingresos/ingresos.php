@@ -51,9 +51,14 @@
                         <div class="row">
                         <label class="col-md-1" for="">Producto</label>
                         <select class="form-control col-md" id="producto" >
-                            <option selected="selected">orange</option>
-                            <option>white</option>
-                            <option>purple</option>
+                            <option value="">Seleccione un producto</option>
+                            <?php foreach($this->mp as $row){
+                            $producto=new productos();
+                            $producto=$row;?>
+                            <option value="<?php echo $producto->idProducto ;?>"><?php echo $producto->detalle; ?></option>
+                          
+
+                          <?php  } ?>
                         </select>
                         <label class="col-md-1" for="">Cantidad</label>
                         <input type="number" name="" id="" class="col-md-1">

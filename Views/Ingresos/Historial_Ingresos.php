@@ -57,16 +57,18 @@
                     <th>ID</th>
                     <th>Fecha</th>
                     <th>Cantidad</th>
+                    <th>Unidad de Medida</th>
                     <th>Producto</th>
+                    <th>Especifica</th>
                     <th>Precio</th>
                     <th>Total</th>
                     <th>Orden de Compra</th>
-                    <th>Usuario</th>
+                    <th>Acciones </th>
                   </tr>
                   </thead>
                   <tbody>
                     <?php foreach($this->datos as $row){
-                      $ingreso=new ingresos();
+                      $ingreso=new H_ingresos();
                       $ingreso=$row;
                     
                     ?>
@@ -74,11 +76,20 @@
                     <td><?php echo $ingreso->id ?>  </td>
                     <td><?php echo $ingreso->fecha ?>  </td>
                     <td><?php echo $ingreso->cantidad ?> </td>
+                    <td><?php echo $ingreso->unidadmedida ?> </td>
                     <td><?php echo $ingreso->producto ?> </td>
+                    <td><?php echo $ingreso->Especifica ?> </td>
                     <td><?php echo $ingreso->precio ?> </td>
                     <td><?php echo $ingreso->total ?> </td>
                     <td><?php echo $ingreso->ordenCompra ?> </td>
-                    <td><?php echo $ingreso->usuario ?> </td>
+                    <td>
+                      <button type="button" class="btn btn-danger swalDefaultError">
+                          <i class="fa-solid fa-trash"></i>
+                      </button> 
+                      <button type="button" class="btn btn-info swalDefaultInfo">
+                          <i class="fa-solid fa-pen"></i>
+                      </button>
+                    </td>
                   </tr>
                  
                   

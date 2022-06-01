@@ -20,9 +20,16 @@
                             <input type="text"  class="col-md-3">
                             <label for=""  class="col-md-2">Especifica</label>
                             <select class="form-control col-md" id="buscador2" >
-                            <option selected="selected">orange</option>
-                            <option>white</option>
-                            <option>purple</option>
+                                <option value="">seleccione usted</option>
+                            <?php foreach($this->mp as $row){
+                      $producto=new productos();
+                      $producto=$row;
+                    
+                    ?>
+                            <option value="<?php echo $producto->idProducto ;?>"><?php echo $producto->detalle; ?></option>
+                          
+
+                            <?php  } ?>
                         </select>
                       
                         
@@ -36,5 +43,6 @@
                     <div>
                         <?php 
                         echo $this->mensaje;
+                        var_dump($this->mp);
                         ?>
                     </div>
