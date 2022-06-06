@@ -181,13 +181,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="Ingresos" class="nav-link">
+                <a href="<?php echo constant('BASE_URL');?>Ingresos" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Ingresos</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="HistorialIngresos" class="nav-link">
+                <a href="<?php echo constant('BASE_URL');?>HistorialIngresos" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Historial de Ingresos</p>
                 </a>
@@ -208,7 +208,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
+                <a href="<?php echo constant('BASE_URL');?>Salidas" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Salidas</p>
                 </a>
@@ -233,7 +233,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
+                <a href="<?php echo constant('BASE_URL');?>Servicios" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Servicios</p>
                 </a>
@@ -260,7 +260,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
+                <a href="<?php echo constant('BASE_URL');?>Productos" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Productos</p>
                 </a>
@@ -287,7 +287,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
+                <a href="<?php echo constant('BASE_URL');?>Especifica" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Categorias</p>
                 </a>
@@ -313,7 +313,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
+                <a href="<?php echo constant('BASE_URL');?>Almacenes" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Almacenes</p>
                 </a>

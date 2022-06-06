@@ -1,21 +1,21 @@
 <?php
-class Ingresos extends Controller{
+class Productos extends Controller{
     function __construct(){
         parent::__construct();
-        $this->view->mensaje="";
+        /*$this->view->mensaje="";
         $this->view->mp=[];
         $this->view->me=[];
-       
+       */
       
 
     }
 
     function render(){
-        $MProductos=$this->model->MostrarProductos();
+        /*$MProductos=$this->model->MostrarProductos();
         $this->view->mp=$MProductos;
         $MEspecifica=$this->model->MostrarEspecifica();
-        $this->view->me=$MEspecifica;
-        $this->view->render('Ingresos/ingresos');
+        $this->view->me=$MEspecifica;*/
+        $this->view->render('Productos/index');
     }
 
     function RegistrarIngreso(){
@@ -29,21 +29,7 @@ class Ingresos extends Controller{
         $usuario=1;
         
         $mensaje="";
-       /* 
-        echo $cantidad;
-        echo "<br>";
-        echo $producto;
-        echo "<br>";
-        echo $precio;
-        echo "<br>";
-        echo $total;
-        echo "<br>";
-        echo $ordenCompra;
-        echo "<br>";
-        echo $especifica;
-        echo "<br>";
-        echo $usuario;
-        */
+      
         
         if (
         $this->model->insertar([

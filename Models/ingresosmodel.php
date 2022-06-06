@@ -8,7 +8,7 @@ class IngresosModel extends Model{
     public function insertar($datos){
         try {
             $query=$this->db->conect()->prepare(
-                'INSERT INTO ingreso(fecha,cantidad,id_Producto,precio,total,orden_de_compra,id_Categoria,id_usuario) 
+                'INSERT INTO ingreso(fecha,cantidad,id_Producto,precio,total,orden_de_compra,id_Especifica,id_usuario) 
                  VALUES(:fecha, :cantidad, :producto,:precio,:total,:ordencompra,:categoria,:usuario)');
             $query->execute([
                 'fecha'=>$datos['fecha'],
@@ -23,8 +23,8 @@ class IngresosModel extends Model{
             ]);
             return true;
         } catch (PDOException $e) {
-            //echo $e->getMessage();
-            echo "ingreso existente ";
+            echo $e->getMessage();
+            //echo "ingreso existente ";
             return false;
         }
         
@@ -57,7 +57,7 @@ class IngresosModel extends Model{
              while ($row=$query->fetch()) {
                  $item=new especifica();
                  $item->idEspecifica=$row['id_Especifica'];
-                 $item->detalle_especifica=$row['detalle_Especifica'];
+                 $item->codigo=$row['codigo'];
              
                  array_push($items,$item);
  

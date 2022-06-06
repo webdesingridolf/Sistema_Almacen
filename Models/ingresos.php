@@ -7,7 +7,7 @@ class productos{
 }
 class especifica{
     public $idEspecifica;
-    public $detalle_especifica;
+    public $codigo;
 
 }
 ?>

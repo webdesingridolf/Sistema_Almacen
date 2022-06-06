@@ -4,7 +4,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<title>Ingresos</title>
+<title>Salidas</title>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
@@ -25,7 +25,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Ingresos</h1>
+                            <h1 class="m-0">Productos</h1>
                         </div>
        
                     </div>
@@ -49,9 +49,11 @@
                     <form method="post" class="container" action="<?php echo constant('BASE_URL'); ?>ingresos/RegistrarIngreso" >
                         
                         <div class="row">
-                            <label class="col-md-1" for="">Producto</label>
-                                <select class="form-control col-md" id="producto" name="producto" >
-                                    <option value="">Seleccione un producto</option>
+                            <label class="col-md-2" for="">Producto</label>
+                                <input type="text" name="producto" id=""  class="form-control col-md">
+                            <label class="col-md-2" for="">Unidad de Medida</label>
+                                <select class="form-control col-md" id="um" name="um" >
+                                    <option value="">Unidad de medida</option>
                                         <?php foreach($this->mp as $row){
                                             $producto=new productos();
                                             $producto=$row;?>
@@ -60,17 +62,23 @@
 
                                         <?php  } ?>
                                 </select>
-                            <label class="col-md-1" for="">Cantidad</label>
-                                <input type="number" name="cantidad" id="cantidad"  class="col-md-1">
-                            <label class="col-md-1" for="">Precio</label>
-                                <input type="number" name="precio" id="precio" class="col-md-1"> 
-                            <label class="col-md-1" for="">Total</label>
-                                <input type="number" name="total" id="total" class="col-md-1">
+                            
+                                            
                         </div>
                         <br>
                         <div class="row">
-                            <label for=""  class="col-md-2">Orden de compra</label>
-                                <input type="number"  class="col-md-3" id="ordenCompra" name="ordenCompra">
+                            <label for=""  class="col-md-2">Almacen</label>
+                                
+                                <select class="form-control col-md" id="almacen" name="almacen" >
+                                    <option value="">Seleccione</option>
+                                        <?php foreach($this->me as $row){
+                                        $especifica=new especifica();
+                                        $especifica=$row;?>
+                                    <option value="<?php echo $especifica->idEspecifica ;?>"><?php echo $especifica->codigo; ?></option>
+                          
+
+                                        <?php  } ?>
+                                </select>
                             <label for=""  class="col-md-2">Especifica</label>
                                 <select class="form-control col-md" id="especifica" name="especifica" >
                                     <option value="">Seleccione</option>
@@ -89,10 +97,7 @@
                     </form>
                 </div>
                 <div>
-                        <?php 
-                        echo $this->mensaje;
-                        
-                        ?>
+                      
                     </div>
                 
                 </div>
@@ -127,7 +132,8 @@
 </body>
 </html>
 <script>
-$("#producto").select2();
+$("#um").select2();
+$("#almacen").select2();
 $("#especifica").select2();
 
 </script>
