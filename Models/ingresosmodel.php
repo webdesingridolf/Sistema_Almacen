@@ -7,8 +7,7 @@ class IngresosModel extends Model{
     }
     public function insertar($datos){
         try {
-            $query=$this->db->conect()->prepare(
-                'INSERT INTO ingreso(fecha,cantidad,id_Producto,precio,total,orden_de_compra,id_Especifica,id_usuario) 
+            $query=$this->prepare('INSERT INTO ingreso(fecha,cantidad,id_Producto,precio,total,orden_de_compra,id_Especifica,id_usuario) 
                  VALUES(:fecha, :cantidad, :producto,:precio,:total,:ordencompra,:categoria,:usuario)');
             $query->execute([
                 'fecha'=>$datos['fecha'],

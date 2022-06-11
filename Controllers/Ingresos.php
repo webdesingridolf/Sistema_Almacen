@@ -19,6 +19,7 @@ class Ingresos extends Controller{
     }
 
     function RegistrarIngreso(){
+        
         $fecha=date('Y-m-d h:i:s',time());
         $cantidad=$_POST["cantidad"];
         $producto=$_POST["producto"];
@@ -29,7 +30,8 @@ class Ingresos extends Controller{
         $usuario=1;
         
         $mensaje="";
-       /* 
+        /*
+       
         echo $cantidad;
         echo "<br>";
         echo $producto;
@@ -45,6 +47,7 @@ class Ingresos extends Controller{
         echo $usuario;
         */
         
+        
         if (
         $this->model->insertar([
             'fecha'=>$fecha,
@@ -56,12 +59,17 @@ class Ingresos extends Controller{
             'especifica'=>$especifica,
             'usuario'=>$usuario,
         ])) {
-            $mensaje="Ingreso Registrado";
+            $arrResponse=array('status'=>true, 'msg'=>'Registro ingresado correctamente');
+            
         }else {
-            $mensaje="Ingreso no Registrado";
+            $arrResponse=array('status'=>false, 'msg'=>'Registro no ingresado ');
+            
         }
+        echo json_encode($arrResponse);
         $this->view->mensaje=$mensaje;
+       /* 
         $this->render();
+        */ 
     }
     
 }

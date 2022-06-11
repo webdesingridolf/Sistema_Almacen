@@ -1,111 +1,63 @@
-document.getElementById("Imagen").addEventListener("change", () => {
-    var archivoseleccionado = document.querySelector("#Imagen");
-    var archivos = archivoseleccionado.files;
-    var imagenPrevisualizacion = document.querySelector("#mostrarimagen");
-    // Si no hay archivos salimos de la función y quitamos la imagen
-    if (!archivos || !archivos.length) {
-        imagenPrevisualizacion.src = "";
-        return;
+if (document.querySelector("#frmIngresos")) {
+   
+    let base_url="/Sistema_Almacen/";
+    let frmIngresos=document.querySelector("#frmIngresos");
+    frmIngresos.onsubmit=function(e){
+        e.preventDefault();
+        fntGuardar();
     }
-    // Ahora tomamos el primer archivo, el cual vamos a previsualizar
-    var primerArchivo = archivos[0];
-    // Lo convertimos a un objeto de tipo objectURL
-    var objectURL = URL.createObjectURL(primerArchivo);
-    // Y a la fuente de la imagen le ponemos el objectURL
-    imagenPrevisualizacion.src = objectURL;
-
-});
-
-
-
-
-function Registrar() {
-    var nombre = $("#Nombre").val();
-    var detalle = $("#Detalle").val();
-    var precio = $("#Precio").val();
-    var stock = $("#Stock").val();
-    var imagen = $("#Imagen").val();
-    var categoria = $("#Categoria").val();
-
-    var formData = new FormData();
-    var foto = $("#Imagen")[0].files[0];
-    formData.append('n', nombre);
-    formData.append('d', detalle);
-    formData.append('p', precio);
-    formData.append('s', stock);
-    formData.append('c', categoria);
-    formData.append('f', foto);
-
-
-
-
-    $.ajax({
-        url: 'AgregarProducto.php',
-        type: 'post',
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function (respuesta) {
-
-            if (respuesta = 1) {
-
-
-                document.getElementById("formulario").reset();
-                
-                document.getElementById("mostrarimagen").style.display = "none";
-
-                $('#contenedortabla').load('../Vistas/Inventario.php #tabla_productos');
-
-                alertify.success('Producto Agregado con exito');
-                
-
-            }
-            else{
-                alertify.error('Error al insertar nuevo producto');
-
-            }
-        }
-    });
-    return false;
-
-}
-function Preguntar(id) {
-    alertify.confirm("Eliminar Producto","¿Esta seguro de eliminar este producto?",
-    function () {
-        eliminar(id)
+    async function fntGuardar() {
+        let producto=document.querySelector("#producto").value;
+        let cantidad=document.querySelector("#cantidad").value;
+        let precio=document.querySelector("#precio").value;
+        let total=document.querySelector("#total").value;
+        let orden=document.querySelector("#ordenCompra").value;
+        let especifica=document.querySelector("#especifica").value;
         
-    },
-    function () {
-        alertify.error('Cancelar');
-    });
-}
+        if (producto==" "||cantidad==" "||precio==" "||total==" "||orden==" "||especifica==" ") {
+           alert("llene todos los campos") ;
+           
+           return;
+        }
+       
+        
+        try {
+            const data=new FormData(frmIngresos);
+            let resp=await fetch(base_url+"ingresos/RegistrarIngreso",{
+                method: 'POST',
+                mode: 'cors',
+                cache: 'no-cache',
+                body: data
 
+            });
+            json=await resp.json();
+            if(json.status){
+                toastr.success(json.msg);
+                frmIngresos.reset();
+                $("#producto").select2({
+                    placeholder: 'Seleccione un producto'
+                });
+                $("#especifica").select2({
+                    placeholder: 'Seleccione una opcion'
+                });
 
-function eliminar(id) {
-    var formid = new FormData();
-    formid.append('id', id);
-    $.ajax({
-        url: 'Eliminar.php',
-        type: 'post',
-        data: formid,
-        contentType: false,
-        processData: false,
-        success: function (r) {
-            if(r==1){
-                $('#contenedortabla').load('../Vistas/Inventario.php #tabla_productos');
-                alertify.success('Eliminado con exito');
 
             }else{
-                alertify.error('Error al eliminar el producto');
-
+                alert("nell",json.msg,"error");
             }
+            
            
+            
+        } catch (err) {
+            console.log("ocurrio un error: ".err);
         }
-    });
-    return false;
-
-   
+        
+    }
+    
 }
+
+
+
 
 
 

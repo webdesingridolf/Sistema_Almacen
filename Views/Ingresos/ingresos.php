@@ -37,56 +37,19 @@
                 <div class="card">
                         <div class="card-header">
                             <h3 class="card-title"></h3>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-primary">
-                                    Nuevo Ingreso
+                                
+                               
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-xl">
+                                Nuevo Ingreso
                                 </button>
+                
                         </div>
 
                 <div class="card-body">
                 <!--Contenido de la pagina -->
 
                 <div class="container-fluid">
-                    <form method="post" class="container" action="<?php echo constant('BASE_URL'); ?>ingresos/RegistrarIngreso" >
-                        
-                        <div class="row">
-                            <label class="col-md-1" for="">Producto</label>
-                                <select class="form-control col-md" id="producto" name="producto" >
-                                    <option value="">Seleccione un producto</option>
-                                        <?php foreach($this->mp as $row){
-                                            $producto=new productos();
-                                            $producto=$row;?>
-                                    <option value="<?php echo $producto->idProducto ;?>"><?php echo $producto->detalle; ?></option>
-                          
-
-                                        <?php  } ?>
-                                </select>
-                            <label class="col-md-1" for="">Cantidad</label>
-                                <input type="number" name="cantidad" id="cantidad"  class="col-md-1">
-                            <label class="col-md-1" for="">Precio</label>
-                                <input type="number" name="precio" id="precio" class="col-md-1"> 
-                            <label class="col-md-1" for="">Total</label>
-                                <input type="number" name="total" id="total" class="col-md-1">
-                        </div>
-                        <br>
-                        <div class="row">
-                            <label for=""  class="col-md-2">Orden de compra</label>
-                                <input type="number"  class="col-md-3" id="ordenCompra" name="ordenCompra">
-                            <label for=""  class="col-md-2">Especifica</label>
-                                <select class="form-control col-md" id="especifica" name="especifica" >
-                                    <option value="">Seleccione</option>
-                                        <?php foreach($this->me as $row){
-                                        $especifica=new especifica();
-                                        $especifica=$row;?>
-                                    <option value="<?php echo $especifica->idEspecifica ;?>"><?php echo $especifica->codigo; ?></option>
-                          
-
-                                        <?php  } ?>
-                                </select>
-                        </div>
-                        <br>
-                        <button type="submit" class="btn btn-primary">Agregar ingreso</button>
-
-                    </form>
+                    
                 </div>
                 <div>
                         <?php 
@@ -103,6 +66,86 @@
     
    
         </div>
+        
+
+
+
+        
+        <!-- /.modal-dialog -->
+
+
+
+
+        <!--final del div incial-->
+      </div>
+      <div class="modal fade" id="modal-xl">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Registrar Ingreso</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            <form  class="container" id="frmIngresos" >
+                        
+                        <div class="row">
+                            <label class="col-md-1" for="">Producto</label>
+                                <select class=" col-md" id="producto" name="producto" >
+                                    <option value="">Seleccione un producto</option>
+                                        <?php foreach($this->mp as $row){
+                                            $producto=new productos();
+                                            $producto=$row;?>
+                                    <option value="<?php echo $producto->idProducto ;?>"><?php echo $producto->detalle; ?></option>
+                          
+
+                                        <?php  } ?>
+                                </select>
+                            <label class="col-md-1" for="">Cantidad</label>
+                                <input type="number" name="cantidad" id="cantidad"  class="col-md-1" min="1">
+                            <label class="col-md-1" for="">Precio</label>
+                                <input type="number" name="precio" id="precio" class="col-md-1" min="1"> 
+                            <label class="col-md-1" for="">Total</label>
+                                <input type="number" name="total" id="total" class="col-md-1" min="1">
+                        </div>
+                        <br>
+                        <div class="row">
+                            <label for=""  class="col-md-2">Orden de compra</label>
+                                <input type="number"  class="col-md-3" id="ordenCompra" name="ordenCompra" min="1">
+                            <label for=""  class="col-md-2">Especifica</label>
+                                <select class=" col-md-3" id="especifica" name="especifica" >
+                                    <option value="Default" >Seleccione</option>
+                                        <?php foreach($this->me as $row){
+                                        $especifica=new especifica();
+                                        $especifica=$row;?>
+                                    <option value="<?php echo $especifica->idEspecifica ;?>"><?php echo $especifica->codigo; ?></option>
+                          
+
+                                        <?php  } ?>
+                                </select>
+                        </div>
+                        <br>
+                        
+                        
+
+                   
+              
+
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              
+              <button type="" class="btn btn-primary toastrDefaultSuccess">
+                        Registrar ingreso
+                </button>
+            </div>
+            </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
 
 
 
@@ -127,8 +170,12 @@
 </body>
 </html>
 <script>
-$("#producto").select2();
-$("#especifica").select2();
+     $("#producto").select2({
+        placeholder: 'Seleccione un producto'
+    });
+    $("#especifica").select2({
+        placeholder: 'Seleccione una opcion'
+    });
 
 </script>
 
@@ -136,3 +183,4 @@ $("#especifica").select2();
     <?php
         include_once("Views/Js.php");
     ?>
+<script src="<?=BASE_URL?>assets/js/AgregarProducto.js"></script>
