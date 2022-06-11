@@ -5,12 +5,15 @@ class Ingresos extends Controller{
         $this->view->mensaje="";
         $this->view->mp=[];
         $this->view->me=[];
+        $this->view->datos=[];
        
       
 
     }
 
     function render(){
+        $ingresos=$this->model->Mostrar();
+        $this->view->datos=$ingresos;
         $MProductos=$this->model->MostrarProductos();
         $this->view->mp=$MProductos;
         $MEspecifica=$this->model->MostrarEspecifica();

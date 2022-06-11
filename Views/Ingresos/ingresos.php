@@ -48,6 +48,70 @@
                 <div class="card-body">
                 <!--Contenido de la pagina -->
 
+                <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Fecha</th>
+                    <th>Cantidad</th>
+                    <th>Unidad de Medida</th>
+                    <th>Producto</th>
+                    <th>Especifica</th>
+                    <th>Precio</th>
+                    <th>Total</th>
+                    <th>Orden de Compra</th>
+                    <th>Acciones </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <?php foreach($this->datos as $row){
+                      $ingreso=new H_ingresos();
+                      $ingreso=$row;
+                    
+                    ?>
+                  <tr>
+                    <td><?php echo $ingreso->id ?>  </td>
+                    <td><?php echo $ingreso->fecha ?>  </td>
+                    <td><?php echo $ingreso->cantidad ?> </td>
+                    <td><?php echo $ingreso->unidadmedida ?> </td>
+                    <td><?php echo $ingreso->producto ?> </td>
+                    <td><?php echo $ingreso->Especifica ?> </td>
+                    <td><?php echo $ingreso->precio ?> </td>
+                    <td><?php echo $ingreso->total ?> </td>
+                    <td><?php echo $ingreso->ordenCompra ?> </td>
+                    <td>
+                      <button type="button" class="btn btn-danger swalDefaultError">
+                          <i class="fa-solid fa-trash"></i>
+                      </button> 
+                      <button type="button" class="btn btn-info swalDefaultInfo">
+                          <i class="fa-solid fa-pen"></i>
+                      </button>
+                    </td>
+                  </tr>
+                 
+                  
+                  <?php  } ?>
+
+
+                  </tbody>
+                  <!--<tfoot>
+                  <tr>
+                    <th>Rendering engine</th>
+                    <th>Browser</th>
+                    <th>Platform(s)</th>
+                    <th>Engine version</th>
+                    <th>CSS grade</th>
+                  </tr>
+                  </tfoot>-->
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <div> 
+            </div>
+       
+
                 <div class="container-fluid">
                     
                 </div>
@@ -176,6 +240,24 @@
     $("#especifica").select2({
         placeholder: 'Seleccione una opcion'
     });
+    
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+    console.log(buttons)
+  });
+
 
 </script>
 
