@@ -43,12 +43,7 @@
 <section class="content">
 
 <div class="card">
-              <div class="card-header">
-                <h3 class="card-title"></h3>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-primary">
-                  Nuevo Ingreso
-                </button>
-              </div>
+              
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
