@@ -20,7 +20,7 @@ class App{
              }
          }else {
              if ($url[0]=="") {
-                 header('location:Dashboard');
+                 header('location:Session');
                  $controller->loadModel('dashboard');
                  $controller->render();
              }else {
