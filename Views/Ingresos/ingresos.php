@@ -47,8 +47,10 @@
 
                 <div class="card-body">
                 <!--Contenido de la pagina -->
+                
+                
 
-                <div class="card-body">
+                <div class="card-body" id="TablaIngresos">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
@@ -64,35 +66,9 @@
                     <th>Acciones </th>
                   </tr>
                   </thead>
-                  <tbody>
-                    <?php foreach($this->datos as $row){
-                      $ingreso=new H_ingresos();
-                      $ingreso=$row;
-                    
-                    ?>
-                  <tr>
-                    <td><?php echo $ingreso->id ?>  </td>
-                    <td><?php echo $ingreso->fecha ?>  </td>
-                    <td><?php echo $ingreso->cantidad ?> </td>
-                    <td><?php echo $ingreso->unidadmedida ?> </td>
-                    <td><?php echo $ingreso->producto ?> </td>
-                    <td><?php echo $ingreso->Especifica ?> </td>
-                    <td><?php echo $ingreso->precio ?> </td>
-                    <td><?php echo $ingreso->total ?> </td>
-                    <td><?php echo $ingreso->ordenCompra ?> </td>
-                    <td>
-                      <button type="button" class="btn btn-danger swalDefaultError">
-                          <i class="fa-solid fa-trash"></i>
-                      </button> 
-                      <button type="button" class="btn btn-info swalDefaultInfo">
-                          <i class="fa-solid fa-pen"></i>
-                      </button>
-                    </td>
-                  </tr>
+                  <tbody id="example2">
+                   
                  
-                  
-                  <?php  } ?>
-
 
                   </tbody>
                   <!--<tfoot>
@@ -227,42 +203,30 @@
 
   
     </div>
-
+    
 
 
 
 </body>
 </html>
 <script>
-     $("#producto").select2({
+   $("#producto").select2({
         placeholder: 'Seleccione un producto'
     });
     $("#especifica").select2({
         placeholder: 'Seleccione una opcion'
     });
     
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-    console.log(buttons)
-  });
-
-
+    
+    
+    
+  
+  
+  
 </script>
 
 
     <?php
         include_once("Views/Js.php");
     ?>
-<script src="<?=BASE_URL?>assets/js/AgregarProducto.js"></script>
+<script src="<?=BASE_URL?>assets/js/AgregarIngreso.js"></script>

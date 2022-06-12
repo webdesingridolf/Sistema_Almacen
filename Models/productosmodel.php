@@ -1,7 +1,7 @@
 <?php
-include_once 'Models/ingresos.php';
+include_once 'Models/productos.php';
 
-class IngresosModel extends Model{
+class ProductosModel extends Model{
     public function __construct(){
         parent::__construct();
     }
@@ -70,9 +70,9 @@ class IngresosModel extends Model{
     public function Mostrar(){
         $items=[];
         try {
-            $query=$this->db->conect()->query("SELECT ingreso.id_Ingreso,ingreso.fecha,ingreso.cantidad,unidad_medida.nombre,producto.detalle,especifica.detalle_Especifica,ingreso.precio,ingreso.total,ingreso.orden_de_compra
-            FROM ingreso, producto, especifica, usuario, unidad_medida
-            WHERE producto.id_Producto=ingreso.id_Producto AND especifica.id_Especifica =ingreso.id_Especifica and usuario.id_Usuario=ingreso.id_usuario AND producto.id_Unidad_Medida=unidad_medida.id_Unidad_Medida AND ingreso.fecha BETWEEN '2022-06-10' AND '2022-06-12'");
+            $query=$this->db->conect()->query("SELECT    producto.id_Producto,producto.detalle,unidad_medida.nombre,producto.cantidad_Stock,almacen.nombre,especifica.detalle_Especifica,producto.fecha_Registro 
+            FROM almacen, producto, especifica,  unidad_medida
+            WHERE producto.id_Almacen =almacen.id_Almacen  AND especifica.id_Especifica =producto.id_Especifica  AND producto.id_Unidad_Medida=unidad_medida.id_Unidad_Medida AND producto.fecha_Registro BETWEEN '2022-06-10' AND '2022-06-12'");
              while ($row=$query->fetch()) {
                  $item=new H_Ingresos();
                  $item->id=$row['id_Ingreso'];
@@ -98,8 +98,3 @@ class IngresosModel extends Model{
          
  
      }
-    
-
-}
-
-?>

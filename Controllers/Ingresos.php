@@ -74,5 +74,11 @@ class Ingresos extends Controller{
         $this->render();
         */ 
     }
+    function MostrarIngresos(){
+        $ingresos=$this->model->Mostrar();
+        print json_encode($ingresos, JSON_UNESCAPED_UNICODE);
+       
+
+    }
     
 }
