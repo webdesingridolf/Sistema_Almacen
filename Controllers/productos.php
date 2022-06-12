@@ -18,7 +18,7 @@ class Productos extends Controller{
         $this->view->render('Productos/index');
     }
 
-    function RegistrarIngreso(){
+    function RegistrarProducto(){
         $fecha=date('Y-m-d h:i:s',time());
         $cantidad=$_POST["cantidad"];
         $producto=$_POST["producto"];
@@ -48,6 +48,12 @@ class Productos extends Controller{
         }
         $this->view->mensaje=$mensaje;
         $this->render();
+    }
+    function MostrarIngresos(){
+        $ingresos=$this->model->Mostrar();
+        print json_encode($ingresos, JSON_UNESCAPED_UNICODE);
+       
+
     }
     
 }
