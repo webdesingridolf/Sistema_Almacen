@@ -19,7 +19,11 @@
 
 
     <div class="w-25 p-3 position-absolute top-50 start-50 translate-middle nav-white" >
+<<<<<<< HEAD
         <form action="<?=BASE_URL?>Session/SessionConetion" method="get">
+=======
+        <form action="<?php echo constant('BASE_URL');?>session/SessionConetion" method="post">
+>>>>>>> 255602f2c53c3ebfdabb7e4ae4300b7f9bd42040
         <!-- Email input -->
             <div class="form-outline mb-4">
                 <label class="form-label" for="form2Example1">User ID</label>    

@@ -15,7 +15,15 @@ class Session extends Controller{
         else {
 
             $this->view->render('Session/index');
+<<<<<<< HEAD
             //$this->model->login(['user'=>'usuario','pasword'=> '1234']);
+=======
+            $this->model->login([
+                'user'=>'usuario',
+                'pasword'=> '1234',
+                
+            ]);
+>>>>>>> 255602f2c53c3ebfdabb7e4ae4300b7f9bd42040
            
 
         }
@@ -24,6 +32,7 @@ class Session extends Controller{
 
     function SessionConetion(){
         //realizar conexion de sesion
+<<<<<<< HEAD
         //$this->view->render("Dashboard/index");
         echo "ingreso sesion conection";
 
@@ -32,12 +41,36 @@ class Session extends Controller{
             $_SESSION["log_User"]=$_GET["User"]; 
             $_SESSION["log_Pass"]=$_GET["Pass"];
             $this->view->render('Dashboard/index');
+=======
+<<<<<<< HEAD
+        /*$user =$datos["Username"];
+        $pass =$datos["Password"];
+        if($this->model->Session(["admin"=>"admin","admin1"=>"admin1"])){
+=======
+        $user =$datos["Username"];
+        $pass =$datos["Password"];
+        if($this->model->Session($user,$pass)){
+>>>>>>> 57cb4eb292ce01271382822382c39a378f3d9fcc
+>>>>>>> 255602f2c53c3ebfdabb7e4ae4300b7f9bd42040
             echo "logion correcto";
         }else{
             $this->view->render('Session/index');
             echo "login incoreccto";
         }
+<<<<<<< HEAD
         //$this->view->render("Session/index");
+=======
+<<<<<<< HEAD
+        $this->view->render('Session/index');
+        */
+        echo "funcccion iniciar session";
+        if(){
+            
+        }
+=======
+        $this->view->render(Session/index");
+>>>>>>> 57cb4eb292ce01271382822382c39a378f3d9fcc
+>>>>>>> 255602f2c53c3ebfdabb7e4ae4300b7f9bd42040
         
     }
     function SessionDestroy(){
