@@ -17,6 +17,7 @@ class Session extends Controller{
             $this->model->login([
                 'user'=>'usuario',
                 'pasword'=> '1234',
+                
             ]);
            
 
@@ -27,13 +28,18 @@ class Session extends Controller{
     function SessionConetion(){
         //realizar conexion de sesion
         /*$user =$datos["Username"];
-        $pass =$datos["Password"];*/
+        $pass =$datos["Password"];
         if($this->model->Session(["admin"=>"admin","admin1"=>"admin1"])){
             echo "logion correcto";
         }else{
             echo "login incoreccto";
         }
         $this->view->render('Session/index');
+        */
+        echo "funcccion iniciar session";
+        if(){
+            
+        }
         
     }
     function SessionDestroy(){
