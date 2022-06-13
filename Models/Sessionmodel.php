@@ -6,13 +6,8 @@ class SessionModel extends Model{
         parent::__construct();
     }
     public function login($datos){
-        echo "modelo session";
-        var_dump($datos);
         $log_User=$datos["log_User"];
         $log_Pass=$datos["log_Pass"];
-
-        echo "<br>".$log_User;
-        echo $log_Pass;
        $items=[];
        try {
             $query=$this->prepare("SELECT usuario.log_User, usuario.log_Pass
