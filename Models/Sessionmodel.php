@@ -8,6 +8,7 @@ class SessionModel extends Model{
     public function login($datos){
         echo "modelo session";
         var_dump($datos);
+        echo $datos['user'];
        
        /* $items=[];
        try {
