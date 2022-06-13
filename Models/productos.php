@@ -7,20 +7,22 @@ class almacen{
 }
 class especifica{
     public $idEspecifica;
-    public $codigo;
+    public $detalle;
+
+}
+class unidadMedida{
+    public $idUnidadMedida;
+    public $nombreUM;
 
 }
 class ListaProductos{
     public $id;
-    public $fecha;
-    public $cantidad;
+    public $detalle;
     public $unidadmedida;
-    public $producto;
-    public $precio;
-    public $total;
-    public $ordenCompra;
+    public $stock;
+    public $almacen;
     public $Especifica;
-    public $usuario;
+    public $fecha;
 
 }
 ?>

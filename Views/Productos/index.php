@@ -129,12 +129,12 @@
                         <label class="col-md-1" for="">Detalle</label>
                                 <input type="text" name="cantidad" id="cantidad"  class="col-md" >
                             <label class="col-md-1" for="">Unidad de Medida</label>
-                                <select class=" col-md" id="producto" name="producto" >
+                                <select class=" col-md" id="unidadMedida" name="unidadMedida" >
                                     <option value="">Seleccione </option>
-                                        <?php foreach($this->mp as $row){
-                                            $producto=new productos();
-                                            $producto=$row;?>
-                                    <option value="<?php echo $producto->idProducto ;?>"><?php echo $producto->detalle; ?></option>
+                                        <?php foreach($this->mum as $row){
+                                            $unidadMedida=new unidadMedida();
+                                            $unidadMedida=$row;?>
+                                    <option value="<?php echo $unidadMedida->idUnidadMedida ;?>"><?php echo $unidadMedida->nombreUM; ?></option>
                           
 
                                         <?php  } ?>
@@ -151,20 +151,20 @@
                                 <select class=" col-md-3" id="especifica" name="especifica" >
                                     <option value="Default" >Seleccione</option>
                                         <?php foreach($this->me as $row){
-                                        $especifica=new especifica();
+                                        $especifica=new especifica ();
                                         $especifica=$row;?>
-                                    <option value="<?php echo $especifica->idEspecifica ;?>"><?php echo $especifica->codigo; ?></option>
+                                    <option value="<?php echo $especifica->idEspecifica ;?>"><?php echo $especifica->detalle; ?></option>
                           
 
                                         <?php  } ?>
                                 </select>
                                 <label for=""  class="col-md-2">Almacen</label>
-                                <select class=" col-md-3" id="especifica" name="especifica" >
+                                <select class=" col-md-3" id="almacen" name="almacen" >
                                     <option value="Default" >Seleccione</option>
-                                        <?php foreach($this->me as $row){
-                                        $especifica=new especifica();
-                                        $especifica=$row;?>
-                                    <option value="<?php echo $especifica->idEspecifica ;?>"><?php echo $especifica->codigo; ?></option>
+                                        <?php foreach($this->ma as $row){
+                                        $almacen=new  almacen();
+                                        $almacen=$row;?>
+                                    <option value="<?php echo $almacen->idAlmacen ;?>"><?php echo $almacen->nombre; ?></option>
                           
 
                                         <?php  } ?>
@@ -182,7 +182,7 @@
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
               
               <button type="" class="btn btn-primary toastrDefaultSuccess">
-                        Registrar ingreso
+                        Registrar Producto
                 </button>
             </div>
             </form>
@@ -215,10 +215,13 @@
 </body>
 </html>
 <script>
-   $("#producto").select2({
+   $("#unidadMedida").select2({
         placeholder: 'Seleccione un producto'
     });
     $("#especifica").select2({
+        placeholder: 'Seleccione una opcion'
+    });
+    $("#almacen").select2({
         placeholder: 'Seleccione una opcion'
     });
     
@@ -234,4 +237,4 @@
     <?php
         include_once("Views/Js.php");
     ?>
-<script src="<?=BASE_URL?>assets/js/AgregarIngreso.js"></script>
+<script src="<?=BASE_URL?>assets/js/AgregarProducto.js"></script>

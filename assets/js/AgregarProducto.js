@@ -41,7 +41,7 @@ $(document).ready(function(){
             },
         ],
         "ajax":{            
-            "url": base_url+"ingresos/MostrarIngresos", 
+            "url": base_url+"productos/MostrarProductos", 
             "method": 'POST', //usamos el metodo POST
             //"data":{opcion:opcion}, //enviamos opcion 4 para que haga un SELECT
             "dataSrc":""
@@ -50,14 +50,13 @@ $(document).ready(function(){
         
         "columns":[
             {"data": "id"},
-            {"data": "fecha"},
-            {"data": "cantidad"},
+            {"data": "detalle"},
             {"data": "unidadmedida"},
-            {"data": "producto"},
+            {"data": "stock"},
+            {"data": "almacen"},
             {"data": "Especifica"},
-            {"data": "precio"},
-            {"data": "total"},
-            {"data": "ordenCompra"},
+            {"data": "fecha"},
+            
             {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='material-icons'>delete</i></button></div></div>"}
         ]
     });

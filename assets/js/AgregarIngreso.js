@@ -61,6 +61,7 @@ $(document).ready(function(){
             {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='material-icons'>delete</i></button></div></div>"}
         ]
     });
+    
     if (document.querySelector("#frmIngresos")) {
    
         let base_url="/Sistema_Almacen/";
