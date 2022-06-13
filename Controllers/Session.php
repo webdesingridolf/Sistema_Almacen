@@ -17,14 +17,14 @@ class Session extends Controller{
         
     }
 
-    function SessionConetion(){
+    function SessionConetion($datos){
         //realizar conexion de sesion
-        /*$user =$datos["Username"];
-        $pass =$datos["Password"];*/
-        if($this->model->Session(["admin"=>"admin","admin1"=>"admin1"])){
+        $user =$datos["Username"];
+        $pass =$datos["Password"];
+        if($this->model->Session($user,$pass)){
             echo "logion correcto";
         }
-        $this->view->render('Session/index');
+        $this->view->render(Session/index");
         
     }
     function SessionDestroy(){
