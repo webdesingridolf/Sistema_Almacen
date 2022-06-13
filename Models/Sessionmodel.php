@@ -12,13 +12,15 @@ class SessionModel extends Model{
        
        /* $items=[];
        try {
-           $query=$this->db->conect()->query("SELECT usuario.log_User, usuario.log_Pass
+           $query=$this->query("SELECT usuario.log_User, usuario.log_Pass
            FROM usuario
            WHERE usuario.log_User= $log_User and usuario.log_Pass= $log_Pass");
+           /*$query->bindParam(":log_User",);
+           $query->bindParam(":log_Pass",);*/
             while ($row=$query->fetch()) {
                 $item=new V_Session();
                 $item->log_User=$row['log_User'];
-                $item->log_Pass=$row['$log_Pass'];
+                $item->log_Pass=$row['log_Pass'];
                 
                 //$item->usuario=$row['id_usuario'];
                 array_push($items,$item);
