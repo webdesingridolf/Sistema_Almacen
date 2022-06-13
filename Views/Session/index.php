@@ -19,17 +19,17 @@
 
 
     <div class="w-25 p-3 position-absolute top-50 start-50 translate-middle nav-white" >
-        <form action="#" method="post">
+        <form action="<?=BASE_URL?>Session/SessionConetion" method="get">
         <!-- Email input -->
             <div class="form-outline mb-4">
                 <label class="form-label" for="form2Example1">User ID</label>    
-                <input type="text" id="form2Example1" class="form-control" name="Username" placeholder="Username"/>        
+                <input type="text" id="form2Example1" class="form-control" name="User" placeholder="Username"/>        
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
                 <label class="form-label" for="form2Example2" ">Password</label>
-                <input type="password" id="form2Example2" class="form-control" name="Password" placeholder="**********" />
+                <input type="password" id="form2Example2" class="form-control" name="Pass" placeholder="**********" />
                 
             </div>
 
