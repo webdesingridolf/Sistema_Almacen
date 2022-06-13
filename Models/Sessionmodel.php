@@ -8,18 +8,12 @@ class SessionModel extends Model{
     public function login($datos){
         echo "modelo session";
         var_dump($datos);
-<<<<<<< HEAD
         $log_User=$datos["log_Use"];
         $log_Pass=$datos["log_Pass"];
 
         echo "<br>".$log_User;
         echo $log_Pass;
        $items=[];
-=======
-        echo $datos['user'];
-       
-       /* $items=[];
->>>>>>> 255602f2c53c3ebfdabb7e4ae4300b7f9bd42040
        try {
             $query=$this->prepare("SELECT usuario.log_User, usuario.log_Pass
             FROM usuario
