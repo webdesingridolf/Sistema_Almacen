@@ -1,12 +1,15 @@
 
 <?php
 include_once 'Models/V_Session.php';
-class HistorialIngresosModel extends Model{
+class SessionModel extends Model{
     public function __construct(){
         parent::__construct();
     }
-    public function Session($log_User,$log_Pass){
-       $items=[];
+    public function login($datos){
+        echo "modelo session";
+        var_dump($datos);
+       
+       /* $items=[];
        try {
            $query=$this->query("SELECT usuario.log_User, usuario.log_Pass
            FROM usuario
@@ -25,7 +28,7 @@ class HistorialIngresosModel extends Model{
             return $items;
        } catch (PDOException $e) {
            return [];
-       }
+       }*/
         
        
         

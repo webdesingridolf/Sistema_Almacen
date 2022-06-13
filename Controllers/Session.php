@@ -12,7 +12,14 @@ class Session extends Controller{
             
         }
         else {
-            $this->view->render('Session/index');    
+
+            $this->view->render('Session/index');
+            $this->model->login([
+                'user'=>'usuario',
+                'pasword'=> '1234',
+            ]);
+           
+
         }
         
     }
@@ -23,6 +30,8 @@ class Session extends Controller{
         $pass =$datos["Password"];
         if($this->model->Session($user,$pass)){
             echo "logion correcto";
+        }else{
+            echo "login incoreccto";
         }
         $this->view->render(Session/index");
         
