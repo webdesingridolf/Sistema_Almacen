@@ -31,14 +31,15 @@ class ProductosModel extends Model{
         
 
     }
-    public function MostrarProductos(){
+    //funcion para mostrar en la vista  las categorias 
+    public function MostrarAlmacen(){
         $items=[];
         try {
-            $query=$this->db->conect()->query("SELECT*FROM producto");
+            $query=$this->db->conect()->query("SELECT*FROM almacen");
              while ($row=$query->fetch()) {
-                 $item=new productos();
-                 $item->idProducto=$row['id_Producto'];
-                 $item->detalle=$row['detalle'];
+                 $item=new almacen();
+                 $item->idAlmacen=$row['id_Almacen'];
+                 $item->nombre=$row['nombre'];
                  
                  array_push($items,$item);
  
@@ -56,7 +57,7 @@ class ProductosModel extends Model{
              while ($row=$query->fetch()) {
                  $item=new especifica();
                  $item->idEspecifica=$row['id_Especifica'];
-                 $item->codigo=$row['codigo'];
+                 $item->detalle=$row['codigo'];
              
                  array_push($items,$item);
  
@@ -67,6 +68,24 @@ class ProductosModel extends Model{
         }
         
     }
+    public function MostrarUnidadMedida(){
+        $items=[];
+        try {
+            $query=$this->db->conect()->query("SELECT*FROM unidad_medida");
+             while ($row=$query->fetch()) {
+                 $item=new unidadMedida();
+                 $item->idUnidadMedida=$row['id_Unidad_Medida'];
+                 $item->nombreUM=$row['nombre'];
+                 
+                 array_push($items,$item);
+ 
+             }
+             return $items;
+        } catch (PDOException $e) {
+            return [];
+        }
+
+    }
     public function Mostrar(){
         $items=[];
         try {
@@ -74,17 +93,15 @@ class ProductosModel extends Model{
             FROM almacen, producto, especifica,  unidad_medida
             WHERE producto.id_Almacen =almacen.id_Almacen  AND especifica.id_Especifica =producto.id_Especifica  AND producto.id_Unidad_Medida=unidad_medida.id_Unidad_Medida AND producto.fecha_Registro BETWEEN '2022-06-10' AND '2022-06-12'");
              while ($row=$query->fetch()) {
-                 $item=new H_Ingresos();
-                 $item->id=$row['id_Ingreso'];
-                 $item->fecha=$row['fecha'];
-                 $item->cantidad=$row['cantidad'];
+                 $item=new ListaProductos();
+                 $item->id=$row['id_Producto'];
+                 $item->detalle=$row['detalle'];
                  $item->unidadmedida=$row['nombre'];
- 
-                 $item->producto=$row['detalle'];
-                 $item->precio=$row['precio'];
-                 $item->total=$row['total'];
-                 $item->ordenCompra=$row['orden_de_compra'];
+                 $item->stock=$row['cantidad_Stock'];
+                 $item->almacen=$row['nombre'];
                  $item->Especifica=$row['detalle_Especifica'];
+                 $item->fecha=$row['fecha_Registro'];
+                 
                  //$item->usuario=$row['id_usuario'];
                  array_push($items,$item);
  
@@ -98,3 +115,4 @@ class ProductosModel extends Model{
          
  
      }
+    }

@@ -2,10 +2,11 @@
 class Productos extends Controller{
     function __construct(){
         parent::__construct();
-        /*$this->view->mensaje="";
-        $this->view->mp=[];
+        $this->view->ma=[];
         $this->view->me=[];
-       */
+        $this->view->mum=[];
+
+       
       
 
     }
@@ -15,6 +16,14 @@ class Productos extends Controller{
         $this->view->mp=$MProductos;
         $MEspecifica=$this->model->MostrarEspecifica();
         $this->view->me=$MEspecifica;*/
+        $ingresos=$this->model->Mostrar();
+        $this->view->datos=$ingresos;
+        $MAlmacen=$this->model->MostrarAlmacen();
+        $this->view->ma=$MAlmacen;
+        $MEspecifica=$this->model->MostrarEspecifica();
+        $this->view->me=$MEspecifica;
+        $MUnidad=$this->model->MostrarUnidadMedida();
+        $this->view->mum=$MUnidad;
         $this->view->render('Productos/index');
     }
 
@@ -49,7 +58,7 @@ class Productos extends Controller{
         $this->view->mensaje=$mensaje;
         $this->render();
     }
-    function MostrarIngresos(){
+    function MostrarProductos(){
         $ingresos=$this->model->Mostrar();
         print json_encode($ingresos, JSON_UNESCAPED_UNICODE);
        
