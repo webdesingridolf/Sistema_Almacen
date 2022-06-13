@@ -8,7 +8,7 @@ class HistorialIngresosModel extends Model{
     public function Mostrar(){
        $items=[];
        try {
-           $query=$this->db->conect()->query("SELECT ingreso.id_Ingreso,ingreso.fecha,ingreso.cantidad,unidad_medida.nombre,producto.detalle,especifica.detalle_Especifica,ingreso.precio,ingreso.total,ingreso.orden_de_compra
+           $query=$this->query("SELECT ingreso.id_Ingreso,ingreso.fecha,ingreso.cantidad,unidad_medida.nombre,producto.detalle,especifica.detalle_Especifica,ingreso.precio,ingreso.total,ingreso.orden_de_compra
            FROM ingreso, producto, especifica, usuario, unidad_medida
            WHERE producto.id_Producto=ingreso.id_Producto AND especifica.id_Especifica =ingreso.id_Especifica and usuario.id_Usuario=ingreso.id_usuario AND producto.id_Unidad_Medida=unidad_medida.id_Unidad_Medida");
             while ($row=$query->fetch()) {
