@@ -20,9 +20,8 @@ class Usuario extends Controller{
 
     function mostrarUsuario(){
         $usuario=$this->model->mostrarUsuario();
-
-        var_dump($usuario);
-        //print json_encode($ingresos, JSON_UNESCAPED_UNICODE);
+        //var_dump($usuario);
+        print json_encode($usuario, JSON_UNESCAPED_UNICODE);
        
 
     }

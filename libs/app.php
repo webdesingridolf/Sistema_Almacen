@@ -2,11 +2,11 @@
 require_once 'Controllers/errores.php';
 class App{
      function __construct(){
-     
+         
          $url= $_GET['url'];
          $url=rtrim($url,'/');
          $url= explode('/',$url);
-         
+         session_start();
          $ArchivoController='Controllers/' .$url['0'].'.php';
          if (file_exists($ArchivoController)) {
              require_once $ArchivoController;

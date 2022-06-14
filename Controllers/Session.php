@@ -3,7 +3,7 @@ class Session extends Controller{
     function __construct(){
         parent::__construct();
         
-        session_start();
+        //session_start();
 
     }
     function render(){
