@@ -92,10 +92,7 @@
                     
                 </div>
                 <div>
-                        <?php 
-                        //echo $this->mensaje;
                         
-                        ?>
                     </div>
                 
                 </div>

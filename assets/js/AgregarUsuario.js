@@ -41,7 +41,7 @@ $(document).ready(function(){
             },
         ],
         "ajax":{            
-            "url": base_url+"Usuario/mostrarUsuario", 
+            "url": base_url+"Usuario/mostrar", 
             "method": 'POST', //usamos el metodo POST
             //"data":{opcion:opcion}, //enviamos opcion 4 para que haga un SELECT
             "dataSrc":""
@@ -49,28 +49,17 @@ $(document).ready(function(){
         },
         
         "columns":[
-            {"data": "id_Usuario"},
-            {"data": "tipo_Documento"},
-            {"data": "numero_Documento"},
+            {"data": "id"},
+            {"data": "TDocumento"},
+            {"data": "NDocmuento"},
             {"data": "nombre"},
             {"data": "apellido"},
-            {"data": "fecha_Nacimiento"},
-            {"data": "log_User"},
-            {"data": "log_Pass"},
-            {"data": "fecha_Registro"},
+            {"data": "fechaNacimiento"},
+            {"data": "user"},
+            {"data": "password"},
+            {"data": "FechaRegistro"},
             {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='material-icons'>delete</i></button></div></div>"}
         ]
-
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
     });
     
     if (document.querySelector("#frmIngresos")) {

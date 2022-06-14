@@ -33,12 +33,29 @@ class UsuarioModel extends Model{
 
 
     public function mostrarUsuario(){
+        $items=[];
         try {
+
+            $usuarios=[];
             $query=$this->prepare("SELECT * FROM usuario");
             $query->execute();
+            $usuarios=$query->fetchAll(PDO::FETCH_ASSOC);
+            foreach($usuarios as $usuario){
+                $item=new mUsuario();
+                $item->id=$usuario['id_Usuario'];
+                $item->TDocumento=$usuario['tipo_Documento'];
+                $item->NDocmuento=$usuario['numero_Documento'];
+                $item->nombre=$usuario['nombre'];
+                $item->apellido=$usuario['apellido'];
+                $item->fechaNacimiento=$usuario['fecha_Nacimiento'];
+                $item->user=$usuario['log_User'];
+                $item->password=$usuario['log_Pass'];
+                $item->FechaRegistro=$usuario['fecha_Registro'];
+                array_push($items,$item);
+
+            }
+            return $items;
             
-            var_dump($query->execute());
-            return $query->execute();
         } catch (PDOException $e) {
             echo $e->getMessage();
         }

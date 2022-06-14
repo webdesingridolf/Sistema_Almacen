@@ -88,9 +88,22 @@ class ProductosModel extends Model{
     public function Mostrar(){
         $items=[];
         try {
-            $query=$this->db->conect()->query("SELECT    producto.id_Producto,producto.detalle,unidad_medida.nombre,producto.cantidad_Stock,almacen.nombre,especifica.detalle_Especifica,producto.fecha_Registro 
+            $query=$this->query("SELECT    producto.id_Producto,producto.detalle,unidad_medida.nombre,producto.cantidad_Stock,almacen.nombre,especifica.detalle_Especifica,producto.fecha_Registro 
             FROM almacen, producto, especifica,  unidad_medida
             WHERE producto.id_Almacen =almacen.id_Almacen  AND especifica.id_Especifica =producto.id_Especifica  AND producto.id_Unidad_Medida=unidad_medida.id_Unidad_Medida ");
+            /* foreach ($row=$query->fetch()) {
+                $item=new ListaProductos();
+                $item->id=$row['id_Producto'];
+                $item->detalle=$row['detalle'];
+                $item->unidadmedida=$row['nombre'];
+                $item->stock=$row['cantidad_Stock'];
+                $item->almacen=$row['nombre'];
+                $item->Especifica=$row['detalle_Especifica'];
+                $item->fecha=$row['fecha_Registro'];
+                
+                //$item->usuario=$row['id_usuario'];
+                array_push($items,$item);
+             }*/
              while ($row=$query->fetch()) {
                  $item=new ListaProductos();
                  $item->id=$row['id_Producto'];

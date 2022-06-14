@@ -8,7 +8,7 @@ class Usuario extends Controller{
     }
     function render(){
         $this->view->render('Usuario/index');
-        var_dump ($this->model->mostrarUsuario());
+      
     }
 
 
@@ -18,7 +18,7 @@ class Usuario extends Controller{
         $this->view->render('Usuario/index');
     }
 
-    function mostrarUsuario(){
+    function mostrar(){
         $usuario=$this->model->mostrarUsuario();
         //var_dump($usuario);
         print json_encode($usuario, JSON_UNESCAPED_UNICODE);

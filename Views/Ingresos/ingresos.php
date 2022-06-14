@@ -143,11 +143,11 @@
                                         <?php  } ?>
                                 </select>
                             <label class="col-md-1" for="">Cantidad</label>
-                                <input type="number" name="cantidad" id="cantidad"  class="col-md-1" min="1">
+                                <input type="number" name="cantidad" id="cantidad"  oninput="Total()" class="col-md-1" min="1">
                             <label class="col-md-1" for="">Precio</label>
-                                <input type="number" name="precio" id="precio" class="col-md-1" min="1"> 
+                                <input type="number" name="precio" id="precio" oninput="Total()" class="col-md-1" min="1"> 
                             <label class="col-md-1" for="">Total</label>
-                                <input type="number" name="total" id="total" class="col-md-1" min="1">
+                                <input type="number" name="total" id="total" class="col-md-1" min="1" disabled>
                         </div>
                         <br>
                         <div class="row">
