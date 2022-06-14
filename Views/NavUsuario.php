@@ -324,11 +324,33 @@
                   <p>Lista de almacenes</p>
                 </a>
               </li>
-             
-
             </ul>
           </li>
-          
+
+          <!--usaurios-->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="bi bi-people-fill"> </i>
+              <p>
+                Usuarios
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo constant('BASE_URL');?>Usuario" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Usuarios</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/forms/advanced.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Lista de Usuarios</p>
+                </a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
 
