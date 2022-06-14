@@ -330,7 +330,7 @@
           <!--usaurios-->
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="bi bi-people-fill"> </i>
+              <i class=" nav-icon fas fa-thin bi bi-people-fill"> </i>
               <p>
                 Usuarios
                 <i class="fas fa-angle-left right"></i>
