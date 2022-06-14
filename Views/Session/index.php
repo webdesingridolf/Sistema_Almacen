@@ -77,15 +77,3 @@
     
 </body>
 </html>
-<?php
-    //require "constant('BASE_URL')Controllers/Session.php";
-
-    /*if (isset($_POST["Username"]) && isset($_POST["Password"])) {
-       echo  $_POST["Username"]; 
-       echo $_POST["Password"];
-       $_SESSION[""];
-
-       $session = new Session();
-       $session -> SessionConetion(["Username"=>$_POST["Username"],"Password"=>$_POST["Password"]]);
-    }*/
-?>
