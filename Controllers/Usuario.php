@@ -17,6 +17,15 @@ class Usuario extends Controller{
         $this->model->insertarUsuario($_POST);
         $this->view->render('Usuario/index');
     }
+
+    function mostrarUsuario(){
+        $usuario=$this->model->mostrarUsuario();
+
+        var_dump($usuario);
+        //print json_encode($ingresos, JSON_UNESCAPED_UNICODE);
+       
+
+    }
 }
 
 ?>

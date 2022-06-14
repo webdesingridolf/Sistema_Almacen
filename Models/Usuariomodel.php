@@ -37,6 +37,7 @@ class UsuarioModel extends Model{
             $query=$this->prepare("SELECT * FROM usuario");
             $query->execute();
             
+            var_dump($query->execute());
             return $query->execute();
         } catch (PDOException $e) {
             echo $e->getMessage();

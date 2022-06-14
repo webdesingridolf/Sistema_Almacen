@@ -251,4 +251,4 @@
     <?php
         include_once("Views/Js.php");
     ?>
-<script src="<?=BASE_URL?>assets/js/AgregarIngreso.js"></script>
+<script src="<?=BASE_URL?>assets/js/AgregarUsuario.js"></script>
