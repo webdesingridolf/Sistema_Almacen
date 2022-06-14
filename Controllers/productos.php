@@ -28,35 +28,31 @@ class Productos extends Controller{
     }
 
     function RegistrarProducto(){
-        $fecha=date('Y-m-d h:i:s',time());
-        $cantidad=$_POST["cantidad"];
-        $producto=$_POST["producto"];
-        $precio= $_POST["precio"];
-        $total=$_POST["total"];
-        $ordenCompra=$_POST["ordenCompra"];
-        $especifica=$_POST["especifica"];
-        $usuario=1;
-        
+        $detalle=$_POST["detalle"];      
+        $unidadmedida=$_POST["unidadMedida"];
+        $stock=$_POST["stock"];
+        $almacen= $_POST["almacen"];
+        $Especifica=$_POST["especifica"];
+        $fecha=date('Y-m-d h:i:s',time()); 
         $mensaje="";
       
         
         if (
         $this->model->insertar([
             'fecha'=>$fecha,
-            'cantidad'=>$cantidad,
-            'producto'=>$producto,
-            'precio'=>$precio,
-            'total'=>$total,
-            'ordenCompra'=>$ordenCompra,
-            'especifica'=>$especifica,
-            'usuario'=>$usuario,
+            'detalle'=>$detalle,
+            'unidadmedida'=>$unidadmedida,
+            'stock'=>$stock,
+            'almacen'=>$almacen,
+            'especifica'=>$Especifica,
+            
         ])) {
-            $mensaje="Ingreso Registrado";
+            $arrResponse=array('status'=>true, 'msg'=>'Registro ingresado correctamente');
         }else {
-            $mensaje="Ingreso no Registrado";
+            $arrResponse=array('status'=>false, 'msg'=>'Registro no ingresado ');
         }
-        $this->view->mensaje=$mensaje;
-        $this->render();
+        echo json_encode($arrResponse);
+        
     }
     function MostrarProductos(){
         $ingresos=$this->model->Mostrar();

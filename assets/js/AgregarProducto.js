@@ -60,32 +60,28 @@ $(document).ready(function(){
             {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='material-icons'>delete</i></button></div></div>"}
         ]
     });
-    if (document.querySelector("#frmIngresos")) {
+    if (document.querySelector("#frmProductos")) {
    
         let base_url="/Sistema_Almacen/";
-        let frmIngresos=document.querySelector("#frmIngresos");
-        frmIngresos.onsubmit=function(e){
+        let frmProductos=document.querySelector("#frmProductos");
+        frmProductos.onsubmit=function(e){
             e.preventDefault();
             fntGuardar();
         }
         async function fntGuardar() {
-            let producto=document.querySelector("#producto").value;
-            let cantidad=document.querySelector("#cantidad").value;
-            let precio=document.querySelector("#precio").value;
-            let total=document.querySelector("#total").value;
-            let orden=document.querySelector("#ordenCompra").value;
+            let detalle=document.querySelector("#detalle").value;
+            let unidadmedida=document.querySelector("#unidadMedida").value;
+            let stock=document.querySelector("#stock").value;
+            let almacen=document.querySelector("#almacen").value;
+            
             let especifica=document.querySelector("#especifica").value;
             
-            if (producto==" "||cantidad==" "||precio==" "||total==" "||orden==" "||especifica==" ") {
-               alert("llene todos los campos") ;
-               
-               return;
-            }
+            
            
             
             try {
-                const data=new FormData(frmIngresos);
-                let resp=await fetch(base_url+"ingresos/RegistrarIngreso",{
+                const data=new FormData(frmProductos);
+                let resp=await fetch(base_url+"Productos/RegistrarProducto",{
                     method: 'POST',
                     mode: 'cors',
                     cache: 'no-cache',
@@ -95,11 +91,14 @@ $(document).ready(function(){
                 json=await resp.json();
                 if(json.status){
                     toastr.success(json.msg);
-                    frmIngresos.reset();
-                    $("#producto").select2({
+                    frmProductos.reset();
+                    $("#unidadMedida").select2({
                         placeholder: 'Seleccione un producto'
                     });
                     $("#especifica").select2({
+                        placeholder: 'Seleccione una opcion'
+                    });
+                    $("#almacen").select2({
                         placeholder: 'Seleccione una opcion'
                     });
                    

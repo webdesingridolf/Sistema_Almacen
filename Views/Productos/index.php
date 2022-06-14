@@ -123,13 +123,13 @@
               </button>
             </div>
             <div class="modal-body">
-            <form  class="container" id="frmIngresos" >
+            <form  class="container" id="frmProductos" >
                         
                         <div class="row">
                         <label class="col-md-1" for="">Detalle</label>
-                                <input type="text" name="cantidad" id="cantidad"  class="col-md" >
+                                <input type="text" name="detalle" id="detalle"  class="col-md form-control" >
                             <label class="col-md-1" for="">Unidad de Medida</label>
-                                <select class=" col-md" id="unidadMedida" name="unidadMedida" >
+                                <select class=" col-md form-control" id="unidadMedida" name="unidadMedida" >
                                     <option value="">Seleccione </option>
                                         <?php foreach($this->mum as $row){
                                             $unidadMedida=new unidadMedida();
@@ -141,14 +141,14 @@
                                 </select>
                             
                             <label class="col-md-1" for="">Stock</label>
-                                <input type="number" name="precio" id="precio" class="col-md-1" min="1"> 
+                                <input type="number" name="stock" id="stock" class="col-md form-control" min="1"> 
                             
                         </div>
                         <br>
                         <div class="row">
                             
-                            <label for=""  class="col-md-2">Especifica</label>
-                                <select class=" col-md-3" id="especifica" name="especifica" >
+                            <label for=""  class="col-md-2 col-form-label">Especifica</label>
+                                <select class=" col-md form-control" id="especifica" name="especifica" >
                                     <option value="Default" >Seleccione</option>
                                         <?php foreach($this->me as $row){
                                         $especifica=new especifica ();
@@ -158,8 +158,8 @@
 
                                         <?php  } ?>
                                 </select>
-                                <label for=""  class="col-md-2">Almacen</label>
-                                <select class=" col-md-3" id="almacen" name="almacen" >
+                                <label for=""  class="col-md-2 col-form-label">Almacen</label>
+                                <select class=" col-md form-control" id="almacen" name="almacen" >
                                     <option value="Default" >Seleccione</option>
                                         <?php foreach($this->ma as $row){
                                         $almacen=new  almacen();

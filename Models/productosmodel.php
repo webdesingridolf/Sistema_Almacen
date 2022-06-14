@@ -7,17 +7,16 @@ class ProductosModel extends Model{
     }
     public function insertar($datos){
         try {
-            $query=$this->prepare('INSERT INTO ingreso(fecha,cantidad,id_Producto,precio,total,orden_de_compra,id_Especifica,id_usuario) 
-                 VALUES(:fecha, :cantidad, :producto,:precio,:total,:ordencompra,:categoria,:usuario)');
+            $query=$this->prepare('INSERT INTO producto(detalle,id_Unidad_Medida,cantidad_Stock,id_Almacen,id_Especifica,fecha_Registro) 
+                 VALUES(:detalle, :unidadMedida, :stock,:almacen,:especifica,:fecha)');
             $query->execute([
-                'fecha'=>$datos['fecha'],
-                'cantidad'=>$datos['cantidad'],
-                'producto'=>$datos['producto'],
-                'precio'=>$datos['precio'],
-                'total'=>$datos['total'],
-                'ordencompra'=>$datos['ordenCompra'],
-                'categoria'=>$datos['especifica'],
-                'usuario'=>$datos['usuario']
+                'detalle'=>$datos['detalle'],
+                'unidadMedida'=>$datos['unidadmedida'],
+                'stock'=>$datos['stock'],
+                'almacen'=>$datos['almacen'],
+                'especifica'=>$datos['especifica'],
+                'fecha'=>$datos['fecha']
+                
     
             ]);
             return true;
@@ -91,7 +90,7 @@ class ProductosModel extends Model{
         try {
             $query=$this->db->conect()->query("SELECT    producto.id_Producto,producto.detalle,unidad_medida.nombre,producto.cantidad_Stock,almacen.nombre,especifica.detalle_Especifica,producto.fecha_Registro 
             FROM almacen, producto, especifica,  unidad_medida
-            WHERE producto.id_Almacen =almacen.id_Almacen  AND especifica.id_Especifica =producto.id_Especifica  AND producto.id_Unidad_Medida=unidad_medida.id_Unidad_Medida AND producto.fecha_Registro BETWEEN '2022-06-10' AND '2022-06-12'");
+            WHERE producto.id_Almacen =almacen.id_Almacen  AND especifica.id_Especifica =producto.id_Especifica  AND producto.id_Unidad_Medida=unidad_medida.id_Unidad_Medida ");
              while ($row=$query->fetch()) {
                  $item=new ListaProductos();
                  $item->id=$row['id_Producto'];
