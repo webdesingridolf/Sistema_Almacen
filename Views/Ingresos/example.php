@@ -58,47 +58,55 @@
                                 <div class="card-body">
                                     <!--inicio contenido de la ventana desplegable-->
 
-                                    <form class="container" id="frmIngresos">
+                                    <form class="container" id="frmProductos">
                                         <div class="row">
-                                            <label class="col-md-1" for="">Producto</label>
-                                                <select class=" col-md" id="producto" name="producto" >
-                                                    <option value="">Seleccione un producto</option>
-                                                        <?php foreach($this->mp as $row){
-                                                            $producto=new productos();
-                                                            $producto=$row;?>
-                                                        <option value="<?php echo $producto->idProducto ;?>"><?php echo $producto->detalle; ?></option>
+                                            <label class="col-md-1" for="">Detalle</label>
+                                                <input type="text" name="detalle" id="detalle"  class="col-md form-control" >
+                                            <label class="col-md-1" for="">Unidad de Medida</label>
+                                            <select class=" col-md form-control" id="unidadMedida" name="unidadMedida" >
+                                                <option value="">Seleccione </option>
+                                                    <?php foreach($this->mum as $row){
+                                                    $unidadMedida=new unidadMedida();
+                                                    $unidadMedida=$row;?>
+                                                <option value="<?php echo $unidadMedida->idUnidadMedida ;?>"><?php echo $unidadMedida->nombreUM; ?></option>
                           
 
-                                                        <?php  } ?>
-                                                </select>
-                                            <label class="col-md-1" for="">Cantidad</label>
-                                                <input type="number" name="cantidad" id="cantidad"   class="col-md-1" min="1">
-                                            <label class="col-md-1" for="">Precio</label>
-                                                <input type="number" name="precio" id="precio" oninput="Total()" class="col-md-1" min="1"> 
-                                            <label class="col-md-1" for="">Total</label>
-                                                <input type="number" name="total" id="total" class="col-md-1" min="1" readonly >
+                                                    <?php  } ?>
+                                            </select>
+                            
+                                            <label class="col-md-1" for="">Stock</label>
+                                                <input type="number" name="stock" id="stock" class="col-md form-control" min="1">
 
                                         </div>
                                         <br>
                                         <div class="row">
-                                            <label for=""  class="col-md-2">Orden de compra</label>
-                                                <input type="number"  class="col-md-3" id="ordenCompra" name="ordenCompra" min="1">
-                                            <label for=""  class="col-md-2">Especifica</label>
-                                            <select class=" col-md-3" id="especifica" name="especifica" >
+                                            <label for=""  class="col-md-2 col-form-label">Especifica</label>
+                                            <select class=" col-md form-control" id="especifica" name="especifica" >
                                                 <option value="Default" >Seleccione</option>
                                                     <?php foreach($this->me as $row){
-                                                    $especifica=new especifica();
+                                                    $especifica=new especifica ();
                                                     $especifica=$row;?>
-                                                <option value="<?php echo $especifica->idEspecifica ;?>"><?php echo $especifica->codigo; ?></option>
+                                                <option value="<?php echo $especifica->idEspecifica ;?>"><?php echo $especifica->detalle; ?></option>
                           
 
                                                     <?php  } ?>
+                                            </select>
+                                            <label for=""  class="col-md-2 col-form-label">Almacen</label>
+                                            <select class=" col-md form-control" id="almacen" name="almacen" >
+                                                <option value="Default" >Seleccione</option>
+                                                    <?php foreach($this->ma as $row){
+                                                    $almacen=new  almacen();
+                                                    $almacen=$row;?>
+                                                <option value="<?php echo $almacen->idAlmacen ;?>"><?php echo $almacen->nombre; ?></option>
+                          
+
+                                                <?php  } ?>
                                             </select>
 
                                         </div>
                                         <div class="row">
                                             <button type="" class="btn btn-primary toastrDefaultSuccess">
-                                                Registrar ingreso
+                                                Registrar Producto
                                             </button>                
 
                                         </div>
@@ -120,14 +128,12 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Fecha</th>
-                                    <th>Cantidad</th>
+                                    <th>Detalle</th>
                                     <th>Unidad de Medida</th>
-                                    <th>Producto</th>
+                                    <th>Stock</th>
+                                    <th>Almacen</th>
                                     <th>Especifica</th>
-                                    <th>Precio</th>
-                                    <th>Total</th>
-                                    <th>Orden de Compra</th>
+                                    <th>Fecha de Registro </th>
                                     <th>Acciones </th>
                                 </tr>
                             </thead>
@@ -162,26 +168,19 @@
   
     </div>
     <script>
-        $("#producto").select2({
-            placeholder: 'Seleccione un producto'
+        $("#unidadMedida").select2({
+            placeholder: 'Seleccione una opcion'
         });
         $("#especifica").select2({
             placeholder: 'Seleccione una opcion'
         });
-        function Total() {
-            try {
-                var precio=parseFloat(document.querySelector("#precio").value);
-                var cantidad=parseFloat(document.querySelector("#cantidad").value);
-                document.querySelector("#total").value=precio*cantidad;
-            } catch (e) {
-        
-            }
-    
-        }  
+        $("#almacen").select2({
+            placeholder: 'Seleccione una opcion'
+        });
     </script>
     <?php
         include_once("Views/Js.php");
     ?>
-    <script src="<?=BASE_URL?>assets/js/AgregarIngreso.js"></script>
+    <script src="<?=BASE_URL?>assets/js/AgregarProducto.js"></script>
 </body>
 </html>
