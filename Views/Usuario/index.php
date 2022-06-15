@@ -134,9 +134,14 @@
             <div class="modal-body"> <!--body Modal -->
                 
                     <div class="form-group row">
-                        <label for="TipoDocumento" class="col-sm-5 col-form-label">Tipo de Documento</label>
+                        <label for="exampleFormControlSelect1 " class="col-sm-5">Tipo de Documento</label>
                         <div class="col-sm-6">
-                        <input type="text" class="form-control" required name="TipoDocumento" id="TipoDocumento" placeholder="tipo de Documento">
+                        <select class="form-control" id="exampleFormControlSelect1" name="TipoDocumento">
+                        <option>DNI</option>
+                        <option>CARNET EXT.</option>
+                        <option>PASAPORTE</option>
+                        <option>OTROS</option>
+                        </select>
                         </div>
                     </div>
                     <div class="form-group row">
