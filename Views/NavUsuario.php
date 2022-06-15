@@ -281,7 +281,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fa-solid fa-bars"></i>
               <p>
-                Categorias
+                Especifica
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -289,13 +289,13 @@
               <li class="nav-item">
                 <a href="<?php echo constant('BASE_URL');?>Especifica" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Categorias</p>
+                  <p>Especifica</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/forms/advanced.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Lista de Categorias</p>
+                  <p>Lista de Especifica</p>
                 </a>
               </li>
               
