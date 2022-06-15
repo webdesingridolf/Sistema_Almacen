@@ -33,17 +33,90 @@
             </div>
 
             <section class="content">
+           
 
                 <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title"></h3>
-                                
-                               
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-xl">
-                                Nuevo Ingreso
-                                </button>
-                
+                        
+
+                        <div class="card card-primary collapsed-card">
+                            <div class="card-header">
+                                <h3 class="card-title">Nuevo Ingreso</h3>
+
+                            <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+                            </button>
                         </div>
+                <!-- /.card-tools -->
+                        </div>
+              <!-- /.card-header -->
+                        <div class="card-body">
+
+
+
+                        <form  class="container" id="frmIngresos" >
+                        
+                        <div class="row">
+                            <label class="col-md-1" for="">Producto</label>
+                                <select class=" col-md" id="producto" name="producto" >
+                                    <option value="">Seleccione un producto</option>
+                                        <?php foreach($this->mp as $row){
+                                            $producto=new productos();
+                                            $producto=$row;?>
+                                    <option value="<?php echo $producto->idProducto ;?>"><?php echo $producto->detalle; ?></option>
+                          
+
+                                        <?php  } ?>
+                                </select>
+                            <label class="col-md-1" for="">Cantidad</label>
+                                <input type="number" name="cantidad" id="cantidad"   class="col-md-1" min="1">
+                            <label class="col-md-1" for="">Precio</label>
+                                <input type="number" name="precio" id="precio" oninput="Total()" class="col-md-1" min="1"> 
+                            <label class="col-md-1" for="">Total</label>
+                                <input type="number" name="total" id="total" class="col-md-1" min="1" readonly >
+                        </div>
+                        <br>
+                        <div class="row">
+                            <label for=""  class="col-md-2">Orden de compra</label>
+                                <input type="number"  class="col-md-3" id="ordenCompra" name="ordenCompra" min="1">
+                            <label for=""  class="col-md-2">Especifica</label>
+                                <select class=" col-md-3" id="especifica" name="especifica" >
+                                    <option value="Default" >Seleccione</option>
+                                        <?php foreach($this->me as $row){
+                                        $especifica=new especifica();
+                                        $especifica=$row;?>
+                                    <option value="<?php echo $especifica->idEspecifica ;?>"><?php echo $especifica->codigo; ?></option>
+                          
+
+                                        <?php  } ?>
+                                </select>
+                        </div>
+                        <br>
+                        <button type="" class="btn btn-primary toastrDefaultSuccess">
+                        Registrar ingreso
+                </button>
+                        
+                        
+
+                   
+              
+
+            </div>
+            
+            </form>
+
+
+
+
+
+
+
+
+
+                            
+                        </div>
+              <!-- /.card-body -->
+                </div>
+            <!-- /.card -->
 
                 <div class="card-body">
                 <!--Contenido de la pagina -->
@@ -143,11 +216,11 @@
                                         <?php  } ?>
                                 </select>
                             <label class="col-md-1" for="">Cantidad</label>
-                                <input type="number" name="cantidad" id="cantidad"  oninput="Total()" class="col-md-1" min="1">
+                                <input type="number" name="cantidad" id="cantidad"   class="col-md-1" min="1">
                             <label class="col-md-1" for="">Precio</label>
                                 <input type="number" name="precio" id="precio" oninput="Total()" class="col-md-1" min="1"> 
                             <label class="col-md-1" for="">Total</label>
-                                <input type="number" name="total" id="total" class="col-md-1" min="1" disabled>
+                                <input type="number" name="total" id="total" class="col-md-1" min="1" readonly >
                         </div>
                         <br>
                         <div class="row">
@@ -216,6 +289,17 @@
     $("#especifica").select2({
         placeholder: 'Seleccione una opcion'
     });
+    function Total() {
+    try {
+        var precio=parseFloat(document.querySelector("#precio").value);
+        var cantidad=parseFloat(document.querySelector("#cantidad").value);
+
+        document.querySelector("#total").value=precio*cantidad;
+    } catch (e) {
+        
+    }
+    
+}
     
     
     

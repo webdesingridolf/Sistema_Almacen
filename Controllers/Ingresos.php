@@ -18,7 +18,7 @@ class Ingresos extends Controller{
         $this->view->mp=$MProductos;
         $MEspecifica=$this->model->MostrarEspecifica();
         $this->view->me=$MEspecifica;
-        $this->view->render('Ingresos/ingresos');
+        $this->view->render('Ingresos/index');
     }
 
     function RegistrarIngreso(){

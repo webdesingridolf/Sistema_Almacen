@@ -1,15 +1,5 @@
 $(document).ready(function(){
-    function Total() {
-        try {
-            var precio=parseFloat(document.querySelector("#precio").value);
-            var cantidad=parseFloat(document.querySelector("#cantidad").value);
     
-            document.querySelector("#total").value=precio*cantidad;
-        } catch (e) {
-            
-        }
-        
-    }
     let base_url="/Sistema_Almacen/";
     tablaingreso=$('#example1').DataTable({ 
         "responsive": true, "lengthChange": false, "autoWidth": false,       
@@ -143,3 +133,4 @@ $(document).ready(function(){
 
 
 });
+
