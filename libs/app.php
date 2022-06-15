@@ -7,7 +7,7 @@ class App{
          $url=rtrim($url,'/');
          $url= explode('/',$url);
          
-         /*$ArchivoController='Controllers/' .$url['0'].'.php';
+         $ArchivoController='Controllers/' .$url['0'].'.php';
          if (file_exists($ArchivoController)) {
              require_once $ArchivoController;
              $controller= new $url['0'];
@@ -28,11 +28,11 @@ class App{
              }
            
            
-         }*/
+         }
         
 
-         if (!isset($SESSION["log_User"])) {
-            //$url['0']= "Session";
+         /*if (!isset($SESSION["log_User"])) {
+            $url['0']= "Session";
                 
             $ArchivoController='Controllers/' .$url['0'].'.php';
             if (file_exists($ArchivoController)) {
@@ -55,14 +55,6 @@ class App{
                 }
             }
 
-         }else {
-            if ($url[0]=="") {
-                header('location:Session');
-                $controller->loadModel('dashboard');
-                $controller->render();
-            }else {
-               $controller= new Errores();
-            }
          }
          
          if (isset($SESSION["log_User"])) {
@@ -78,16 +70,8 @@ class App{
                 else{
                     $controller->render();
                 }
-                }else {
-                    if ($url[0]=="") {
-                        header('location:Session');
-                        $controller->loadModel('dashboard');
-                        $controller->render();
-                    }else {
-                    $controller= new Errores();
-                    }
                 }
-         }
+         }*/
         
 
         }
