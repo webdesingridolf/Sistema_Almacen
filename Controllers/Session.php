@@ -35,8 +35,8 @@ class Session extends Controller{
 
     function SessionDestroy(){
         echo 'secion destruida';
+        session_unset();
         session_destroy();
-
         $this->view->render('Session/index');
     }
 }
