@@ -19,7 +19,7 @@
 
 
     <div class="w-25 p-3 position-absolute top-50 start-50 translate-middle nav-white" >
-        <form action="<?=BASE_URL?>Session/SessionConetion" method="get">
+        <form action="<?=BASE_URL?>Session/SessionConetion" method="post">
         <!-- Email input -->
             <div class="form-outline mb-4">
                 <label class="form-label" for="form2Example1">User ID</label>    
