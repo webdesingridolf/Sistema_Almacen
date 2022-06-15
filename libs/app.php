@@ -8,7 +8,7 @@ class App{
          $url= explode('/',$url);
          session_start();
          $ArchivoController='Controllers/' .$url['0'].'.php';
-         if (file_exists($ArchivoController)) {
+         /*if (file_exists($ArchivoController)) {
              require_once $ArchivoController;
              $controller= new $url['0'];
              $controller->loadModel($url[0]);
@@ -28,8 +28,66 @@ class App{
              }
            
            
-         }
+         }*/
         
+
+         if (!isset($SESSION["log_User"])) {
+            $url['0']= "Session";
+            $ArchivoController='Controllers/' .$url['0'].'.php';
+            if (file_exists($ArchivoController)) {
+                //$url['0']= "Session";
+                require_once $ArchivoController;
+                $controller= new $url['0'];
+                $controller->loadModel($url[0]);
+                if (isset($url[1])) {
+                    $controller->{$url[1]}();
+                }
+                else{
+                    $controller->render();
+                }
+            }else {
+                if ($url[0]=="") {
+                    header('location:Session');
+                    $controller->loadModel('dashboard');
+                    $controller->render();
+                }else {
+                   $controller= new Errores();
+                }
+            }
+
+         }else {
+            if ($url[0]=="") {
+                header('location:Session');
+                $controller->loadModel('dashboard');
+                $controller->render();
+            }else {
+               $controller= new Errores();
+            }
+         }
+         
+         if (isset($SESSION["log_User"])) {
+
+            $ArchivoController='Controllers/' .$url['0'].'.php';
+            if (file_exists($ArchivoController)) {
+                require_once $ArchivoController;
+                $controller= new $url['0'];
+                $controller->loadModel($url[0]);
+                if (isset($url[1])) {
+                    $controller->{$url[1]}();
+                }
+                else{
+                    $controller->render();
+                }
+                }else {
+                    if ($url[0]=="") {
+                        header('location:Session');
+                        $controller->loadModel('dashboard');
+                        $controller->render();
+                    }else {
+                    $controller= new Errores();
+                    }
+                }
+         }
         
 
         }
