@@ -3,12 +3,9 @@ require_once 'Controllers/errores.php';
 class App{
      function __construct(){
         session_start();
-        if (isset($_GET['url'])) {
-            $url= $_GET['url'];
-            $url=rtrim($url,'/');
-            $url= explode('/',$url);
-        }
-         
+         $url= $_GET['url'];
+         $url=rtrim($url,'/');
+         $url= explode('/',$url);
          
          /*$ArchivoController='Controllers/' .$url['0'].'.php';
          if (file_exists($ArchivoController)) {
@@ -35,12 +32,10 @@ class App{
         
 
          if (!isset($SESSION["log_User"])) {
-            $url['0']= "Session";
+            //$url['0']= "Session";
                 
             $ArchivoController='Controllers/' .$url['0'].'.php';
             if (file_exists($ArchivoController)) {
-                //$url['0']= "Session";
-                //header('location:Session');
                 require_once $ArchivoController;
                 $controller= new $url['0'];
                 $controller->loadModel($url[0]);
