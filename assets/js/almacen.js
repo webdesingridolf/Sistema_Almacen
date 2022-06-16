@@ -1,6 +1,6 @@
 $(document).ready(function(){
     let base_url="/Sistema_Almacen/";
-    tablaEspecifica=$('#example1').DataTable({ 
+    tablaAlmacen=$('#example1').DataTable({ 
         "responsive": true, "lengthChange": false, "autoWidth": false,       
         language: {
                 "lengthMenu": "Mostrar _MENU_ registros",
@@ -41,7 +41,7 @@ $(document).ready(function(){
             },
         ],
         "ajax":{            
-            "url": base_url+"especifica/MostrarEspecifica", 
+            "url": base_url+"almacenes/MostrarAlmacen", 
             "method": 'POST', //usamos el metodo POST
             //"data":{opcion:opcion}, //enviamos opcion 4 para que haga un SELECT
             "dataSrc":""
@@ -50,32 +50,31 @@ $(document).ready(function(){
         
         "columns":[
             {"data": "id"},
-            {"data": "detalle"},
-            {"data": "codigo"},
+            {"data": "nombre"},
             {"data": "fecha"},
             
             
             {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='material-icons'>delete</i></button></div></div>"}
         ]
     });
-    if (document.querySelector("#frmEspecifica")) {
+    if (document.querySelector("#frmAlmacen")) {
    
         let base_url="/Sistema_Almacen/";
-        let frmEspecifica=document.querySelector("#frmEspecifica");
-        frmEspecifica.onsubmit=function(e){
+        let frmAlmacen=document.querySelector("#frmAlmacen");
+        frmAlmacen.onsubmit=function(e){
             e.preventDefault();
             fntGuardar();
         }
         async function fntGuardar() {
-            let detalle=document.querySelector("#detalle").value;
-            let codigo=document.querySelector("#codigo").value;
+            let nombre=document.querySelector("#nombre").value;
+          
             
             
            
             
             try {
-                const data=new FormData(frmEspecifica);
-                let resp=await fetch(base_url+"especifica/insertarEspecifica",{
+                const data=new FormData(frmAlmacen);
+                let resp=await fetch(base_url+"almacenes/insertarAlmacen",{
                     method: 'POST',
                     mode: 'cors',
                     cache: 'no-cache',
@@ -85,10 +84,10 @@ $(document).ready(function(){
                 json=await resp.json();
                 if(json.status){
                     toastr.success(json.msg);
-                    frmEspecifica.reset();
+                    frmAlmacen.reset();
+                  
                    
-                   
-                    tablaEspecifica.ajax.reload(null, false);
+                    tablaAlmacen.ajax.reload(null, false);
     
                    
                    

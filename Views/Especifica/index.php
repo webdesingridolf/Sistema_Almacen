@@ -88,8 +88,8 @@
 
                         </div>
                     </div>
-                    <div class="row">
-                        <table id="example1" class="table table-bordered table-striped">
+                    <div class="row ">
+                        <table id="example1" class="table table-bordered table-striped ">
                             <thead>
                                 <tr>
                                     <th>ID</th>
