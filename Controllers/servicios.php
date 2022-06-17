@@ -14,23 +14,28 @@ class Servicios extends Controller{
     }
 
     function RegistrarServicio(){
-        $detalle=$_POST["detalle"];      
-        $unidadmedida=$_POST["unidadMedida"];
-        $stock=$_POST["stock"];
-        $almacen= $_POST["almacen"];
-        $Especifica=$_POST["especifica"];
-        $fecha=date('Y-m-d h:i:s',time()); 
-        $mensaje="";
+
+        $detalle=$_POST["detalle"];
+        $Especifica=$_POST["Especifica"];      
+        $os=$_POST["os"];
+        $cantidad=$_POST["cantidad"];
+        $precio= $_POST["precio"];
+        $total= $_POST["total"];    
+        $fecha=date('Y-m-d h:i:s',time());
+        $usuario=1; 
+        
       
         
         if (
         $this->model->insertar([
             'fecha'=>$fecha,
             'detalle'=>$detalle,
-            'unidadmedida'=>$unidadmedida,
-            'stock'=>$stock,
-            'almacen'=>$almacen,
+            'usuario'=>$usuario,
+            'cantidad'=>$cantidad,
             'especifica'=>$Especifica,
+            'precio'=>$precio,
+            'total'=>$total,
+            'os'=>$os,
             
         ])) {
             $arrResponse=array('status'=>true, 'msg'=>'Registro ingresado correctamente');
