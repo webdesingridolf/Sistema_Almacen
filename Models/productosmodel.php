@@ -34,7 +34,7 @@ class ProductosModel extends Model{
     public function MostrarAlmacen(){
         $items=[];
         try {
-            $query=$this->db->conect()->query("SELECT*FROM almacen");
+            $query=$this->query("SELECT*FROM almacen");
              while ($row=$query->fetch()) {
                  $item=new almacen();
                  $item->idAlmacen=$row['id_Almacen'];
@@ -52,7 +52,7 @@ class ProductosModel extends Model{
     public function MostrarEspecifica(){
         $items=[];
         try {
-            $query=$this->db->conect()->query("SELECT*FROM especifica");
+            $query=$this->query("SELECT*FROM especifica");
              while ($row=$query->fetch()) {
                  $item=new especifica();
                  $item->idEspecifica=$row['id_Especifica'];
@@ -70,7 +70,7 @@ class ProductosModel extends Model{
     public function MostrarUnidadMedida(){
         $items=[];
         try {
-            $query=$this->db->conect()->query("SELECT*FROM unidad_medida");
+            $query=$this->query("SELECT*FROM unidad_medida");
              while ($row=$query->fetch()) {
                  $item=new unidadMedida();
                  $item->idUnidadMedida=$row['id_Unidad_Medida'];

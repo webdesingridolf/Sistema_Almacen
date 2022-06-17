@@ -1,6 +1,6 @@
 $(document).ready(function(){
     let base_url="/Sistema_Almacen/";
-    tablaingreso=$('#example1').DataTable({ 
+    tablaProductos=$('#example1').DataTable({ 
         "responsive": true, "lengthChange": false, "autoWidth": false,       
         language: {
                 "lengthMenu": "Mostrar _MENU_ registros",
@@ -49,7 +49,7 @@ $(document).ready(function(){
         },
         
         "columns":[
-            {"data": "id"},
+           
             {"data": "detalle"},
             {"data": "unidadmedida"},
             {"data": "stock"},
@@ -57,9 +57,23 @@ $(document).ready(function(){
             {"data": "Especifica"},
             {"data": "fecha"},
             
-            {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='material-icons'>delete</i></button></div></div>"}
+            {"defaultContent": "<button type='button' id='editar' class='editar btn btn-primary'><i class='fas fa-edit'></i></button>	<button type='button' id='Eliminar' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fas fa-trash'></i></button>"}
         ]
     });
+    
+    //funciona para actualizar y eliminar
+    
+      $("#example1").on("click", "#editar", function(){
+          var datos=tablaProductos.row($(this).parents("tr")).data();
+        // forma de llamar a los objetos datos.nombre d ela columna
+        console.log(datos);
+     });
+   
+    
+
+    
+
+   
     if (document.querySelector("#frmProductos")) {
    
         let base_url="/Sistema_Almacen/";
@@ -102,7 +116,7 @@ $(document).ready(function(){
                         placeholder: 'Seleccione una opcion'
                     });
                    
-                    tablaingreso.ajax.reload(null, false);
+                    tablaProductos.ajax.reload(null, false);
     
                    
                    

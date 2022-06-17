@@ -1,7 +1,6 @@
 $(document).ready(function(){
-    
     let base_url="/Sistema_Almacen/";
-    tablaingreso=$('#example1').DataTable({ 
+    tablaAlmacen=$('#example1').DataTable({ 
         "responsive": true, "lengthChange": false, "autoWidth": false,       
         language: {
                 "lengthMenu": "Mostrar _MENU_ registros",
@@ -42,7 +41,7 @@ $(document).ready(function(){
             },
         ],
         "ajax":{            
-            "url": base_url+"ingresos/MostrarIngresos", 
+            "url": base_url+"almacenes/MostrarAlmacen", 
             "method": 'POST', //usamos el metodo POST
             //"data":{opcion:opcion}, //enviamos opcion 4 para que haga un SELECT
             "dataSrc":""
@@ -51,45 +50,31 @@ $(document).ready(function(){
         
         "columns":[
             {"data": "id"},
+            {"data": "nombre"},
             {"data": "fecha"},
-            {"data": "cantidad"},
-            {"data": "unidadmedida"},
-            {"data": "producto"},
-            {"data": "Especifica"},
-            {"data": "precio"},
-            {"data": "total"},
-            {"data": "ordenCompra"},
-            {"defaultContent": "<button type='button' id='editar' class='editar btn btn-primary'><i class='fas fa-edit'></i></button>	<button type='button' id='Eliminar' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fas fa-trash'></i></button>"}
+            
+            
+            {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='material-icons'>delete</i></button></div></div>"}
         ]
     });
-    
-    if (document.querySelector("#frmIngresos")) {
-        
+    if (document.querySelector("#frmAlmacen")) {
    
         let base_url="/Sistema_Almacen/";
-        let frmIngresos=document.querySelector("#frmIngresos");
-        frmIngresos.onsubmit=function(e){
+        let frmAlmacen=document.querySelector("#frmAlmacen");
+        frmAlmacen.onsubmit=function(e){
             e.preventDefault();
             fntGuardar();
         }
         async function fntGuardar() {
-            let producto=document.querySelector("#producto").value;
-            let cantidad=document.querySelector("#cantidad").value;
-            let precio=document.querySelector("#precio").value;
-            let total=document.querySelector("#total").value;
-            let orden=document.querySelector("#ordenCompra").value;
-            let especifica=document.querySelector("#especifica").value;
+            let nombre=document.querySelector("#nombre").value;
+          
             
-            if (producto==" "||cantidad==" "||precio==" "||total==" "||orden==" "||especifica==" ") {
-               alert("llene todos los campos") ;
-               
-               return;
-            }
+            
            
             
             try {
-                const data=new FormData(frmIngresos);
-                let resp=await fetch(base_url+"ingresos/RegistrarIngreso",{
+                const data=new FormData(frmAlmacen);
+                let resp=await fetch(base_url+"almacenes/insertarAlmacen",{
                     method: 'POST',
                     mode: 'cors',
                     cache: 'no-cache',
@@ -99,15 +84,10 @@ $(document).ready(function(){
                 json=await resp.json();
                 if(json.status){
                     toastr.success(json.msg);
-                    frmIngresos.reset();
-                    $("#producto").select2({
-                        placeholder: 'Seleccione un producto'
-                    });
-                    $("#especifica").select2({
-                        placeholder: 'Seleccione una opcion'
-                    });
+                    frmAlmacen.reset();
+                  
                    
-                    tablaingreso.ajax.reload(null, false);
+                    tablaAlmacen.ajax.reload(null, false);
     
                    
                    
@@ -133,4 +113,3 @@ $(document).ready(function(){
 
 
 });
-

@@ -1,5 +1,5 @@
 <?php
-class Almacenes extends Controller{
+class Especifica extends Controller{
     function __construct(){
         parent::__construct();
         
@@ -7,15 +7,17 @@ class Almacenes extends Controller{
 
     }
     function render(){
-        $this->view->render('almacenes/index');
+        $this->view->render('Especifica/index');
     }
-    function insertarAlmacen(){
+    function insertarEspecifica(){
 
-        $nombre=$_POST['nombre'];
+        $detalle=$_POST['detalle'];
+        $codigo=$_POST['codigo'];
         $fecha=date('Y-m-d h:i:s',time());
         if (
             $this->model->insertar([
-                'nombre'=>$nombre,
+                'detalle'=>$detalle,
+                'codigo'=>$codigo,
                 'fecha'=>$fecha,
                 
             ])) {
@@ -29,13 +31,10 @@ class Almacenes extends Controller{
 
     }
 
+    function MostrarEspecifica(){
+        $especifica=$this->model->Mostrar();
+        print json_encode($especifica, JSON_UNESCAPED_UNICODE);
 
-
-
-
-    function MostrarAlmacen(){
-        $almacen=$this->model->Mostrar();
-        print json_encode($almacen, JSON_UNESCAPED_UNICODE);
     }
 }
 
