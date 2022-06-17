@@ -58,7 +58,7 @@ $(document).ready(function(){
             {"data": "user"},
             {"data": "password"},
             {"data": "FechaRegistro"},
-            {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='material-icons'>delete</i></button></div></div>"}
+            {"defaultContent": "<button type='button' id='editar' class='editar btn btn-primary'><i class='fas fa-edit'></i></button>	<button type='button' id='Eliminar' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fas fa-trash'></i></button>"}
         ]
     });
     
