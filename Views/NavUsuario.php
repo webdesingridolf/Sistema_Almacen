@@ -143,7 +143,7 @@
     <!-- Brand Logo -->
     <a href="<?php echo constant('BASE_URL');?>Dashboard" class="brand-link">
       <img src="<?php echo constant('BASE_URL');?>assets/img/Logo_GRTPE.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">GRTPE-Almacen</span>
     </a>
 
     <!-- Sidebar -->
