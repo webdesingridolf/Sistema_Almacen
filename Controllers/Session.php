@@ -28,7 +28,7 @@ class Session extends Controller{
 
             $this->view->render('Session/index');
         //$this->view->render("Dashboard/index");
-        echo "ingreso sesion conection";
+        //echo "ingreso sesion conection";
         }
     }
 
