@@ -127,7 +127,7 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                   
                                     <th>Detalle</th>
                                     <th>Unidad de Medida</th>
                                     <th>Stock</th>
@@ -148,6 +148,7 @@
 
 
                     </div>
+                   
 
       
                 </div>

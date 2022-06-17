@@ -1,144 +1,149 @@
-<?php 
-    include_once("Views/Header.php")
-?>
-
 <!DOCTYPE html>
 <html lang="en">
-<title>Servicios</title>
-<body class="hold-transition sidebar-mini layout-fixed">
-    <div class="wrapper">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Servicios</title>
+    <!--header aca-->
+    <?php 
+        include_once("Views/Header.php")
+    ?>
+  
+</head>
 
-        <!-- Preloader -->
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- inicio Navbar -->
+        <!--carga inicial de la pagina -->
         <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="<?=BASE_URL?>assets/img/Logo_GRTPE.png" alt="AdminLTELogo" height="60" width="60">
         </div>
-
         <!-- Navbar -->
         <?php 
             include_once("Views/NavUsuario.php")
         ?>
+        <!-- fin navbar -->
 
+ 
+
+        <!-- inicio contenido -->
         <div class="content-wrapper">
-            <!-- pagina de  contenido -->
-    
-            <div class="content-header">
+            <!-- titulo pagina -->
+            <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Productos</h1>
+                            <h1>Servicios</h1>
                         </div>
-       
                     </div>
                 </div>
-            </div>
+            </section>
+            <!-- fin  titulo pagina -->
 
+            <!-- Main content -->
             <section class="content">
-
-                <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title"></h3>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-primary">
-                                    Nuevo Ingreso
-                                </button>
-                        </div>
-
-                <div class="card-body">
-                <!--Contenido de la pagina -->
-
                 <div class="container-fluid">
-                    <form method="post" class="container" action="<?php echo constant('BASE_URL'); ?>ingresos/RegistrarIngreso" >
-                        
-                        <div class="row">
-                            <label class="col-md-2" for="">Producto</label>
-                                <input type="text" name="producto" id=""  class="form-control col-md">
-                            <label class="col-md-2" for="">Unidad de Medida</label>
-                                <select class="form-control col-md" id="um" name="um" >
-                                    <option value="">Unidad de medida</option>
-                                        <?php foreach($this->mp as $row){
-                                            $producto=new productos();
-                                            $producto=$row;?>
-                                    <option value="<?php echo $producto->idProducto ;?>"><?php echo $producto->detalle; ?></option>
+        
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-primary collapsed-card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Nuevo servicio</h3>
+                                        <div class="card-tools">
+                                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+               
+                                </div>
+                                <div class="card-body">
+                                    <form class="container" id="frmServicios" >
+                                        <div class="row frmFilas">
+                                            <label for="" class=" col-md" >Detalle</label>
+                                                <input type="text" class="col-md form-control ">
+                                            <label for="" class=" col-md ">Especifica</label>
+                                                <select name="" id="" class="col-md form-control">
+                                                    <option value="Default" >Seleccione</option>
+                                                        <?php foreach($this->me as $row){
+                                                        $especifica=new especifica ();
+                                                        $especifica=$row;?>
+                                                    <option value="<?php echo $especifica->idEspecifica ;?>"><?php echo $especifica->detalle; ?></option>
                           
 
-                                        <?php  } ?>
-                                </select>
-                            
-                                            
+                                                    <?php  } ?>
+
+                                                </select>
+                                            <label for="" class="col-md">O/S</label>
+                                                <input type="text" class="col-md form-control">
+                                        </div>
+                                        <div class="row frmFilas">
+                                            <label for="" class=" col-md ">Cantidad</label>
+                                                <input type="number" name="" id="" class="col-md form-control">
+                                            <label for="" class=" col-md ">Precio</label>
+                                                <input type="number" name="" id="" class="col-md form-control">
+                                            <label for="" class=" col-md ">Total</label>
+                                                <input type="number" name="" id="" class="col-md form-control">
+                                        </div>
+                                        <div class="row frmFilas">
+                                            <button type="" class="btn btn-primary toastrDefaultSuccess">
+                                                Registrar Servicio
+                                            </button>                
+
+                                        </div>
+
+                                    </form>
+                                    
+
+
+                                </div>
+              
+                            </div>
+
                         </div>
-                        <br>
-                        <div class="row">
-                            <label for=""  class="col-md-2">Almacen</label>
-                                
-                                <select class="form-control col-md" id="almacen" name="almacen" >
-                                    <option value="">Seleccione</option>
-                                        <?php foreach($this->me as $row){
-                                        $especifica=new especifica();
-                                        $especifica=$row;?>
-                                    <option value="<?php echo $especifica->idEspecifica ;?>"><?php echo $especifica->codigo; ?></option>
-                          
-
-                                        <?php  } ?>
-                                </select>
-                            <label for=""  class="col-md-2">Especifica</label>
-                                <select class="form-control col-md" id="especifica" name="especifica" >
-                                    <option value="">Seleccione</option>
-                                        <?php foreach($this->me as $row){
-                                        $especifica=new especifica();
-                                        $especifica=$row;?>
-                                    <option value="<?php echo $especifica->idEspecifica ;?>"><?php echo $especifica->codigo; ?></option>
-                          
-
-                                        <?php  } ?>
-                                </select>
-                        </div>
-                        <br>
-                        <button type="submit" class="btn btn-primary">Agregar ingreso</button>
-
-                    </form>
-                </div>
-                <div>
-                      
                     </div>
-                
-                </div>
-            </div>
-       
+                    <div class="row">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Cantidad</th>
+                                    <th>Detalle</th>
+                                    <th>Especifica </th>
+                                    <th>Precio </th>
+                                    <th>Total </th>
+                                    <th>O/S </th>
+                                    <th>Acciones </th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
+                            </tbody>
+                        </table>
+                    </div>
+
+      
+                </div>
             </section>
     
-   
+
+    
         </div>
-
-
-
-
-
-
-  <!-- footer  -->
+        <!-- fin contenido -->
+        <!-- inicio del footer -->
         <footer class="main-footer">
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-                All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
+            <div class="float-right d-none d-sm-block">
                 <b>Version</b> 3.2.0-rc
             </div>
+            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
         </footer>
 
   
     </div>
-
-
-
-
-</body>
-</html>
-<script>
-$("#um").select2();
-$("#almacen").select2();
-$("#especifica").select2();
-
-</script>
-
-
+    
     <?php
         include_once("Views/Js.php");
     ?>
+    <script src="<?=BASE_URL?>assets/js/Servicios.js"></script>
+
+</body>
+</html>
+

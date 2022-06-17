@@ -12,10 +12,7 @@ class Productos extends Controller{
     }
 
     function render(){
-        /*$MProductos=$this->model->MostrarProductos();
-        $this->view->mp=$MProductos;
-        $MEspecifica=$this->model->MostrarEspecifica();
-        $this->view->me=$MEspecifica;*/
+        
         $ingresos=$this->model->Mostrar();
         $this->view->datos=$ingresos;
         $MAlmacen=$this->model->MostrarAlmacen();
