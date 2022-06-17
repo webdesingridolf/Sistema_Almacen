@@ -59,9 +59,9 @@
                                     <form class="container" id="frmServicios" >
                                         <div class="row frmFilas">
                                             <label for="" class=" col-md" >Detalle</label>
-                                                <input type="text" class="col-md form-control ">
+                                                <input type="text" class="col-md form-control " name="detalle" id="detalle">
                                             <label for="" class=" col-md ">Especifica</label>
-                                                <select name="" id="" class="col-md form-control">
+                                                <select name="Especifica" id="Especifica" class="col-md form-control">
                                                     <option value="Default" >Seleccione</option>
                                                         <?php foreach($this->me as $row){
                                                         $especifica=new especifica ();
@@ -73,15 +73,15 @@
 
                                                 </select>
                                             <label for="" class="col-md">O/S</label>
-                                                <input type="text" class="col-md form-control">
+                                                <input type="text" class="col-md form-control" name="os" id="os">
                                         </div>
                                         <div class="row frmFilas">
                                             <label for="" class=" col-md ">Cantidad</label>
-                                                <input type="number" name="" id="" class="col-md form-control">
+                                                <input type="number" name="cantidad" id="cantidad" class="col-md form-control">
                                             <label for="" class=" col-md ">Precio</label>
-                                                <input type="number" name="" id="" class="col-md form-control">
+                                                <input type="number" name="precio" id="precio" class="col-md form-control">
                                             <label for="" class=" col-md ">Total</label>
-                                                <input type="number" name="" id="" class="col-md form-control">
+                                                <input type="number" name="total" id="total" class="col-md form-control">
                                         </div>
                                         <div class="row frmFilas">
                                             <button type="" class="btn btn-primary toastrDefaultSuccess">
@@ -101,6 +101,7 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-md-12">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
@@ -118,6 +119,9 @@
 
                             </tbody>
                         </table>
+
+                        </div>
+                        
                     </div>
 
       

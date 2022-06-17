@@ -75,28 +75,29 @@ $(document).ready(function(){
     
 
    
-    if (document.querySelector("#frmProductos")) {
+    if (document.querySelector("#frmServicios")) {
    
         let base_url="/Sistema_Almacen/";
-        let frmProductos=document.querySelector("#frmProductos");
-        frmProductos.onsubmit=function(e){
+        let frmServicios=document.querySelector("#frmServicios");
+        frmServicios.onsubmit=function(e){
             e.preventDefault();
             fntGuardar();
         }
         async function fntGuardar() {
             let detalle=document.querySelector("#detalle").value;
-            let unidadmedida=document.querySelector("#unidadMedida").value;
-            let stock=document.querySelector("#stock").value;
-            let almacen=document.querySelector("#almacen").value;
+            let os=document.querySelector("#os").value;
+            let cantidad=document.querySelector("#cantidad").value;
+            let precio=document.querySelector("#precio").value;
+            let total=document.querySelector("#total").value;
             
-            let especifica=document.querySelector("#especifica").value;
+            let especifica=document.querySelector("#Especifica").value;
             
             
            
             
             try {
-                const data=new FormData(frmProductos);
-                let resp=await fetch(base_url+"Productos/RegistrarProducto",{
+                const data=new FormData(frmServicios);
+                let resp=await fetch(base_url+"Servicios/RegistrarServicio",{
                     method: 'POST',
                     mode: 'cors',
                     cache: 'no-cache',
@@ -106,7 +107,7 @@ $(document).ready(function(){
                 json=await resp.json();
                 if(json.status){
                     toastr.success(json.msg);
-                    frmProductos.reset();
+                    frmServicios.reset();
                     $("#unidadMedida").select2({
                         placeholder: 'Seleccione un producto'
                     });
@@ -117,7 +118,7 @@ $(document).ready(function(){
                         placeholder: 'Seleccione una opcion'
                     });
                    
-                    tablaProductos.ajax.reload(null, false);
+                    tablaServicios.ajax.reload(null, false);
     
                    
                    

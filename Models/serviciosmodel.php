@@ -6,29 +6,28 @@ class ServiciosModel extends Model{
         parent::__construct();
     }
     public function insertar($datos){
-        $TipoDocumento =$datos["TipoDocumento"];
-        $NumeroDocumento =$datos["NumeroDocumento"];
-        $Nombre =$datos["Nombre"];
-        $Apellido =$datos["Apellido"];
-        $FechaNacimiento =$datos["FechaNacimiento"];
-        $Usuario= $datos["Usuario"];
-        $Contraseña= $datos["Contraseña"];
-       $items=[];
-       try {
-            $query = $this->prepare('INSERT INTO usuario (tipo_Documento,numero_Documento,nombre,apellido,fecha_Nacimiento,log_User,log_Pass)
-             VALUES (:tipo_Documento, :numero_Documento, :nombre, :apellido, :fecha_Nacimiento, :log_User, :log_Pass)');
+        try {
+            $query=$this->prepare('INSERT INTO servicio(fecha,detalle,id_Usuario,cantidad,id_Especifica,precio,total,O_S) 
+                 VALUES(:fecha,:detalle,:usuario,:cantidad,:especifica,:precio,:total,:OS )');
             $query->execute([
-                "tipo_Documento"=>$TipoDocumento, 
-                "numero_Documento"=>$NumeroDocumento, 
-                "nombre"=>$Nombre, 
-                "apellido"=>$Apellido, 
-                "fecha_Nacimiento"=>$FechaNacimiento, 
-                "log_User"=>$Usuario, 
-                "log_Pass"=>$Contraseña
-        ]);
-       } catch (PDOException $e){
-        echo $e->getMessage();
-       }
+                'fecha'=>$datos['fecha'],
+                'detalle'=>$datos['detalle'],
+                'usuario'=>$datos['usuario'],
+                'cantidad'=>$datos['cantidad'],
+                'especifica'=>$datos['especifica'],
+                'precio'=>$datos['precio'],
+                'total'=>$datos['total'],
+                'OS'=>$datos['os'],
+                
+    
+            ]);
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            //echo "ingreso existente ";
+            return false;
+        }
+
     }
 
 
@@ -49,7 +48,7 @@ class ServiciosModel extends Model{
                 $item->Especifica=$servicio['id_Especifica'];
                 $item->precio=$servicio['precio'];
                 $item->total=$servicio['total'];
-                $item->os=$servicio['O/S'];
+                $item->os=$servicio['O_S'];
                 
                 array_push($items,$item);
 
