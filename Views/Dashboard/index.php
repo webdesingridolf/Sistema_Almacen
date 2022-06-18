@@ -24,6 +24,7 @@
       ?>
 
   <div class="content-wrapper">
+    
       <!-- pagina de  contenido -->
      <!-- Content Header (Page header) -->
      <div class="content-header">
@@ -46,6 +47,7 @@
 
 <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
+
         <div class="row">
           <div class="col-lg-3 col-6">
             <!-- small box -->
