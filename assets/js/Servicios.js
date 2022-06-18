@@ -61,14 +61,63 @@ $(document).ready(function(){
             {"defaultContent": "<button type='button' id='editar' class='editar btn btn-primary'><i class='fas fa-edit'></i></button>	<button type='button' id='Eliminar' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fas fa-trash'></i></button>"}
         ]
     });
+    document.getElementById("eliminarServicio").addEventListener("click", myFunction);
     
     //funciona para actualizar y eliminar
     
-      $("#example1").on("click", "#editar", function(){
-          var datos=tablaProductos.row($(this).parents("tr")).data();
+      $("#example1").on("click", "#Eliminar", function(){
+          
+        var datos=tablaServicios.row($(this).parents("tr")).data();
         // forma de llamar a los objetos datos.nombre d ela columna
+       
+        $("#id").val(datos.id);
         console.log(datos);
+        
      });
+     function myFunction() {
+         id=document.getElementById("id").value;
+         frmeliminar=document.querySelector("#frmEliminar");
+         eliminar();
+        async function eliminar(idservicio){
+            id=document.querySelector("#id");
+
+            try {
+                const data=new FormData(frmeliminar) ;
+                let resp=await fetch(base_url+"Servicios/EliminarServicio",{
+                    method: 'POST',
+                    mode: 'cors',
+                    cache: 'no-cache',
+                    body: data
+    
+                });
+                
+                json=await resp.json();
+                if(json.status){
+                    toastr.success(json.msg);
+                    tablaServicios.ajax.reload(null, false);
+                    $("#modalEliminar").modal('hide');
+                }else{
+                    toastr.success(json.msg);
+                    
+                }
+                
+               
+                
+            } catch (err) {
+                console.log("ocurrio un error: ".err);
+            }
+
+
+
+
+
+
+            
+
+
+        }        
+        
+      }
    
     
 
@@ -104,6 +153,7 @@ $(document).ready(function(){
                     body: data
     
                 });
+                
                 json=await resp.json();
                 if(json.status){
                     toastr.success(json.msg);

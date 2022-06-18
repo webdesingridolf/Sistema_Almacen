@@ -52,6 +52,18 @@ class Servicios extends Controller{
         $servicios=$this->model->Mostrar();
         print json_encode($servicios, JSON_UNESCAPED_UNICODE);
     }
+
+    function EliminarServicio(){
+        $id=$_POST['id'];
+        if ($this->model->eliminar($id)) {
+                $arrResponse=array('status'=>true, 'msg'=>'Registro Eliminado correctamente');
+            }else {
+                $arrResponse=array('status'=>false, 'msg'=>'Registro no Eliminado ');
+            }
+            echo json_encode($arrResponse);
+        
+       // print json_encode($id, JSON_UNESCAPED_UNICODE);
+    }
 }
 
 ?>
