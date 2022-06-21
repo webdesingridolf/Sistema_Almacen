@@ -12,8 +12,7 @@ class Ingresos extends Controller{
     }
 
     function render(){
-        $ingresos=$this->model->Mostrar();
-        $this->view->datos=$ingresos;
+        
         $MProductos=$this->model->MostrarProductos();
         $this->view->mp=$MProductos;
         $MEspecifica=$this->model->MostrarEspecifica();
@@ -33,22 +32,7 @@ class Ingresos extends Controller{
         $usuario=1;
         
         $mensaje="";
-        /*
-       
-        echo $cantidad;
-        echo "<br>";
-        echo $producto;
-        echo "<br>";
-        echo $precio;
-        echo "<br>";
-        echo $total;
-        echo "<br>";
-        echo $ordenCompra;
-        echo "<br>";
-        echo $especifica;
-        echo "<br>";
-        echo $usuario;
-        */
+    
         
         
         if (
@@ -75,10 +59,59 @@ class Ingresos extends Controller{
         */ 
     }
     function MostrarIngresos(){
-        $ingresos=$this->model->Mostrar();
+        $fecha = date('Y-m-d h:i:s',time());
+        $fechaAnterior = date("Y-m-d", strtotime($fecha. "-1 day"));
+        $fechaSiguiente=date("Y-m-d", strtotime($fecha. "+1 day"));
+        $ingresos=$this->model->Mostrar($fechaAnterior,$fechaSiguiente);
         print json_encode($ingresos, JSON_UNESCAPED_UNICODE);
        
 
     }
+
+    function EliminarIngreso(){
+        $id=$_POST['id'];
+        if ($this->model->eliminar($id)) {
+                $arrResponse=array('status'=>true, 'msg'=>'Registro Eliminado correctamente');
+            }else {
+                $arrResponse=array('status'=>false, 'msg'=>'Registro no Eliminado ');
+            }
+            echo json_encode($arrResponse);
+        
+       // print json_encode($id, JSON_UNESCAPED_UNICODE);
+    }
+    function ActualizarIngreso(){
+        
+        //$fecha=date('Y-m-d h:i:s',time());
+        $upProducto=$_POST["upProducto"];
+        $upCantidad=$_POST["upCantidad"];
+        $upPrecio= $_POST["upPrecio"];
+        $upTotal=$_POST["upTotal"];
+        $upOrdenCompra=$_POST["upOrden"];
+        $upEspecifica=$_POST["upEspecifica"];
+        $upID=$_POST["upId"];
+        if (
+            $this->model->actualizar([
+               
+                'cantidad'=>$upCantidad,
+                'producto'=>$upProducto,
+                'precio'=>$upPrecio,
+                'total'=>$upTotal,
+                'ordenCompra'=>$upOrdenCompra,
+                'especifica'=>$upEspecifica,
+                'id'=>$upID,
+            ])) {
+                $arrResponse=array('status'=>true, 'msg'=>'Registro Actualizado correctamente');
+                
+            }else {
+                $arrResponse=array('status'=>false, 'msg'=>'Registro no Actualizado ');
+                
+            }
+            echo json_encode($arrResponse);
+
+
+
+        
+    }
+    
     
 }

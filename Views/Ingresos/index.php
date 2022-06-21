@@ -59,9 +59,9 @@
                                     <!--inicio contenido de la ventana desplegable-->
 
                                     <form class="container" id="frmIngresos">
-                                        <div class="row">
-                                            <label class="col-md-1" for="">Producto</label>
-                                                <select class=" col-md" id="producto" name="producto" >
+                                        <div class="row frmFilas">
+                                            <label class="col-md" for="">Producto</label>
+                                                <select class=" col-md form-control" id="producto" name="producto" required >
                                                     <option value="">Seleccione un producto</option>
                                                         <?php foreach($this->mp as $row){
                                                             $producto=new productos();
@@ -71,20 +71,20 @@
 
                                                         <?php  } ?>
                                                 </select>
-                                            <label class="col-md-1" for="">Cantidad</label>
-                                                <input type="number" name="cantidad" id="cantidad"   class="col-md-1" min="1">
-                                            <label class="col-md-1" for="">Precio</label>
-                                                <input type="number" name="precio" id="precio" oninput="Total()" class="col-md-1" min="1"> 
-                                            <label class="col-md-1" for="">Total</label>
-                                                <input type="number" name="total" id="total" class="col-md-1" min="1" readonly >
+                                            <label class="col-md" for="">Cantidad</label>
+                                                <input type="number" name="cantidad" id="cantidad"   class="col-md form-control" min="1" required>
+                                            <label class="col-md" for="">Precio</label>
+                                                <input type="number" name="precio" id="precio" oninput="Total()" class="col-md form-control" min="1" required> 
+                                            <label class="col-md" for="">Total</label>
+                                                <input type="number" name="total" id="total" class="col-md form-control" min="1" readonly required>
 
                                         </div>
                                         <br>
-                                        <div class="row">
-                                            <label for=""  class="col-md-2">Orden de compra</label>
-                                                <input type="number"  class="col-md-3" id="ordenCompra" name="ordenCompra" min="1">
-                                            <label for=""  class="col-md-2">Especifica</label>
-                                            <select class=" col-md-3" id="especifica" name="especifica" >
+                                        <div class="row frmFilas">
+                                            <label for=""  class="col-md-3">Orden de compra</label>
+                                                <input type="number"  class="col-md form-control" id="ordenCompra" name="ordenCompra" min="1" required>
+                                            <label for=""  class="col-md-3">Especifica</label>
+                                            <select class=" col-md form-control" id="especifica" name="especifica" required>
                                                 <option value="Default" >Seleccione</option>
                                                     <?php foreach($this->me as $row){
                                                     $especifica=new especifica();
@@ -96,7 +96,7 @@
                                             </select>
 
                                         </div>
-                                        <div class="row">
+                                        <div class="row frmFilas">
                                             <button type="" class="btn btn-primary toastrDefaultSuccess">
                                                 Registrar ingreso
                                             </button>                
@@ -116,30 +116,131 @@
                         </div>
                     </div>
                     <div class="row">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Fecha</th>
-                                    <th>Cantidad</th>
-                                    <th>Unidad de Medida</th>
-                                    <th>Producto</th>
-                                    <th>Especifica</th>
-                                    <th>Precio</th>
-                                    <th>Total</th>
-                                    <th>Orden de Compra</th>
-                                    <th>Acciones </th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                        <div class="col-md-12">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        
+                                        <th>Fecha</th>
+                                        <th>Cantidad</th>
+                                        <th>Unidad de Medida</th>
+                                        <th>Producto</th>
+                                        <th>Especifica</th>
+                                        <th>Precio</th>
+                                        <th>Total</th>
+                                        <th>Orden de Compra</th>
+                                        <th>Acciones </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+
+                        </div>
+                       
 
 
 
 
 
+
+                    </div>
+                    <div class="row">
+                        <div class="modal fade" id="modalEliminar">
+                            <div class="modal-dialog">
+                            <div class="modal-content bg-danger">
+                                <div class="modal-header">
+                                <h4 class="modal-title"> Eliminar</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                <p>Esta seguro de eliminar el Ingreso?&hellip;</p>
+                                <form id="frmEliminar">
+                                    <input type="hidden" name="id" id="id">
+                                </form>
+                                
+                                <p ></p>
+                                </div>
+                                <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cerrar</button>
+                                <button type="button" id="eliminarIngreso"  class="btn btn-outline-light">Eliminar Servicio </button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="modal fade" id="modalActualizar">
+                            <div class="modal-dialog">
+                            <div class="modal-content bg-primary">
+                                <div class="modal-header">
+                                <h4 class="modal-title"> Actualizar</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                
+                                    <form id="frmActualizar">
+                                        <div class="row frmFilas">
+                                            <label for="" class="col-md-3 ">Producto</label>
+                                                <select class=" col-md form-control" id="upProducto" name="upProducto" required >
+                                                    <option value="">Seleccione un producto</option>
+                                                        <?php foreach($this->mp as $row){
+                                                            $producto=new productos();
+                                                            $producto=$row;?>
+                                                        <option value="<?php echo $producto->idProducto ;?>"><?php echo $producto->detalle; ?></option>
+                          
+
+                                                        <?php  } ?>
+                                                </select>
+
+                                        </div>
+                                        <div class="row frmFilas">
+                                            <label for="" class="col-md ">Cantidad</label>
+                                            <input type="number" name="upCantidad" id="upCantidad" oninput="ATotal()" class="col-md form-control">
+                                            <label for="" class="col-md ">Precio</label>
+                                            <input type="number" name="upPrecio" id="upPrecio" oninput="ATotal()" class="col-md form-control">
+                                            <label for="" class="col-md ">Total</label>
+                                            <input type="number" name="upTotal" id="upTotal" class="col-md form-control" readonly>
+                                        
+
+                                        </div>
+                                        <div class="row frmFilas">
+                                            <label for="" class="col-md ">Orden de Compra</label>
+                                            <input type="number" name="upOrden" id="upOrden" class="col-md form-control">
+                                            <label for="" class="col-md ">Especifica</label>
+                                            <select class=" col-md form-control" id="upEspecifica" name="upEspecifica" required>
+                                                <option value="Default" >Seleccione</option>
+                                                    <?php foreach($this->me as $row){
+                                                    $especifica=new especifica();
+                                                    $especifica=$row;?>
+                                                <option value="<?php echo $especifica->idEspecifica ;?>"><?php echo $especifica->codigo; ?></option>
+                          
+
+                                                    <?php  } ?>
+                                            </select>
+                                        </div>
+                                        
+                                        
+                                        <input type="hidden" name="upId" id="upId">
+                                    </form>
+                                
+                                
+                                </div>
+                                <div class="modal-footer justify-content-between">
+                                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" id="ActualizarIngreso"  class="btn btn-outline-light">Actualizar Producto </button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                            </div>
+                        </div>
 
                     </div>
 
@@ -178,10 +279,20 @@
             }
     
         }  
+        function ATotal() {
+            try {
+                var precio=parseFloat(document.querySelector("#upPrecio").value);
+                var cantidad=parseFloat(document.querySelector("#upCantidad").value);
+                document.querySelector("#upTotal").value=precio*cantidad;
+            } catch (e) {
+        
+            }
+    
+        }  
     </script>
     <?php
         include_once("Views/Js.php");
     ?>
-    <script src="<?=BASE_URL?>assets/js/AgregarIngreso.js"></script>
+    <script src="<?=BASE_URL?>assets/js/Ingreso.js"></script>
 </body>
 </html>

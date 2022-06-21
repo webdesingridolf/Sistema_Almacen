@@ -89,20 +89,24 @@
                         </div>
                     </div>
                     <div class="row ">
-                        <table id="example1" class="table table-bordered table-striped ">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Detalle</th>
-                                    <th>Codigo</th>
-                                    <th>Fecha de Registro </th>
-                                    <th>Acciones </th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                        <div class="col-md-12">
+                            <table id="example1" class="table table-bordered table-striped ">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Detalle</th>
+                                        <th>Codigo</th>
+                                        <th>Fecha de Registro </th>
+                                        <th>Acciones </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+
+                        </div>
+                       
 
                     </div>
 

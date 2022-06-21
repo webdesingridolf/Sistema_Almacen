@@ -21,6 +21,8 @@ class H_ingresos{
     public $ordenCompra;
     public $Especifica;
     public $usuario;
+    public $ProductoID;
+    public $EspecificaID;
 
 }
 ?>
