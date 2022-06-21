@@ -19,6 +19,14 @@ class Ingresos extends Controller{
         $this->view->me=$MEspecifica;
         $this->view->render('Ingresos/index');
     }
+    function ListaIngresos(){
+        $MProductos=$this->model->MostrarProductos();
+        $this->view->mp=$MProductos;
+        $MEspecifica=$this->model->MostrarEspecifica();
+        $this->view->me=$MEspecifica;
+        $this->view->render('Ingresos/ListaIngresos');
+
+    }
 
     function RegistrarIngreso(){
         
@@ -65,6 +73,11 @@ class Ingresos extends Controller{
         $ingresos=$this->model->Mostrar($fechaAnterior,$fechaSiguiente);
         print json_encode($ingresos, JSON_UNESCAPED_UNICODE);
        
+
+    }
+    function MostrarListaIngresos(){
+        $ingresos=$this->model->ListaIngresos();
+        print json_encode($ingresos, JSON_UNESCAPED_UNICODE);
 
     }
 

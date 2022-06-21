@@ -155,6 +155,47 @@ class IngresosModel extends Model{
             return false;
         }
     }
+    public function ListaIngresos(){
+        $items=[];
+        try {
+            $ingresos=[];
+            $query=$this->query("SELECT ingreso.id_Ingreso,ingreso.fecha,ingreso.cantidad,unidad_medida.nombre,producto.detalle,especifica.detalle_Especifica,ingreso.precio,ingreso.total,ingreso.orden_de_compra,ingreso.id_Producto,ingreso.id_Especifica
+            FROM ingreso, producto, especifica, usuario, unidad_medida
+            WHERE producto.id_Producto=ingreso.id_Producto AND especifica.id_Especifica =ingreso.id_Especifica and usuario.id_Usuario=ingreso.id_usuario AND producto.id_Unidad_Medida=unidad_medida.id_Unidad_Medida ");
+            $query->execute();
+            $ingresos=$query->fetchAll(PDO::FETCH_ASSOC);
+            
+            foreach ($ingresos as $ingreso) {
+                $item=new H_Ingresos();
+                $item->id=$ingreso['id_Ingreso'];
+                $item->fecha=$ingreso['fecha'];
+                $item->cantidad=$ingreso['cantidad'];
+                $item->unidadmedida=$ingreso['nombre'];
+
+                $item->producto=$ingreso['detalle'];
+                $item->precio=$ingreso['precio'];
+                $item->total=$ingreso['total'];
+                $item->ordenCompra=$ingreso['orden_de_compra'];
+                $item->Especifica=$ingreso['detalle_Especifica'];
+                $item->ProductoID=$ingreso['id_Producto'];
+                $item->EspecificaID=$ingreso['id_Especifica'];
+
+                
+                //$item->usuario=$row['id_usuario'];
+                array_push($items,$item);
+
+
+
+            }
+            
+             return $items;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return [];
+        }
+         
+
+    }
     
 
 }
