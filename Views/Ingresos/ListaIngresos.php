@@ -33,7 +33,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Ingresos</h1>
+                            <h1>Lista de Ingresos</h1>
                         </div>
                     </div>
                 </div>
@@ -44,77 +44,7 @@
             <section class="content">
                 <div class="container-fluid">
         
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card card-primary collapsed-card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Nuevo ingreso</h3>
-                                        <div class="card-tools">
-                                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
-                                            </button>
-                                        </div>
-               
-                                </div>
-                                <div class="card-body">
-                                    <!--inicio contenido de la ventana desplegable-->
-
-                                    <form class="container" id="frmIngresos">
-                                        <div class="row frmFilas">
-                                            <label class="col-md" for="">Producto</label>
-                                                <select class=" col-md form-control" id="producto" name="producto" required >
-                                                    <option value="">Seleccione un producto</option>
-                                                        <?php foreach($this->mp as $row){
-                                                            $producto=new productos();
-                                                            $producto=$row;?>
-                                                        <option value="<?php echo $producto->idProducto ;?>"><?php echo $producto->detalle; ?></option>
-                          
-
-                                                        <?php  } ?>
-                                                </select>
-                                            <label class="col-md" for="">Cantidad</label>
-                                                <input type="number" name="cantidad" id="cantidad"   class="col-md form-control" min="1" required>
-                                            <label class="col-md" for="">Precio</label>
-                                                <input type="number" name="precio" id="precio" oninput="Total()" class="col-md form-control" min="1" required> 
-                                            <label class="col-md" for="">Total</label>
-                                                <input type="number" name="total" id="total" class="col-md form-control" min="1" readonly required>
-
-                                        </div>
-                                        <br>
-                                        <div class="row frmFilas">
-                                            <label for=""  class="col-md-3">Orden de compra</label>
-                                                <input type="number"  class="col-md form-control" id="ordenCompra" name="ordenCompra" min="1" required>
-                                            <label for=""  class="col-md-3">Especifica</label>
-                                            <select class=" col-md form-control" id="especifica" name="especifica" required>
-                                                <option value="Default" >Seleccione</option>
-                                                    <?php foreach($this->me as $row){
-                                                    $especifica=new especifica();
-                                                    $especifica=$row;?>
-                                                <option value="<?php echo $especifica->idEspecifica ;?>"><?php echo $especifica->codigo; ?></option>
-                          
-
-                                                    <?php  } ?>
-                                            </select>
-
-                                        </div>
-                                        <div class="row frmFilas">
-                                            <button type="" class="btn btn-primary toastrDefaultSuccess">
-                                                Registrar ingreso
-                                            </button>                
-
-                                        </div>
-
-                                    </form>
-
-
-
-
-                                    <!--fin  contenido de la ventana desplegable-->
-                                </div>
-              
-                            </div>
-
-                        </div>
-                    </div>
+                    
                     <div class="row">
                         <div class="col-md-12">
                             <table id="example1" class="table table-bordered table-striped">
@@ -263,22 +193,13 @@
   
     </div>
     <script>
-        $("#producto").select2({
+        $("#upProducto").select2({
             placeholder: 'Seleccione un producto'
         });
-        $("#especifica").select2({
+        $("#upEspecifica").select2({
             placeholder: 'Seleccione una opcion'
         });
-        function Total() {
-            try {
-                var precio=parseFloat(document.querySelector("#precio").value);
-                var cantidad=parseFloat(document.querySelector("#cantidad").value);
-                document.querySelector("#total").value=precio*cantidad;
-            } catch (e) {
         
-            }
-    
-        }  
         function ATotal() {
             try {
                 var precio=parseFloat(document.querySelector("#upPrecio").value);
@@ -293,6 +214,6 @@
     <?php
         include_once("Views/Js.php");
     ?>
-    <script src="<?=BASE_URL?>assets/js/Ingreso.js"></script>
+    <script src="<?=BASE_URL?>assets/js/ListaIngresos.js"></script>
 </body>
 </html>

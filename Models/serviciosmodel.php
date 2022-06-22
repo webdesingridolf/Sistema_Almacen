@@ -29,6 +29,20 @@ class ServiciosModel extends Model{
         }
 
     }
+    public function Eliminar($id){
+        try {
+            $query=$this->prepare('DELETE FROM servicio WHERE id_Servicio='.$id.'');
+            $query->execute();
+            return true;
+            
+        } catch (PDOException $e) {
+            //throw $th;
+            echo $e->getMessage();
+            //echo "ingreso existente ";
+            return false;
+        }
+
+    }
 
 
     public function Mostrar(){
