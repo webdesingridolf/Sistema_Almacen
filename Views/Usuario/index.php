@@ -51,36 +51,32 @@
                 
 
                 <div class="card-body" id="TablaIngresos">
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Tipo de Documento</th>
-                    <th>Numero Documento</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Fecha de nacimiento</th>
-                    <th>Usuario</th>
-                    <th>contraseña</th>
-                    <th>Fecha de registro</th>
-                    <th>Acciones</th>
-                  </tr>
-                  </thead>
-                  <tbody id="example2">
-                   
-                 
+                <div class="row">
+                        <div class="col-md-12">
+                            <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tipo de Documento</th>
+                                <th>Numero Documento</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Fecha de nacimiento</th>
+                                <th>Usuario</th>
+                                <th>contraseña</th>
+                                <th>Fecha de registro</th>
+                                <th>Acciones</th>
+                            </tr>
+                            </thead>
+                            <tbody id="example2">
+                            
+                            
 
-                  </tbody>
-                  <!--<tfoot>
-                  <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
-                  </tr>
-                  </tfoot>-->
-                </table>
+                            </tbody>
+                            
+                            </table>
+                        </div>
+                    </div>
               </div>
               <!-- /.card-body -->
             </div>
