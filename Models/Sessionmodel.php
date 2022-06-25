@@ -10,19 +10,23 @@ class SessionModel extends Model{
         $log_Pass=$datos["log_Pass"];
        $items=[];
        try {
-            $query=$this->prepare("SELECT usuario.log_User, usuario.log_Pass
+            $query=$this->prepare("SELECT usuario.log_User, usuario.log_Pass,usuario.id_Usuario
             FROM usuario
             WHERE usuario.log_User= :log_User and usuario.log_Pass= :log_Pass");
             $query->execute(["log_User"=>$log_User,"log_Pass"=>$log_Pass]);
-            while ($row=$query->fetch()) {
+            $ingresos=$query->fetchAll(PDO::FETCH_ASSOC);
+            foreach($ingresos as $ingreso){
                 $item=new V_Session();
-                $item->log_User=$row['log_User'];
-                $item->log_Pass=$row['log_Pass'];
+                $item->log_User=$ingreso['log_User'];
+                $item->log_Pass=$ingreso['log_Pass'];
+                $item->id=$ingreso['id_Usuario'];
+
                 
                 array_push($items,$item);
-
             }
             
+            
+            $id=1;
             return $items;
        } catch (PDOException $e){
             echo "falla de salida";

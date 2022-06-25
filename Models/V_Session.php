@@ -1,5 +1,6 @@
 <?php
 class V_Session{
+    public $id;
     public $log_User;
     public $log_Pass;
 

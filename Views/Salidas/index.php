@@ -56,28 +56,48 @@
                
                                 </div>
                                 <div class="card-body">
-                                    <form  class="container" id="frmServicios">
+                                    <form  class="container" id="frmSalidas">
                                         <div class="row frmFilas">
-                                            <label for="">Producto</label>
-                                            <select name="" id="">
+                                            <label for="" class="col-md">Producto</label>
+                                            <select name="producto" id="producto" class="col-md form-control">
+                                                    <option value="">Seleccione un producto</option>
+                                                        <?php foreach($this->mp as $row){
+                                                            $producto=new productos();
+                                                            $producto=$row;?>
+                                                    <option value="<?php echo $producto->idProducto ;?>"><?php echo $producto->detalle; ?></option>
+                          
+
+                                                        <?php  } ?>
 
                                             </select>
-                                            <label for="">Area</label>
-                                            <input type="text">
-                                            <label for="">Cantidad</label>
-                                            <input type="text">
+                                            <label for="" class="col-md">Area</label>
+                                            <input type="text" name="area" id="area"  class="col-md form-control">
+                                            <label for="" class="col-md ">Cantidad</label>
+                                            <input type="number"  name="cantidad" id="cantidad" class="col-md form-control">
                                         </div>
                                         <div class="row frmFilas">
-                                            <label for="">Especifica</label>
-                                            <select name="" id="">
+                                            <label for="" class="col-md">Especifica</label>
+                                            <select name="especifica" id="especifica" class="col-md form-control">
+                                                <option value="Default" >Seleccione</option>
+                                                    <?php foreach($this->me as $row){
+                                                    $especifica=new especifica();
+                                                    $especifica=$row;?>
+                                                <option value="<?php echo $especifica->idEspecifica ;?>"><?php echo $especifica->codigo; ?></option>
+                          
+
+                                                    <?php  } ?>
 
                                             </select>
-                                             <label for="">O/C</label> 
-                                             <input type="text">
-                                             <label for="">Nº de pecosa</label> 
-                                             <input type="text">
+                                             <label for="" class="col-md">O/C</label> 
+                                             <input type="text" name="oc" id="oc" class="col-md form-control">
+                                             <label for="" class="col-md">Nº de pecosa</label> 
+                                             <input type="text"  name="nPecosa" id="nPecosa" class="col-md form-control">
+                                             
+                                             <!--<label for="">/*</label>-->
+                                             
                                         </div>
                                         <div class="row frmFilas">
+                                            <input type="hidden" name="usuario" id="usuario" value="<?php echo $_SESSION['id_User']; ?>">
                                             <button type="" class="btn btn-primary toastrDefaultSuccess">
                                                 Registrar Salida
                                             </button> 
@@ -103,6 +123,7 @@
                                         <th>Cantidad </th>
                                         <th>O/C </th>
                                         <th>Nº de Pecosa </th>
+                                        <th>Especifica </th>
                                         <th>Estado de devolucion </th>
                                         <th>Acciones </th>
                                     </tr>
@@ -112,6 +133,33 @@
                                 </tbody>
                             </table>
 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="modal fade" id="modalEliminar">
+                            <div class="modal-dialog">
+                            <div class="modal-content bg-danger">
+                                <div class="modal-header">
+                                <h4 class="modal-title"> Eliminar</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                <p>Esta seguro de eliminar el Ingreso?&hellip;</p>
+                                <form id="frmEliminar">
+                                    <input type="hidden" name="id" id="id">
+                                </form>
+                                
+                                <p ></p>
+                                </div>
+                                <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cerrar</button>
+                                <button type="button" id="eliminarIngreso"  class="btn btn-outline-light">Eliminar Servicio </button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                            </div>
                         </div>
                     </div>
 

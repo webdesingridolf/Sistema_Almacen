@@ -7,6 +7,7 @@ class Especifica extends Controller{
 
     }
     function render(){
+        
         $this->view->render('Especifica/index');
     }
     function insertarEspecifica(){

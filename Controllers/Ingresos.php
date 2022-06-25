@@ -37,7 +37,7 @@ class Ingresos extends Controller{
         $total=$_POST["total"];
         $ordenCompra=$_POST["ordenCompra"];
         $especifica=$_POST["especifica"];
-        $usuario=1;
+        $usuario=$_POST["usuario"];
         
         $mensaje="";
     

@@ -97,6 +97,8 @@
 
                                         </div>
                                         <div class="row frmFilas">
+                                        
+                                            <input type="hidden" name="usuario" id="usuario" value="<?php echo $_SESSION['id_User']; ?>">
                                             <button type="" class="btn btn-primary toastrDefaultSuccess">
                                                 Registrar ingreso
                                             </button>                
@@ -243,6 +245,7 @@
                         </div>
 
                     </div>
+                   
 
       
                 </div>

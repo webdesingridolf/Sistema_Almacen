@@ -17,10 +17,13 @@ class Session extends Controller{
         
     }
     function SessionConetion(){
-        if ($this->model->login(["log_User" => $_POST["User"],"log_Pass" => $_POST["Pass"]])) {
+        $login=$this->model->login(["log_User" => $_POST["User"],"log_Pass" => $_POST["Pass"]]);
+        if ($login) {
+            $id=json_encode($login);
             
             $_SESSION["log_User"]=$_POST["User"]; 
             $_SESSION["log_Pass"]=$_POST["Pass"];
+            $_SESSION["id_User"]=$id[7];
             $this->view->render('Dashboard/index');
             ;
         }
