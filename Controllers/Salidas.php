@@ -58,6 +58,12 @@ class Salidas extends Controller{
             'usuario'=>$usuario,
         ])) {
             $arrResponse=array('status'=>true, 'msg'=>'Registro ingresado correctamente');
+            $this->model->DisminuirStock([
+                
+                'cantidad'=>$cantidad,
+                'producto'=>$producto,
+                
+            ]);
             
         }else {
             $arrResponse=array('status'=>false, 'msg'=>'Registro no ingresado ');

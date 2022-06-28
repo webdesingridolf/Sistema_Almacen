@@ -31,6 +31,26 @@ class IngresosModel extends Model{
         
 
     }
+    public function AumentarStock($AS){
+        try {
+            $query=$this->prepare('UPDATE producto SET cantidad_Stock=cantidad_Stock+:cantidad
+            WHERE id_Producto=:id');
+            $query->execute([
+                
+                'cantidad'=>$AS['cantidad'],     
+                'id'=>$AS['producto'],
+                
+
+            ]);
+            return true;
+            
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            
+            return false;
+        }
+    }
+    
     public function MostrarProductos(){
         $items=[];
         try {

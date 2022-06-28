@@ -162,6 +162,74 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="modal fade" id="modalActualizar">
+                            <div class="modal-dialog">
+                            <div class="modal-content bg-primary">
+                                <div class="modal-header">
+                                <h4 class="modal-title"> Actualizar</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                
+                                    <form id="frmActualizar">
+                                        <div class="row frmFilas">
+                                            <label for="" class="col-md-3 ">Producto</label>
+                                                <select class=" col-md form-control" id="upProducto" name="upProducto" required >
+                                                    <option value="">Seleccione un producto</option>
+                                                        <?php foreach($this->mp as $row){
+                                                            $producto=new productos();
+                                                            $producto=$row;?>
+                                                        <option value="<?php echo $producto->idProducto ;?>"><?php echo $producto->detalle; ?></option>
+                          
+
+                                                        <?php  } ?>
+                                                </select>
+
+                                        </div>
+                                        <div class="row frmFilas">
+                                            <label for="" class="col-md ">Cantidad</label>
+                                            <input type="number" name="upCantidad" id="upCantidad" oninput="ATotal()" class="col-md form-control">
+                                            <label for="" class="col-md ">Precio</label>
+                                            <input type="number" name="upPrecio" id="upPrecio" oninput="ATotal()" class="col-md form-control">
+                                            <label for="" class="col-md ">Total</label>
+                                            <input type="number" name="upTotal" id="upTotal" class="col-md form-control" readonly>
+                                        
+
+                                        </div>
+                                        <div class="row frmFilas">
+                                            <label for="" class="col-md ">Orden de Compra</label>
+                                            <input type="number" name="upOrden" id="upOrden" class="col-md form-control">
+                                            <label for="" class="col-md ">Especifica</label>
+                                            <select class=" col-md form-control" id="upEspecifica" name="upEspecifica" required>
+                                                <option value="Default" >Seleccione</option>
+                                                    <?php foreach($this->me as $row){
+                                                    $especifica=new especifica();
+                                                    $especifica=$row;?>
+                                                <option value="<?php echo $especifica->idEspecifica ;?>"><?php echo $especifica->codigo; ?></option>
+                          
+
+                                                    <?php  } ?>
+                                            </select>
+                                        </div>
+                                        
+                                        
+                                        <input type="hidden" name="upId" id="upId">
+                                    </form>
+                                
+                                
+                                </div>
+                                <div class="modal-footer justify-content-between">
+                                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" id="ActualizarIngreso"  class="btn btn-outline-light">Actualizar Producto </button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                            </div>
+                        </div>
+                    </div>
 
       
                 </div>

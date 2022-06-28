@@ -34,6 +34,31 @@ class SalidasModel extends Model{
     }
 /*------------------------------------------fin funcion insertar salidas---------------------------------------------- */
     
+/*------------------------------------------funcion Disminuir stock ---------------------------------------------- */
+    public function DisminuirStock($DS){
+        try {
+            $query=$this->prepare('UPDATE producto SET cantidad_Stock=cantidad_Stock-:cantidad
+            WHERE id_Producto=:id');
+            $query->execute([
+                
+                'cantidad'=>$DS['cantidad'],     
+                'id'=>$DS['producto'],
+                
+
+            ]);
+            return true;
+            
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            
+            return false;
+        }
+    }
+
+
+/*------------------------------------------fin funcion Diminuir stock ---------------------------------------------- */
+
+
 /*------------------------------------------funcion actualizar salidas---------------------------------------------- */
 
 

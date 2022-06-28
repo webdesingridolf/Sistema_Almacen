@@ -55,6 +55,12 @@ class Ingresos extends Controller{
             'usuario'=>$usuario,
         ])) {
             $arrResponse=array('status'=>true, 'msg'=>'Registro ingresado correctamente');
+            $this->model->AumentarStock([
+                
+                'cantidad'=>$cantidad,
+                'producto'=>$producto,
+                
+            ]);
             
         }else {
             $arrResponse=array('status'=>false, 'msg'=>'Registro no ingresado ');
