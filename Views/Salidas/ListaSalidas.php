@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Salidas</title>
+    <title>Lista Salidas</title>
     <!--header aca-->
     <?php 
         include_once("Views/Header.php")
@@ -44,74 +44,7 @@
             <section class="content">
                 <div class="container-fluid">
         
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card card-primary collapsed-card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Nueva Salida</h3>
-                                        <div class="card-tools">
-                                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
-                                            </button>
-                                        </div>
-               
-                                </div>
-                                <div class="card-body">
-                                    <form  class="container" id="frmSalidas">
-                                        <div class="row frmFilas">
-                                            <label for="" class="col-md">Producto</label>
-                                            <select name="producto" id="producto" class="col-md form-control">
-                                                    <option value="">Seleccione un producto</option>
-                                                        <?php foreach($this->mp as $row){
-                                                            $producto=new productos();
-                                                            $producto=$row;?>
-                                                    <option value="<?php echo $producto->idProducto ;?>"><?php echo $producto->detalle; ?></option>
-                          
-
-                                                        <?php  } ?>
-
-                                            </select>
-                                            <label for="" class="col-md">Area</label>
-                                            <input type="text" name="area" id="area"  class="col-md form-control">
-                                            <label for="" class="col-md ">Cantidad</label>
-                                            <input type="number"  name="cantidad" id="cantidad" class="col-md form-control">
-                                        </div>
-                                        <div class="row frmFilas">
-                                            <label for="" class="col-md">Especifica</label>
-                                            <select name="especifica" id="especifica" class="col-md form-control">
-                                                <option value="Default" >Seleccione</option>
-                                                    <?php foreach($this->me as $row){
-                                                    $especifica=new especifica();
-                                                    $especifica=$row;?>
-                                                <option value="<?php echo $especifica->idEspecifica ;?>"><?php echo $especifica->codigo; ?></option>
-                          
-
-                                                    <?php  } ?>
-
-                                            </select>
-                                             <label for="" class="col-md">O/C</label> 
-                                             <input type="text" name="oc" id="oc" class="col-md form-control">
-                                             <label for="" class="col-md">Nº de pecosa</label> 
-                                             <input type="text"  name="nPecosa" id="nPecosa" class="col-md form-control">
-                                             
-                                             <!--<label for="">/*</label>-->
-                                             
-                                        </div>
-                                        <div class="row frmFilas">
-                                            <input type="hidden" name="usuario" id="usuario" value="<?php echo $_SESSION['id_User']; ?>">
-                                            <button type="" class="btn btn-primary toastrDefaultSuccess">
-                                                Registrar Salida
-                                            </button> 
-
-                                        </div>
-
-                                    </form>
-                                    
-                                </div>
-              
-                            </div>
-
-                        </div>
-                    </div>
+                    
                     <div class="row">
                         <div class="col-md-12">
                             <table id="example1" class="table table-bordered table-striped">
@@ -265,7 +198,7 @@
     <?php
         include_once("Views/Js.php");
     ?>
-    <script src="<?=BASE_URL?>assets/js/Salidas.js"></script>
+    <script src="<?=BASE_URL?>assets/js/ListaSalidas.js"></script>
 
 </body>
 </html>

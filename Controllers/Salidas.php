@@ -16,6 +16,16 @@ class Salidas extends Controller{
         $this->view->render('Salidas/index');
     }
 /*------------------------------fin funcion cargar vista---------------*/
+/*--------------------------funcion cargar vista de Lista-----------------*/
+    function ListaSalidas(){
+        $MProductos=$this->model->MostrarProductos();
+        $this->view->mp=$MProductos;
+        $MEspecifica=$this->model->MostrarEspecifica();
+        $this->view->me=$MEspecifica;
+        $this->view->render('Salidas/ListaSalidas');
+
+    }
+/*--------------------------fin funcion cargar vista de Lista-----------------*/
 
 /*------------------------------ funcion cargar tabla en la vista---------------*/
     function MostrarSalidas(){
@@ -27,6 +37,14 @@ class Salidas extends Controller{
 
     }
 /*------------------------------fin funcion cargar tabla en la vista---------------*/
+/*------------------------------ funcion cargar tabla en la vista lista---------------*/
+
+    function MostrarListaSalidas(){
+        $salidas=$this->model->ListaSalidas();
+        print json_encode($salidas, JSON_UNESCAPED_UNICODE);
+
+    }
+/*------------------------------fin funcion cargar tabla en la vista lista---------------*/
 
 /*------------------------------ funcion Registrar salidas ---------------*/
     function RegistrarSalida(){
@@ -78,7 +96,7 @@ class Salidas extends Controller{
 
 
 /*------------------------------fin funcion Registrar salidas ---------------*/
-/*------------------------------ funcion Registrar salidas ---------------*/
+/*------------------------------ funcion eliminar salidas ---------------*/
 
 
     function EliminarSalida(){
@@ -93,15 +111,73 @@ class Salidas extends Controller{
     }
 
 
-/*------------------------------fin funcion Registrar salidas ---------------*/
+/*------------------------------fin funcion eliminar salidas ---------------*/
 
-/*------------------------------ funcion Registrar salidas ---------------*/
+/*------------------------------ funcion actualizar salidas ---------------*/
+
+    function ActualizarSalida(){
+        $upProducto=$_POST["upProducto"];
+        $upCantidad=$_POST["upCantidad"];
+        $upArea= $_POST["upArea"];
+        $upOC=$_POST["upOC"];
+        $upNPecosa=$_POST["upNPecosa"];
+        $upEspecifica=$_POST["upEspecifica"];
+        $upID=$_POST["upId"];
+        $upDevolucion=$_POST["upDevolucion"];
+        $CantidadA=$_POST["CantidadA"];
+        
+        
+        if (
+            $this->model->actualizar([
+               
+                'cantidad'=>$upCantidad,
+                'producto'=>$upProducto,
+                'area'=>$upArea,
+                'oc'=>$upOC,
+                'pecosa'=>$upNPecosa,
+                'especifica'=>$upEspecifica,
+                'id'=>$upID,
+                'devolucion'=>$upDevolucion,
+            ])) {
+                $arrResponse=array('status'=>true, 'msg'=>'Registro Actualizado correctamente');
+               /* $this->model->DisminuirStock([
+                
+                    'cantidad'=>$stock,
+                    'producto'=>$upProducto,
+                    
+                ]);*/
+                if ($upCantidad>$CantidadA) {
+                    $stock=$upCantidad-$CantidadA;
+                    
+                    $this->model->DisminuirStock([
+                
+                        'cantidad'=>$stock,
+                        'producto'=>$upProducto,
+                        
+                    ]);
+                }
+                if ($CantidadA>$upCantidad) {
+                    $stock=$CantidadA-$upCantidad;
+                    $this->model->AumentarStock([
+                
+                        'cantidad'=>$stock,
+                        'producto'=>$upProducto,
+                        
+                    ]);
+                }
+                
+                
+            }else {
+                $arrResponse=array('status'=>false, 'msg'=>'Registro no Actualizado ');
+                
+            }
+            echo json_encode($arrResponse);
+
+    }
 
 
 
-
-
-/*------------------------------fin funcion Registrar salidas ---------------*/
+/*------------------------------fin funcion actualizar salidas ---------------*/
 
 /*------------------------------ funcion Registrar salidas ---------------*/
 

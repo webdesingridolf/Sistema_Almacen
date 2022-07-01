@@ -42,7 +42,7 @@ $(document).ready(function(){
             },
         ],
         "ajax":{            
-            "url": base_url+"salidas/MostrarSalidas", 
+            "url": base_url+"salidas/MostrarListaSalidas", 
             "method": 'POST', //usamos el metodo POST
             //"data":{opcion:opcion}, //enviamos opcion 4 para que haga un SELECT
             "dataSrc":""

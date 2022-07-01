@@ -35,6 +35,27 @@ class SalidasModel extends Model{
 /*------------------------------------------fin funcion insertar salidas---------------------------------------------- */
     
 /*------------------------------------------funcion Disminuir stock ---------------------------------------------- */
+    public function AumentarStock($AS){
+        try {
+            $query=$this->prepare('UPDATE producto SET cantidad_Stock=cantidad_Stock+:cantidad
+            WHERE id_Producto=:id');
+            $query->execute([
+                
+                'cantidad'=>$AS['cantidad'],     
+                'id'=>$AS['producto'],
+                
+
+            ]);
+            return true;
+        
+        } catch (PDOException $e) {
+        echo $e->getMessage();
+        
+        return false;
+         }
+    }
+
+
     public function DisminuirStock($DS){
         try {
             $query=$this->prepare('UPDATE producto SET cantidad_Stock=cantidad_Stock-:cantidad
@@ -64,17 +85,18 @@ class SalidasModel extends Model{
 
     public function actualizar($datos){
         try {
-            $query=$this->prepare('UPDATE ingreso SET cantidad=:cantidad,id_Producto=:producto,precio=:precio,total=:total,orden_de_compra=:orden,id_Especifica=:especifica
-            WHERE id_Ingreso=:id');
+            $query=$this->prepare('UPDATE salida SET cantidad=:cantidad,id_Producto=:producto,area=:area,n_pecosa=:pecosa,o_c=:oc,devolucion=:devolucion,id_Especifica=:especifica
+            WHERE id_Salida=:id');
             $query->execute([
                 
                 'cantidad'=>$datos['cantidad'],
                 'producto'=>$datos['producto'],
-                'precio'=>$datos['precio'],
-                'total'=>$datos['total'],
-                'orden'=>$datos['ordenCompra'],
+                'area'=>$datos['area'],
+                'oc'=>$datos['oc'],
+                'pecosa'=>$datos['pecosa'],
                 'especifica'=>$datos['especifica'],
                 'id'=>$datos['id'],
+                'devolucion'=>$datos['devolucion'],
                 
 
             ]);
@@ -166,28 +188,28 @@ class SalidasModel extends Model{
 
 /*------------------------------------------funcion Lista de  salidas---------------------------------------------- */
 
-    public function ListaIngresos(){
+    public function ListaSalidas(){
         $items=[];
         try {
             $ingresos=[];
-            $query=$this->query("SELECT ingreso.id_Ingreso,ingreso.fecha,ingreso.cantidad,unidad_medida.nombre,producto.detalle,especifica.detalle_Especifica,ingreso.precio,ingreso.total,ingreso.orden_de_compra,ingreso.id_Producto,ingreso.id_Especifica
-            FROM ingreso, producto, especifica, usuario, unidad_medida
-            WHERE producto.id_Producto=ingreso.id_Producto AND especifica.id_Especifica =ingreso.id_Especifica and usuario.id_Usuario=ingreso.id_usuario AND producto.id_Unidad_Medida=unidad_medida.id_Unidad_Medida ");
+            $query=$this->query("SELECT salida.id_Producto,salida.id_Especifica , salida.id_Salida,salida.fecha,salida.cantidad,producto.detalle,salida.area,salida.devolucion,salida.n_pecosa,salida.o_c,especifica.detalle_Especifica 
+            FROM salida,producto,especifica 
+            WHERE producto.id_Producto=salida.id_Producto AND especifica.id_Especifica=salida.id_Especifica ");
             $query->execute();
             $ingresos=$query->fetchAll(PDO::FETCH_ASSOC);
             
             foreach ($ingresos as $ingreso) {
-                $item=new H_Ingresos();
-                $item->id=$ingreso['id_Ingreso'];
+                $item=new ListaSalidas();
+                $item->idSalida=$ingreso['id_Salida'];
                 $item->fecha=$ingreso['fecha'];
                 $item->cantidad=$ingreso['cantidad'];
-                $item->unidadmedida=$ingreso['nombre'];
+                $item->detalle=$ingreso['detalle'];
 
-                $item->producto=$ingreso['detalle'];
-                $item->precio=$ingreso['precio'];
-                $item->total=$ingreso['total'];
-                $item->ordenCompra=$ingreso['orden_de_compra'];
-                $item->Especifica=$ingreso['detalle_Especifica'];
+                $item->area=$ingreso['area'];
+                $item->devolucion=$ingreso['devolucion'];
+                $item->nPecosa=$ingreso['n_pecosa'];
+                $item->oc=$ingreso['o_c'];
+                $item->especifica=$ingreso['detalle_Especifica'];
                 $item->ProductoID=$ingreso['id_Producto'];
                 $item->EspecificaID=$ingreso['id_Especifica'];
 
