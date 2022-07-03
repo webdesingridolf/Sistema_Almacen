@@ -108,6 +108,7 @@ class Ingresos extends Controller{
         $upOrdenCompra=$_POST["upOrden"];
         $upEspecifica=$_POST["upEspecifica"];
         $upID=$_POST["upId"];
+        $CantidadA=$_POST["CantidadA"];
         if (
             $this->model->actualizar([
                
@@ -120,6 +121,25 @@ class Ingresos extends Controller{
                 'id'=>$upID,
             ])) {
                 $arrResponse=array('status'=>true, 'msg'=>'Registro Actualizado correctamente');
+                if ($upCantidad>$CantidadA) {
+                    $stock=$upCantidad-$CantidadA;
+                    
+                    $this->model->AumentarStock([
+                
+                        'cantidad'=>$stock,
+                        'producto'=>$upProducto,
+                        
+                    ]);
+                }
+                if ($CantidadA>$upCantidad) {
+                    $stock=$CantidadA-$upCantidad;
+                    $this->model->DisminuirStock([
+                
+                        'cantidad'=>$stock,
+                        'producto'=>$upProducto,
+                        
+                    ]);
+                }
                 
             }else {
                 $arrResponse=array('status'=>false, 'msg'=>'Registro no Actualizado ');

@@ -50,6 +50,25 @@ class IngresosModel extends Model{
             return false;
         }
     }
+    public function DisminuirStock($DS){
+        try {
+            $query=$this->prepare('UPDATE producto SET cantidad_Stock=cantidad_Stock-:cantidad
+            WHERE id_Producto=:id');
+            $query->execute([
+                
+                'cantidad'=>$DS['cantidad'],     
+                'id'=>$DS['producto'],
+                
+
+            ]);
+            return true;
+            
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            
+            return false;
+        }
+    }
     
     public function MostrarProductos(){
         $items=[];

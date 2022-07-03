@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Servicios</title>
+    <title>Lista Servicios</title>
     <!--header aca-->
     <?php 
         include_once("Views/Header.php")
@@ -33,7 +33,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Servicios</h1>
+                            <h1>Lista de Servicios</h1>
                         </div>
                     </div>
                 </div>
@@ -44,62 +44,7 @@
             <section class="content">
                 <div class="container-fluid">
         
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card card-primary collapsed-card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Nuevo servicio</h3>
-                                        <div class="card-tools">
-                                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
-                                            </button>
-                                        </div>
-               
-                                </div>
-                                <div class="card-body">
-                                    <form class="container" id="frmServicios" >
-                                        <div class="row frmFilas">
-                                            <label for="" class=" col-md" >Detalle</label>
-                                                <input type="text" class="col-md form-control " name="detalle" id="detalle" required>
-                                            <label for="" class=" col-md ">Especifica</label>
-                                                <select name="Especifica" id="Especifica" class="col-md form-control" required>
-                                                    <option value="Default" >Seleccione</option>
-                                                        <?php foreach($this->me as $row){
-                                                        $especifica=new especifica ();
-                                                        $especifica=$row;?>
-                                                    <option value="<?php echo $especifica->idEspecifica ;?>"><?php echo $especifica->detalle; ?></option>
-                          
-
-                                                    <?php  } ?>
-
-                                                </select>
-                                            <label for="" class="col-md">O/S</label>
-                                                <input type="text" class="col-md form-control" name="os" id="os" required>
-                                        </div>
-                                        <div class="row frmFilas">
-                                            <label for="" class=" col-md ">Cantidad</label>
-                                                <input type="number" name="cantidad" id="cantidad" oninput="Total()"   class="col-md form-control" required>
-                                            <label for="" class=" col-md ">Precio</label>
-                                                <input type="number" name="precio" id="precio"  oninput="Total()" class="col-md form-control" required>
-                                            <label for="" class=" col-md ">Total</label>
-                                                <input type="number" name="total" id="total" class="col-md form-control" readonly>
-                                        </div>
-                                        <div class="row frmFilas">
-                                            <button type="" class="btn btn-primary toastrDefaultSuccess">
-                                                Registrar Servicio
-                                            </button>                
-
-                                        </div>
-
-                                    </form>
-                                    
-
-
-                                </div>
-              
-                            </div>
-
-                        </div>
-                    </div>
+                    
                     <div class="row">
                         <div class="col-md-12">
                             <table id="example1" class="table table-bordered table-striped">
@@ -269,8 +214,7 @@
     <?php
         include_once("Views/Js.php");
     ?>
-    <script src="<?=BASE_URL?>assets/js/Servicios.js"></script>
+    <script src="<?=BASE_URL?>assets/js/ListaServicios.js"></script>
 
 </body>
 </html>
-

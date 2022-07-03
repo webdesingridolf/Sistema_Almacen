@@ -240,7 +240,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
+                <a href="<?php echo constant('BASE_URL');?>Servicios/ListaServicios" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Lista de Servicios</p>
                 </a>

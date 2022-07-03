@@ -34,7 +34,7 @@ class SalidasModel extends Model{
     }
 /*------------------------------------------fin funcion insertar salidas---------------------------------------------- */
     
-/*------------------------------------------funcion Disminuir stock ---------------------------------------------- */
+/*------------------------------------------funcion aumentar y disminuir  stock ---------------------------------------------- */
     public function AumentarStock($AS){
         try {
             $query=$this->prepare('UPDATE producto SET cantidad_Stock=cantidad_Stock+:cantidad

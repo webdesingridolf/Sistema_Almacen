@@ -72,7 +72,7 @@
                                                         <?php  } ?>
                                                 </select>
                                             <label class="col-md" for="">Cantidad</label>
-                                                <input type="number" name="cantidad" id="cantidad"   class="col-md form-control" min="1" required>
+                                                <input type="number" name="cantidad" id="cantidad"  oninput="Total()" class="col-md form-control" min="1" required>
                                             <label class="col-md" for="">Precio</label>
                                                 <input type="number" name="precio" id="precio" oninput="Total()" class="col-md form-control" min="1" required> 
                                             <label class="col-md" for="">Total</label>
@@ -228,7 +228,7 @@
                                                     <?php  } ?>
                                             </select>
                                         </div>
-                                        
+                                        <input type="hidden" name="CantidadA" id="CantidadA">
                                         
                                         <input type="hidden" name="upId" id="upId">
                                     </form>

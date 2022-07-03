@@ -125,14 +125,15 @@ document.getElementById("ActualizarIngreso").addEventListener("click", fntActual
         $("#upPrecio").val(datos.precio);
         $("#upTotal").val(datos.total);
         $("#upOrden").val(datos.ordenCompra);
+        $("#CantidadA").val(datos.cantidad);
         
 
      });
 
      function fntActualizar() {
         frmActualizar=document.querySelector("#frmActualizar");
-        eliminar();
-       async function eliminar(){
+        actualizar();
+       async function actualizar(){
           // id=document.querySelector("#id");
            
 

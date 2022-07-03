@@ -140,12 +140,7 @@ class Salidas extends Controller{
                 'devolucion'=>$upDevolucion,
             ])) {
                 $arrResponse=array('status'=>true, 'msg'=>'Registro Actualizado correctamente');
-               /* $this->model->DisminuirStock([
-                
-                    'cantidad'=>$stock,
-                    'producto'=>$upProducto,
-                    
-                ]);*/
+               
                 if ($upCantidad>$CantidadA) {
                     $stock=$upCantidad-$CantidadA;
                     

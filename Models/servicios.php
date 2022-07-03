@@ -13,6 +13,8 @@ class ListaServicios{
     public $precio;
     public $total;
     public $os;
+    public $EspecificaID;
+    
 
     
     

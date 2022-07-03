@@ -1,5 +1,6 @@
 $(document).ready(function(){
     let base_url="/Sistema_Almacen/";
+/*--------------------------------Cargar datos---------------------------------------------------------------------*/
     tablaServicios=$('#example1').DataTable({ 
         "responsive": true, "lengthChange": false, "autoWidth": false,       
         language: {
@@ -51,19 +52,160 @@ $(document).ready(function(){
         "columns":[
            
             {"data": "fecha"},
-            {"data": "detalle"},
             {"data": "cantidad"},
+            {"data": "detalle"},
             {"data": "Especifica"},
             {"data": "precio"},
             {"data": "total"},
             {"data": "os"},
             
-            {"defaultContent": "<div class='text-center'><div class='btn-group'><button type='button' id='editar' class='editar btn btn-primary'><i class='fas fa-edit'></i></button>	<button type='button' id='Eliminar' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fas fa-trash'></i></button></div></div>"}
+            {"defaultContent": "<div class='text-center'><div class='btn-group'><button type='button' id='editar' class='editar btn btn-primary' data-toggle='modal' data-target='#modalActualizar'><i class='fas fa-edit'></i></button>	<button type='button' id='Eliminar' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fas fa-trash'></i></button></div></div>"}
         ]
     });
-    document.getElementById("eliminarServicio").addEventListener("click", myFunction);
+/*--------------------------------fin Cargar datos---------------------------------------------------------------------*/
+  
+
+
+/*--------------------------------funcion registrar Servicios ---------------------------------------------------------------------*/
+
+
+if (document.querySelector("#frmServicios")) {
+   
+    let base_url="/Sistema_Almacen/";
+    let frmServicios=document.querySelector("#frmServicios");
+    frmServicios.onsubmit=function(e){
+        e.preventDefault();
+        fntGuardar();
+    }
+    async function fntGuardar() {
+        let detalle=document.querySelector("#detalle").value;
+        let os=document.querySelector("#os").value;
+        let cantidad=document.querySelector("#cantidad").value;
+        let precio=document.querySelector("#precio").value;
+        let total=document.querySelector("#total").value;
+        
+        let especifica=document.querySelector("#Especifica").value;
+        
+        
+       
+        
+        try {
+            const data=new FormData(frmServicios);
+            let resp=await fetch(base_url+"Servicios/RegistrarServicio",{
+                method: 'POST',
+                mode: 'cors',
+                cache: 'no-cache',
+                body: data
+
+            });
+            
+            json=await resp.json();
+            if(json.status){
+                toastr.success(json.msg);
+                frmServicios.reset();
+               
+                $("#Especifica").select2({
+                    placeholder: 'Seleccione una opcion'
+                });
+               
+                tablaServicios.ajax.reload(null, false);
+ 
+            }else{
+                toastr.error(json.msg);
+            }
+            
+           
+            
+        } catch (err) {
+            console.log("ocurrio un error: ".err);
+        }
+        
+    }
     
-    //funciona para actualizar y eliminar
+}
+
+
+
+
+/*--------------------------------fin funcion registrar Servicios ---------------------------------------------------------------------*/
+
+
+/*------------------------funcion actualizar servicios-----------------------------------------------------------------------------------*/
+
+    
+    $("#example1").on("click", "#editar", function(){
+        
+          
+        var datos=tablaServicios.row($(this).parents("tr")).data();
+        // forma de llamar a los objetos datos.nombre d ela columna
+        console.log(datos);
+        $("#upId").val(datos.id);
+        $('#upDetalle').val(datos.detalle);
+        $("#upCantidad").val(datos.cantidad);
+        $("#upPrecio").val(datos.precio);
+        $("#upTotal").val(datos.total);
+        $("#upOS").val(datos.os);
+        $('#upEspecifica').val(datos.EspecificaID).trigger('change.select2');
+      
+        
+        
+       
+
+     });
+    document.getElementById("ActualizarServicio").addEventListener("click", fntActualizar);
+
+
+     function fntActualizar() {
+        frmActualizar=document.querySelector("#frmActualizar");
+        actualizar();
+       async function actualizar(){
+          // id=document.querySelector("#id");
+           
+
+           try {
+               const data=new FormData(frmActualizar) ;
+               let resp=await fetch(base_url+"Servicios/ActualizarServicios",{
+                   method: 'POST',
+                   mode: 'cors',
+                   cache: 'no-cache',
+                   body: data
+   
+               });
+               
+               json=await resp.json();
+               if(json.status){
+                   toastr.success(json.msg);
+                   $("#modalActualizar").modal('hide');
+                   tablaServicios.ajax.reload(null, false);
+                   
+               }else{
+                   toastr.error(json.msg);
+                   
+               }               
+           } catch (err) {
+               console.log("ocurrio un error: ".err);
+           }
+           
+
+       }     
+       
+     }
+
+
+
+
+
+/*------------------------fin funcion actualizar servicios-----------------------------------------------------------------------------------*/
+
+
+
+
+/*------------------------funcion eliminar servicios-----------------------------------------------------------------------------------*/
+
+
+document.getElementById("eliminarServicio").addEventListener("click", EliminarServicio);
+    
+   
     
       $("#example1").on("click", "#Eliminar", function(){
           
@@ -74,7 +216,7 @@ $(document).ready(function(){
         console.log(datos);
         
      });
-     function myFunction() {
+     function EliminarServicio() {
          id=document.getElementById("id").value;
          frmeliminar=document.querySelector("#frmEliminar");
          eliminar();
@@ -107,89 +249,20 @@ $(document).ready(function(){
                 console.log("ocurrio un error: ".err);
             }
 
-
-
-
-
-
-            
-
-
         }        
         
       }
+
+
+/*------------------------fin funcion eliminar servicios-----------------------------------------------------------------------------------*/
+
    
     
 
     
 
    
-    if (document.querySelector("#frmServicios")) {
-   
-        let base_url="/Sistema_Almacen/";
-        let frmServicios=document.querySelector("#frmServicios");
-        frmServicios.onsubmit=function(e){
-            e.preventDefault();
-            fntGuardar();
-        }
-        async function fntGuardar() {
-            let detalle=document.querySelector("#detalle").value;
-            let os=document.querySelector("#os").value;
-            let cantidad=document.querySelector("#cantidad").value;
-            let precio=document.querySelector("#precio").value;
-            let total=document.querySelector("#total").value;
-            
-            let especifica=document.querySelector("#Especifica").value;
-            
-            
-           
-            
-            try {
-                const data=new FormData(frmServicios);
-                let resp=await fetch(base_url+"Servicios/RegistrarServicio",{
-                    method: 'POST',
-                    mode: 'cors',
-                    cache: 'no-cache',
-                    body: data
     
-                });
-                
-                json=await resp.json();
-                if(json.status){
-                    toastr.success(json.msg);
-                    frmServicios.reset();
-                    $("#unidadMedida").select2({
-                        placeholder: 'Seleccione un producto'
-                    });
-                    $("#especifica").select2({
-                        placeholder: 'Seleccione una opcion'
-                    });
-                    $("#almacen").select2({
-                        placeholder: 'Seleccione una opcion'
-                    });
-                   
-                    tablaServicios.ajax.reload(null, false);
-    
-                   
-                   
-                    
-    
-                   
-    
-    
-                }else{
-                    alert("nell",json.msg,"error");
-                }
-                
-               
-                
-            } catch (err) {
-                console.log("ocurrio un error: ".err);
-            }
-            
-        }
-        
-    }
     
 
 

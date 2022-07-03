@@ -1,7 +1,7 @@
 $(document).ready(function(){
-    
     let base_url="/Sistema_Almacen/";
-    tablasalidas=$('#example1').DataTable({ 
+/*--------------------------------Cargar datos---------------------------------------------------------------------*/
+    tablaServicios=$('#example1').DataTable({ 
         "responsive": true, "lengthChange": false, "autoWidth": false,       
         language: {
                 "lengthMenu": "Mostrar _MENU_ registros",
@@ -42,7 +42,7 @@ $(document).ready(function(){
             },
         ],
         "ajax":{            
-            "url": base_url+"salidas/MostrarListaSalidas", 
+            "url": base_url+"servicios/MostrarListaServicios", 
             "method": 'POST', //usamos el metodo POST
             //"data":{opcion:opcion}, //enviamos opcion 4 para que haga un SELECT
             "dataSrc":""
@@ -50,92 +50,48 @@ $(document).ready(function(){
         },
         
         "columns":[
-            
-            {"data": "detalle"},
-            {"data": "area"},
+           
             {"data": "fecha"},
             {"data": "cantidad"},
-            {"data": "oc"},
-            {"data": "nPecosa"},
-            {"data": "especifica"},
-            {"data": "devolucion"},
+            {"data": "detalle"},
+            {"data": "Especifica"},
+            {"data": "precio"},
+            {"data": "total"},
+            {"data": "os"},
             
             {"defaultContent": "<div class='text-center'><div class='btn-group'><button type='button' id='editar' class='editar btn btn-primary' data-toggle='modal' data-target='#modalActualizar'><i class='fas fa-edit'></i></button>	<button type='button' id='Eliminar' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fas fa-trash'></i></button></div></div>"}
         ]
     });
+/*--------------------------------fin Cargar datos---------------------------------------------------------------------*/
+  
 
 
 
-//-----------------------eliminar ingreso --------------------------------------------------------------------------*
-    document.getElementById("eliminarIngreso").addEventListener("click", fntEliminar);
 
-    
-    $("#example1").on("click", "#Eliminar", function(){
-          
-        var datos=tablasalidas.row($(this).parents("tr")).data();
-        
-        // forma de llamar a los objetos datos.nombre d ela columna
-        $("#id").val(datos.idSalida);
-     });
-     function fntEliminar() {
-        
-         id=document.getElementById("id").value;
-         frmeliminar=document.querySelector("#frmEliminar");
-         eliminar();
-        async function eliminar(){
-            id=document.querySelector("#id");
-
-            try {
-                const data=new FormData(frmeliminar) ;
-                let resp=await fetch(base_url+"salidas/EliminarSalida",{
-                    method: 'POST',
-                    mode: 'cors',
-                    cache: 'no-cache',
-                    body: data
-    
-                });
-                
-                json=await resp.json();
-                if(json.status){
-                    toastr.error(json.msg);
-                    tablasalidas.ajax.reload(null, false);
-                    $("#modalEliminar").modal('hide');
-                }else{
-                    toastr.error(json.msg);
-                    
-                }               
-            } catch (err) {
-                console.log("ocurrio un error: ".err);
-            }
-
-        }        
-        
-      }
-//---------------------------------fin funcion eliminar ---------------------------------------------------------------
-   
-//--------------------------------Funcion Actualizar------------------------------------------------------------------
-document.getElementById("ActualizarSalida").addEventListener("click", fntActualizar);
+/*------------------------funcion actualizar servicios-----------------------------------------------------------------------------------*/
 
     
     $("#example1").on("click", "#editar", function(){
         
           
-        var datos=tablasalidas.row($(this).parents("tr")).data();
+        var datos=tablaServicios.row($(this).parents("tr")).data();
         // forma de llamar a los objetos datos.nombre d ela columna
         console.log(datos);
-        $("#upId").val(datos.idSalida);
+        $("#upId").val(datos.id);
+        $('#upDetalle').val(datos.detalle);
         $("#upCantidad").val(datos.cantidad);
-        $('#upProducto').val(datos.ProductoID).trigger('change.select2');
+        $("#upPrecio").val(datos.precio);
+        $("#upTotal").val(datos.total);
+        $("#upOS").val(datos.os);
         $('#upEspecifica').val(datos.EspecificaID).trigger('change.select2');
-        $('#upDevolucion').val(datos.devolucion).trigger('change.select2');
-
-        $("#upArea").val(datos.area);
-        $("#upOC").val(datos.oc);
-        $("#upNPecosa").val(datos.nPecosa);
-        $("#CantidadA").val(datos.cantidad);
+      
         
+        
+       
 
      });
+    document.getElementById("ActualizarServicio").addEventListener("click", fntActualizar);
+
 
      function fntActualizar() {
         frmActualizar=document.querySelector("#frmActualizar");
@@ -146,7 +102,7 @@ document.getElementById("ActualizarSalida").addEventListener("click", fntActuali
 
            try {
                const data=new FormData(frmActualizar) ;
-               let resp=await fetch(base_url+"Salidas/ActualizarSalida",{
+               let resp=await fetch(base_url+"Servicios/ActualizarServicios",{
                    method: 'POST',
                    mode: 'cors',
                    cache: 'no-cache',
@@ -158,7 +114,7 @@ document.getElementById("ActualizarSalida").addEventListener("click", fntActuali
                if(json.status){
                    toastr.success(json.msg);
                    $("#modalActualizar").modal('hide');
-                   tablasalidas.ajax.reload(null, false);
+                   tablaServicios.ajax.reload(null, false);
                    
                }else{
                    toastr.error(json.msg);
@@ -174,10 +130,77 @@ document.getElementById("ActualizarSalida").addEventListener("click", fntActuali
      }
 
 
-//-------------------------------fin funcion actualizar----------------------------------------------------------------
 
 
 
+/*------------------------fin funcion actualizar servicios-----------------------------------------------------------------------------------*/
+
+
+
+
+/*------------------------funcion eliminar servicios-----------------------------------------------------------------------------------*/
+
+
+document.getElementById("eliminarServicio").addEventListener("click", EliminarServicio);
+    
+   
+    
+      $("#example1").on("click", "#Eliminar", function(){
+          
+        var datos=tablaServicios.row($(this).parents("tr")).data();
+        // forma de llamar a los objetos datos.nombre d ela columna
+       
+        $("#id").val(datos.id);
+        console.log(datos);
+        
+     });
+     function EliminarServicio() {
+         id=document.getElementById("id").value;
+         frmeliminar=document.querySelector("#frmEliminar");
+         eliminar();
+        async function eliminar(idservicio){
+            id=document.querySelector("#id");
+
+            try {
+                const data=new FormData(frmeliminar) ;
+                let resp=await fetch(base_url+"Servicios/EliminarServicio",{
+                    method: 'POST',
+                    mode: 'cors',
+                    cache: 'no-cache',
+                    body: data
+    
+                });
+                
+                json=await resp.json();
+                if(json.status){
+                    toastr.success(json.msg);
+                    tablaServicios.ajax.reload(null, false);
+                    $("#modalEliminar").modal('hide');
+                }else{
+                    toastr.success(json.msg);
+                    
+                }
+                
+               
+                
+            } catch (err) {
+                console.log("ocurrio un error: ".err);
+            }
+
+        }        
+        
+      }
+
+
+/*------------------------fin funcion eliminar servicios-----------------------------------------------------------------------------------*/
+
+   
+    
+
+    
+
+   
+    
     
 
 

@@ -26,3 +26,7 @@ table>tbody>tr>td {
 .frmFilas{
     padding-bottom: 10px;
 }
+.selectP{
+    width: 180px;
+    height: 48px;
+}
