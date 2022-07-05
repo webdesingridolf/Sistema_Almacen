@@ -23,6 +23,9 @@ class ListaProductos{
     public $almacen;
     public $Especifica;
     public $fecha;
+    public $idAlmacen;
+    public $idEspecifica;
+    public $idUnidadMedida;
 
 }
 ?>

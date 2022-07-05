@@ -62,7 +62,7 @@
                                         <div class="row">
                                             <label class="col-md-1" for="">Detalle</label>
                                                 <input type="text" name="detalle" id="detalle"  class="col-md form-control" >
-                                            <label class="col-md-1" for="">Unidad de Medida</label>
+                                            <label class="col-md-3" for="">Unidad de Medida</label>
                                             <select class=" col-md form-control" id="unidadMedida" name="unidadMedida" >
                                                 <option value="">Seleccione </option>
                                                     <?php foreach($this->mum as $row){
@@ -73,10 +73,10 @@
 
                                                     <?php  } ?>
                                             </select>
+                                           
+                                            
                             
-                                            <label class="col-md-1" for="">Stock</label>
-                                                <input type="number" name="stock" id="stock" class="col-md form-control" min="1">
-
+                                            
                                         </div>
                                         <br>
                                         <div class="row">
@@ -102,6 +102,9 @@
 
                                                 <?php  } ?>
                                             </select>
+                                            <label class="col-md-1" for="">Stock</label>
+                                                <input type="number" name="stock" id="stock" class="col-md form-control" min="1">
+
 
                                         </div>
                                         <div class="row">
@@ -148,6 +151,114 @@
 
 
                     </div>
+                    <div class="row">
+
+                    </div>
+                    <div class="row">
+                        <div class="modal fade" id="modalEliminar">
+                            <div class="modal-dialog">
+                            <div class="modal-content bg-danger">
+                                <div class="modal-header">
+                                <h4 class="modal-title"> Eliminar</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                <p>Esta seguro de eliminar el Producto?&hellip;</p>
+                                <form id="frmEliminar">
+                                    <input type="hidden" name="id" id="id">
+                                </form>
+                                
+                                <p ></p>
+                                </div>
+                                <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cerrar</button>
+                                <button type="button" id="eliminarProducto"  class="btn btn-outline-light">Eliminar Servicio </button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="modal fade" id="modalActualizar">
+                            <div class="modal-dialog">
+                            <div class="modal-content bg-primary">
+                                <div class="modal-header">
+                                <h4 class="modal-title"> Actualizar</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                
+                                    <form id="frmActualizar">
+                                        <div class="row frmFilas">
+                                            <label for="" class="col-md-3 ">Detalle</label>
+                                            <input type="text" id="upDetalle" name="upDetalle" class="col-md form-control" required>
+                                               
+
+                                        </div>
+                                        <div class="row frmFilas">
+                                            <label for="" class="col-md ">Unidad De Medida</label>
+                                            <select class=" col-md form-control" id="upUnidadMedida" name="upUnidadMedida" >
+                                                <option value="">Seleccione </option>
+                                                    <?php foreach($this->mum as $row){
+                                                    $unidadMedida=new unidadMedida();
+                                                    $unidadMedida=$row;?>
+                                                <option value="<?php echo $unidadMedida->idUnidadMedida ;?>"><?php echo $unidadMedida->nombreUM; ?></option>
+                          
+
+                                                    <?php  } ?>
+                                            </select>
+                                            <label for="" class="col-md ">Almacen</label>
+                                            <select class=" col-md form-control" id="upAlmacen" name="upAlmacen" >
+                                                <option value="Default" >Seleccione</option>
+                                                    <?php foreach($this->ma as $row){
+                                                    $almacen=new  almacen();
+                                                    $almacen=$row;?>
+                                                <option value="<?php echo $almacen->idAlmacen ;?>"><?php echo $almacen->nombre; ?></option>
+                          
+
+                                                <?php  } ?>
+                                            </select>
+
+                                        </div>
+                                        <div class="row frmFilas">
+                                            <label for="" class="col-md ">Stock</label>
+                                            <input type="number" name="upStock" id="upStock" class="col-md form-control" required>
+                                            <label for="" class="col-md ">Especifica</label>
+                                            <select class=" col-md form-control" id="upEspecifica" name="upEspecifica" >
+                                                <option value="Default" >Seleccione</option>
+                                                    <?php foreach($this->me as $row){
+                                                    $especifica=new especifica ();
+                                                    $especifica=$row;?>
+                                                <option value="<?php echo $especifica->idEspecifica ;?>"><?php echo $especifica->detalle; ?></option>
+                          
+
+                                                    <?php  } ?>
+                                            </select>
+                                        </div>
+                                        
+                                        
+                                        <input type="hidden" name="upId" id="upId">
+                                    </form>
+                                
+                                
+                                </div>
+                                <div class="modal-footer justify-content-between">
+                                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" id="ActualizarProducto"  class="btn btn-outline-light">Actualizar Producto </button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                            </div>
+                        </div>
+
+                    </div>
+                   
                    
 
       
@@ -182,6 +293,9 @@
     <?php
         include_once("Views/Js.php");
     ?>
-    <script src="<?=BASE_URL?>assets/js/AgregarProducto.js"></script>
+    <script src="<?=BASE_URL?>assets/js/Producto.js"></script>
 </body>
 </html>
+
+
+

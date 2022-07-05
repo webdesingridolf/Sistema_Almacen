@@ -57,7 +57,7 @@ CREATE TABLE Producto (
 
 CREATE TABLE Unidad_Medida (
     id_Unidad_Medida int(11) not null AUTO_INCREMENT primary key,
-    nombre varchar (30),
+    NombreUM varchar (30),
     simbolo varchar(10),
     fecha_Registro datetime not null default curtime()
 );

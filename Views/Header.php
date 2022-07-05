@@ -11,6 +11,10 @@
   <link rel="stylesheet" href="<?=BASE_URL?>assets/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+  <!-- iCheck -->
+  <link rel="stylesheet" href="<?=BASE_URL?>assets/dist/css/adminlte.min.css">
+  
   <!-- Tempusdominus Bootstrap 4 -->
   <link rel="stylesheet" href="<?=BASE_URL?>assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- iCheck -->
@@ -29,9 +33,11 @@
   <link rel="stylesheet" href="<?=BASE_URL?>assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!--modales-->
   <link rel="stylesheet" href="<?=BASE_URL?>assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+  <!--select 2-->
+  <link rel="stylesheet" href="<?=BASE_URL?>assets/plugins/select2/css/select2.min.css">
   
   <link rel="stylesheet" href="<?=BASE_URL?>assets/plugins/toastr/toastr.min.css">
   <link rel="stylesheet" href="<?=BASE_URL?>assets/css/style.css">
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  
   
 </head>

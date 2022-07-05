@@ -13,6 +13,9 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="<?=BASE_URL?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?=BASE_URL?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- popper -->
+<script src="<?=BASE_URL?>assets/plugins/popper/popper.min.js"></script>
 <!-- ChartJS -->
 <script src="<?=BASE_URL?>assets/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
@@ -50,5 +53,5 @@ AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?=BASE_URL?>assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="<?=BASE_URL?>assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="<?=BASE_URL?>assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="<?=BASE_URL?>assets/plugins/select2/js/select2.min.js"></script>
 <script src="<?=BASE_URL?>assets/plugins/toastr/toastr.min.js"></script>
