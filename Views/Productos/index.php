@@ -127,33 +127,28 @@
                         </div>
                     </div>
                     <div class="row">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                   
-                                    <th>Detalle</th>
-                                    <th>Unidad de Medida</th>
-                                    <th>Stock</th>
-                                    <th>Almacen</th>
-                                    <th>Especifica</th>
-                                    <th>Fecha de Registro </th>
-                                    <th>Acciones </th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                        <div class="col-md-12">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                    
+                                        <th>Detalle</th>
+                                        <th>Unidad de Medida</th>
+                                        <th>Stock</th>
+                                        <th>Almacen</th>
+                                        <th>Especifica</th>
+                                        <th>Fecha de Registro </th>
+                                        <th>Acciones </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
 
-
-
-
-
-
+                        </div>
                     </div>
-                    <div class="row">
-
-                    </div>
+                    
                     <div class="row">
                         <div class="modal fade" id="modalEliminar">
                             <div class="modal-dialog">

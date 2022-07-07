@@ -267,7 +267,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
+                <a href="<?php echo constant('BASE_URL');?>Productos/ListaProductos" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Lista de Productos</p>
                 </a>
@@ -294,7 +294,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
+                <a href="<?php echo constant('BASE_URL');?>Especifica/ListaEspecifica" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Lista de Especifica</p>
                 </a>

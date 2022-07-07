@@ -118,7 +118,7 @@ class IngresosModel extends Model{
         $items=[];
         try {
             $ingresos=[];
-            $query=$this->query("SELECT ingreso.id_Ingreso,ingreso.fecha,ingreso.cantidad,unidad_medida.nombre,producto.detalle,especifica.detalle_Especifica,ingreso.precio,ingreso.total,ingreso.orden_de_compra,ingreso.id_Producto,ingreso.id_Especifica
+            $query=$this->query("SELECT ingreso.id_Ingreso,ingreso.fecha,ingreso.cantidad,unidad_medida.NombreUM,producto.detalle,especifica.detalle_Especifica,ingreso.precio,ingreso.total,ingreso.orden_de_compra,ingreso.id_Producto,ingreso.id_Especifica
             FROM ingreso, producto, especifica, usuario, unidad_medida
             WHERE producto.id_Producto=ingreso.id_Producto AND especifica.id_Especifica =ingreso.id_Especifica and usuario.id_Usuario=ingreso.id_usuario AND producto.id_Unidad_Medida=unidad_medida.id_Unidad_Medida AND ingreso.fecha BETWEEN "."'".$fechaA."'"."AND "."'".$fechaS."'"."");
             $query->execute();
@@ -129,7 +129,7 @@ class IngresosModel extends Model{
                 $item->id=$ingreso['id_Ingreso'];
                 $item->fecha=$ingreso['fecha'];
                 $item->cantidad=$ingreso['cantidad'];
-                $item->unidadmedida=$ingreso['nombre'];
+                $item->unidadmedida=$ingreso['NombreUM'];
 
                 $item->producto=$ingreso['detalle'];
                 $item->precio=$ingreso['precio'];
@@ -198,7 +198,7 @@ class IngresosModel extends Model{
         $items=[];
         try {
             $ingresos=[];
-            $query=$this->query("SELECT ingreso.id_Ingreso,ingreso.fecha,ingreso.cantidad,unidad_medida.nombre,producto.detalle,especifica.detalle_Especifica,ingreso.precio,ingreso.total,ingreso.orden_de_compra,ingreso.id_Producto,ingreso.id_Especifica
+            $query=$this->query("SELECT ingreso.id_Ingreso,ingreso.fecha,ingreso.cantidad,unidad_medida.NombreUM,producto.detalle,especifica.detalle_Especifica,ingreso.precio,ingreso.total,ingreso.orden_de_compra,ingreso.id_Producto,ingreso.id_Especifica
             FROM ingreso, producto, especifica, usuario, unidad_medida
             WHERE producto.id_Producto=ingreso.id_Producto AND especifica.id_Especifica =ingreso.id_Especifica and usuario.id_Usuario=ingreso.id_usuario AND producto.id_Unidad_Medida=unidad_medida.id_Unidad_Medida ");
             $query->execute();
@@ -209,7 +209,7 @@ class IngresosModel extends Model{
                 $item->id=$ingreso['id_Ingreso'];
                 $item->fecha=$ingreso['fecha'];
                 $item->cantidad=$ingreso['cantidad'];
-                $item->unidadmedida=$ingreso['nombre'];
+                $item->unidadmedida=$ingreso['NombreUM'];
 
                 $item->producto=$ingreso['detalle'];
                 $item->precio=$ingreso['precio'];

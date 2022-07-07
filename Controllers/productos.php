@@ -13,8 +13,8 @@ class Productos extends Controller{
 //--------------------Cargar vista-------------------------------------------------------------------------------
     function render(){
         
-        $ingresos=$this->model->Mostrar();
-        $this->view->datos=$ingresos;
+       
+       
         $MAlmacen=$this->model->MostrarAlmacen();
         $this->view->ma=$MAlmacen;
         $MEspecifica=$this->model->MostrarEspecifica();
@@ -24,6 +24,24 @@ class Productos extends Controller{
         $this->view->render('Productos/index');
     }
 //-------------------------------fin cargar vista--------------------------------------------------------------
+//-------------------------------cargar vista lista productos--------------------------------------------------------------
+
+    function ListaProductos(){
+        $MAlmacen=$this->model->MostrarAlmacen();
+        $this->view->ma=$MAlmacen;
+        $MEspecifica=$this->model->MostrarEspecifica();
+        $this->view->me=$MEspecifica;
+        $MUnidad=$this->model->MostrarUnidadMedida();
+        $this->view->mum=$MUnidad;
+        $this->view->render('Productos/ListaProductos');
+
+    }
+//-------------------------------fin cargar vista Lista Productos--------------------------------------------------------------
+
+
+
+
+
 
 //-----------------------Registrar Producto-----------------------------------------------------------------------
     function RegistrarProducto(){
@@ -57,12 +75,26 @@ class Productos extends Controller{
     
 //----------------------------------Mostrar  productos--------------------------------------------------------------   
     function MostrarProductos(){
-        $ingresos=$this->model->Mostrar();
-        print json_encode($ingresos, JSON_UNESCAPED_UNICODE);
+        $fecha = date('Y-m-d h:i:s',time());
+        $fechaAnterior = date("Y-m-d", strtotime($fecha. "-1 day"));
+        $fechaSiguiente=date("Y-m-d", strtotime($fecha. "+1 day"));
+        $Productos=$this->model->Mostrar($fechaAnterior,$fechaSiguiente);
+        print json_encode($Productos, JSON_UNESCAPED_UNICODE);
        
 
     }
 //---------------------------------fin Mostrar Productos----------------------------------------------------------
+//----------------------------------Mostrar  Lista de productos--------------------------------------------------------------   
+function MostrarListaProductos(){
+    $Productos=$this->model->ListaProductos();
+    print json_encode($Productos, JSON_UNESCAPED_UNICODE);
+   
+
+}
+//---------------------------------fin Mostrar   Lista de  Productos----------------------------------------------------------
+
+
+
 
 //-------------------------------eliminar productos----------------------------------------------------------------
 

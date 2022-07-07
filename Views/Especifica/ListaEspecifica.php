@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Especifica</title>
+    <title>Lista Especifica</title>
     <!--header aca-->
     <?php 
         include_once("Views/Header.php")
@@ -33,7 +33,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Especifica</h1>
+                            <h1>Lista Especifica</h1>
                         </div>
                     </div>
                 </div>
@@ -44,39 +44,7 @@
             <section class="content">
                 <div class="container-fluid">
         
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card card-primary collapsed-card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Nuevo Especifica</h3>
-                                        <div class="card-tools">
-                                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
-                                            </button>
-                                        </div>
-               
-                                </div>
-                                <div class="card-body">
-                                    <form class="container" id="frmEspecifica" method="POST">
-                                      <div class="row frmFilas">
-                                          <label for="" class="col-md-2">Detalle</label>
-                                            <input type="text" name="detalle" id="detalle" class="col-md form-control">
-                                          <label for="" class="col-md-2">Codigo</label>
-                                            <input type="text" name="codigo" id="codigo" class="col-md form-control">
-                                      </div>
-                                      <div class="row frmFilas">
-                                            <button type="" class="btn btn-primary toastrDefaultSuccess">
-                                                Registrar Especifica
-                                            </button>                
-
-                                        </div>
-                                    </form>
-
-                                </div>
-              
-                            </div>
-
-                        </div>
-                    </div>
+                   
                     <div class="row ">
                         <div class="col-md-12">
                             <table id="example1" class="table table-bordered table-striped ">
@@ -186,7 +154,7 @@
     <?php
         include_once("Views/Js.php");
     ?>
-    <script src="<?=BASE_URL?>assets/js/Especifica.js"></script>
+    <script src="<?=BASE_URL?>assets/js/ListaEspecifica.js"></script>
 
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Especifica</title>
+    <title>Productos</title>
     <!--header aca-->
     <?php 
         include_once("Views/Header.php")
@@ -33,7 +33,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Especifica</h1>
+                            <h1>Productos</h1>
                         </div>
                     </div>
                 </div>
@@ -44,47 +44,18 @@
             <section class="content">
                 <div class="container-fluid">
         
+                    
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card card-primary collapsed-card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Nuevo Especifica</h3>
-                                        <div class="card-tools">
-                                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
-                                            </button>
-                                        </div>
-               
-                                </div>
-                                <div class="card-body">
-                                    <form class="container" id="frmEspecifica" method="POST">
-                                      <div class="row frmFilas">
-                                          <label for="" class="col-md-2">Detalle</label>
-                                            <input type="text" name="detalle" id="detalle" class="col-md form-control">
-                                          <label for="" class="col-md-2">Codigo</label>
-                                            <input type="text" name="codigo" id="codigo" class="col-md form-control">
-                                      </div>
-                                      <div class="row frmFilas">
-                                            <button type="" class="btn btn-primary toastrDefaultSuccess">
-                                                Registrar Especifica
-                                            </button>                
-
-                                        </div>
-                                    </form>
-
-                                </div>
-              
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="row ">
-                        <div class="col-md-12">
-                            <table id="example1" class="table table-bordered table-striped ">
+                            <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
+                                    
                                         <th>Detalle</th>
-                                        <th>Codigo</th>
+                                        <th>Unidad de Medida</th>
+                                        <th>Stock</th>
+                                        <th>Almacen</th>
+                                        <th>Especifica</th>
                                         <th>Fecha de Registro </th>
                                         <th>Acciones </th>
                                     </tr>
@@ -95,9 +66,8 @@
                             </table>
 
                         </div>
-                       
-
                     </div>
+                    
                     <div class="row">
                         <div class="modal fade" id="modalEliminar">
                             <div class="modal-dialog">
@@ -109,7 +79,7 @@
                                 </button>
                                 </div>
                                 <div class="modal-body">
-                                <p>Esta seguro de eliminar?&hellip;</p>
+                                <p>Esta seguro de eliminar el Producto?&hellip;</p>
                                 <form id="frmEliminar">
                                     <input type="hidden" name="id" id="id">
                                 </form>
@@ -118,7 +88,7 @@
                                 </div>
                                 <div class="modal-footer justify-content-between">
                                 <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cerrar</button>
-                                <button type="button" id="eliminarEspecifica"  class="btn btn-outline-light">Eliminar Servicio </button>
+                                <button type="button" id="eliminarProducto"  class="btn btn-outline-light">Eliminar Servicio </button>
                                 </div>
                             </div>
                             <!-- /.modal-content -->
@@ -140,13 +110,52 @@
                                 
                                     <form id="frmActualizar">
                                         <div class="row frmFilas">
-                                            <label for="" class="col-md-2 ">Detalle</label>
+                                            <label for="" class="col-md-3 ">Detalle</label>
                                             <input type="text" id="upDetalle" name="upDetalle" class="col-md form-control" required>
-                                            <label for="" class="col-md-2 ">Codigo</label>
-                                            <input type="text" id="upCodigo" name="upCodigo" class="col-md form-control" required>
-                                                
+                                               
 
                                         </div>
+                                        <div class="row frmFilas">
+                                            <label for="" class="col-md ">Unidad De Medida</label>
+                                            <select class=" col-md form-control" id="upUnidadMedida" name="upUnidadMedida" >
+                                                <option value="">Seleccione </option>
+                                                    <?php foreach($this->mum as $row){
+                                                    $unidadMedida=new unidadMedida();
+                                                    $unidadMedida=$row;?>
+                                                <option value="<?php echo $unidadMedida->idUnidadMedida ;?>"><?php echo $unidadMedida->nombreUM; ?></option>
+                          
+
+                                                    <?php  } ?>
+                                            </select>
+                                            <label for="" class="col-md ">Almacen</label>
+                                            <select class=" col-md form-control" id="upAlmacen" name="upAlmacen" >
+                                                <option value="Default" >Seleccione</option>
+                                                    <?php foreach($this->ma as $row){
+                                                    $almacen=new  almacen();
+                                                    $almacen=$row;?>
+                                                <option value="<?php echo $almacen->idAlmacen ;?>"><?php echo $almacen->nombre; ?></option>
+                          
+
+                                                <?php  } ?>
+                                            </select>
+
+                                        </div>
+                                        <div class="row frmFilas">
+                                            <label for="" class="col-md ">Stock</label>
+                                            <input type="number" name="upStock" id="upStock" class="col-md form-control" required>
+                                            <label for="" class="col-md ">Especifica</label>
+                                            <select class=" col-md form-control" id="upEspecifica" name="upEspecifica" >
+                                                <option value="Default" >Seleccione</option>
+                                                    <?php foreach($this->me as $row){
+                                                    $especifica=new especifica ();
+                                                    $especifica=$row;?>
+                                                <option value="<?php echo $especifica->idEspecifica ;?>"><?php echo $especifica->detalle; ?></option>
+                          
+
+                                                    <?php  } ?>
+                                            </select>
+                                        </div>
+                                        
                                         
                                         <input type="hidden" name="upId" id="upId">
                                     </form>
@@ -155,7 +164,7 @@
                                 </div>
                                 <div class="modal-footer justify-content-between">
                                     <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cerrar</button>
-                                    <button type="button" id="ActualizarEspecifica"  class="btn btn-outline-light">Actualizar Especifica </button>
+                                    <button type="button" id="ActualizarProducto"  class="btn btn-outline-light">Actualizar Producto </button>
                                 </div>
                             </div>
                             <!-- /.modal-content -->
@@ -163,6 +172,8 @@
                         </div>
 
                     </div>
+                   
+                   
 
       
                 </div>
@@ -182,12 +193,20 @@
 
   
     </div>
-    
+    <script>
+        $("#upUnidadMedida").select2({
+            placeholder: 'Seleccione una opcion'
+        });
+        $("#upEspecifica").select2({
+            placeholder: 'Seleccione una opcion'
+        });
+        $("#upAlmacen").select2({
+            placeholder: 'Seleccione una opcion'
+        });
+    </script>
     <?php
         include_once("Views/Js.php");
     ?>
-    <script src="<?=BASE_URL?>assets/js/Especifica.js"></script>
-
+    <script src="<?=BASE_URL?>assets/js/ListaProducto.js"></script>
 </body>
 </html>
-

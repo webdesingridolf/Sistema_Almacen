@@ -1,4 +1,5 @@
 $(document).ready(function(){
+//--------------------------Cargar datos a la tabla----------------------------------------------------------------
     let base_url="/Sistema_Almacen/";
     tablaEspecifica=$('#example1').DataTable({ 
         "responsive": true, "lengthChange": false, "autoWidth": false,       
@@ -58,6 +59,9 @@ $(document).ready(function(){
             {"defaultContent": "<div class='text-center'><div class='btn-group'><button type='button' id='editar' class='editar btn btn-primary' data-toggle='modal' data-target='#modalActualizar'><i class='fas fa-edit'></i></button>	<button type='button' id='Eliminar' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fas fa-trash'></i></button></div></div>"}
         ]
     });
+
+//--------------------------Cargar datos a la tabla----------------------------------------------------------------
+//--------------------------Registrar Producto-------------------------------------------------------------------------
     if (document.querySelector("#frmEspecifica")) {
    
         let base_url="/Sistema_Almacen/";
@@ -69,10 +73,7 @@ $(document).ready(function(){
         async function fntGuardar() {
             let detalle=document.querySelector("#detalle").value;
             let codigo=document.querySelector("#codigo").value;
-            
-            
            
-            
             try {
                 const data=new FormData(frmEspecifica);
                 let resp=await fetch(base_url+"especifica/insertarEspecifica",{
@@ -85,23 +86,12 @@ $(document).ready(function(){
                 json=await resp.json();
                 if(json.status){
                     toastr.success(json.msg);
-                    frmEspecifica.reset();
-                   
-                   
+                    frmEspecifica.reset();     
                     tablaEspecifica.ajax.reload(null, false);
-    
-                   
-                   
-                    
-    
-                   
-    
     
                 }else{
                     alert("nell",json.msg,"error");
                 }
-                
-               
                 
             } catch (err) {
                 console.log("ocurrio un error: ".err);
@@ -110,7 +100,128 @@ $(document).ready(function(){
         }
         
     }
+//--------------------------Fin Registrar Producto----------------------------------------------------------------
+
+//-------------------------------------------Cargar datos en el modal Actualizar---------------------------------------------------------
+    
+$("#example1").on("click", "#editar", function(){
+    var datos=tablaEspecifica.row($(this).parents("tr")).data();
+  // forma de llamar a los objetos datos.nombre d ela columna
+  $("#upId").val(datos.id);
+  $("#upDetalle").val(datos.detalle);
+  $("#upCodigo").val(datos.codigo);
+});
+
+
+
+//-------------------------------------------fin Cargar datos en el modal Actualizar---------------------------------------------------------
+//-------------------------------------------Cargar datos en el modal eliminar---------------------------------------------------------
+
+$("#example1").on("click", "#Eliminar", function(){
+var datos=tablaEspecifica.row($(this).parents("tr")).data();
+// forma de llamar a los objetos datos.nombre d ela columna
+$("#id").val(datos.id);
+
+
+});
+
+
+//-------------------------------------------fin Cargar datos en el modal eliminar---------------------------------------------------------
+
+//---------------------------------------------llamar actualizar Especifica---------------------------------------------------------
+document.getElementById("ActualizarEspecifica").addEventListener("click", fntActualizar);
+//---------------------------------------------fin llamar actualizar Especifica---------------------------------------------------------
+
+//---------------------------------------------llamar eliminar Especifica---------------------------------------------------------
+document.getElementById("eliminarEspecifica").addEventListener("click", fntEliminar);
+//---------------------------------------------fin llamar eliminar Especifica---------------------------------------------------------
+
+//-------------------------------------------actualizar producto-----------------------------------------------------------
+    
+function fntActualizar() {
+    frmActualizar=document.querySelector("#frmActualizar");
+    actualizar();
+   async function actualizar(){
+     
+
+       try {
+           const data=new FormData(frmActualizar) ;
+           let resp=await fetch(base_url+"Especifica/ActualizarEspecifica",{
+               method: 'POST',
+               mode: 'cors',
+               cache: 'no-cache',
+               body: data
+
+           });
+           
+           json=await resp.json();
+           if(json.status){
+               toastr.success(json.msg);
+               tablaEspecifica.ajax.reload(null, false);
+               $("#modalActualizar").modal('hide');
+           }else{
+               toastr.error(json.msg);
+               
+           }               
+       } catch (err) {
+           
+           toastr.error("Error al Actualizar");
+       }
+       
+
+   }     
+   
+ }
+
+
+   
     
 
+//-------------------------------------------fin actualizar producto---------------------------------------------------------
+
+
+
+//-------------------------------------------eliminar Especifica---------------------------------------------------------
+    
+function fntEliminar() {
+   
+    
+    frmeliminar=document.querySelector("#frmEliminar");
+    eliminar();
+   async function eliminar(){
+       
+
+       try {
+           const data=new FormData(frmeliminar) ;
+           let resp=await fetch(base_url+"Especifica/EliminarEspecifica",{
+               method: 'POST',
+               mode: 'cors',
+               cache: 'no-cache',
+               body: data
+
+           });
+           
+           json=await resp.json();
+           if(json.status){
+               toastr.success(json.msg);
+               tablaEspecifica.ajax.reload(null, false);
+               $("#modalEliminar").modal('hide');
+           }else{
+               toastr.error(json.msg);
+               
+           }               
+       } catch (err) {
+           console.log("ocurrio un error: ".err);
+       }
+
+   }    
+   
+ }
+
+
+
+//-------------------------------------------fin eliminar Especifica---------------------------------------------------------
+
+    
 
 });

@@ -5,6 +5,7 @@ class ProductosModel extends Model{
     public function __construct(){
         parent::__construct();
     }
+//--------------------------------------------insertar Productos--------------------------------------------------------
     public function insertar($datos){
         try {
             $query=$this->prepare('INSERT INTO producto(detalle,id_Unidad_Medida,cantidad_Stock,id_Almacen,id_Especifica,fecha_Registro) 
@@ -24,13 +25,11 @@ class ProductosModel extends Model{
             echo $e->getMessage();
             //echo "ingreso existente ";
             return false;
-        }
-        
-       
-        
+        }  
 
     }
-    //funcion para mostrar en la vista  las categorias 
+//-------------------------------------------------fin insertar producto--------------------------------------------
+//-------------------------------------mostrar en los select------------------------------------------------------------ 
     public function MostrarAlmacen(){
         $items=[];
         try {
@@ -97,13 +96,17 @@ class ProductosModel extends Model{
         }
 
     }
-    public function Mostrar(){
+//-------------------------------------fin mostrar en los select------------------------------------------------------------
+
+//-------------------------------cargar datos en la vista por fecha---------------------------------------------------
+
+    public function Mostrar($fechaA,$fechaS){
         $items=[];
         try {
             $Productos=[];
             $query=$this->prepare("SELECT    producto.id_Producto,producto.detalle,unidad_medida.NombreUM,producto.id_Almacen,producto.id_Especifica,producto.id_Unidad_Medida,producto.cantidad_Stock,almacen.nombre,especifica.detalle_Especifica,producto.fecha_Registro 
             FROM almacen, producto, especifica,  unidad_medida
-            WHERE producto.id_Almacen =almacen.id_Almacen  AND especifica.id_Especifica =producto.id_Especifica  AND producto.id_Unidad_Medida=unidad_medida.id_Unidad_Medida ");
+            WHERE producto.id_Almacen =almacen.id_Almacen  AND especifica.id_Especifica =producto.id_Especifica  AND producto.id_Unidad_Medida=unidad_medida.id_Unidad_Medida AND producto.fecha_Registro BETWEEN "."'".$fechaA."'"."AND "."'".$fechaS."'"."");
              $query->execute();
              $Productos=$query->fetchAll(PDO::FETCH_ASSOC);
             foreach ($Productos as $Producto) {
@@ -131,6 +134,52 @@ class ProductosModel extends Model{
          
  
      }
+//------------------------fin funcion mostrar productos por fecha-------------------------------------------------------
+
+//-------------------------------cargar lista de productos---------------------------------------------------
+
+public function ListaProductos(){
+    $items=[];
+    try {
+        $Productos=[];
+        $query=$this->prepare("SELECT    producto.id_Producto,producto.detalle,unidad_medida.NombreUM,producto.id_Almacen,producto.id_Especifica,producto.id_Unidad_Medida,producto.cantidad_Stock,almacen.nombre,especifica.detalle_Especifica,producto.fecha_Registro 
+        FROM almacen, producto, especifica,  unidad_medida
+        WHERE producto.id_Almacen =almacen.id_Almacen  AND especifica.id_Especifica =producto.id_Especifica  AND producto.id_Unidad_Medida=unidad_medida.id_Unidad_Medida ");
+         $query->execute();
+         $Productos=$query->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($Productos as $Producto) {
+           $item=new ListaProductos();
+             $item->id=$Producto['id_Producto'];
+             $item->detalle=$Producto['detalle'];
+             $item->unidadmedida=$Producto['NombreUM'];
+             $item->stock=$Producto['cantidad_Stock'];
+             $item->almacen=$Producto['nombre'];
+             $item->Especifica=$Producto['detalle_Especifica'];
+             $item->fecha=$Producto['fecha_Registro'];
+             $item->idAlmacen=$Producto['id_Almacen'];
+             $item->idEspecifica=$Producto['id_Especifica'];
+             $item->idUnidadMedida=$Producto['id_Unidad_Medida'];
+             
+             array_push($items,$item);
+         }
+         
+         return $items;
+    } catch (PDOException $e) {
+        return [];
+    }
+     
+    
+     
+
+ }
+//------------------------fin cargar lista de productos-------------------------------------------------------
+
+
+
+
+
+
+//------------------------------------eliminar producto--------------------------------------------------------------
      public function Eliminar($id){
         try {
             $query=$this->prepare('DELETE FROM producto WHERE id_Producto='.$id.'');
@@ -145,6 +194,9 @@ class ProductosModel extends Model{
         }
 
     }
+//----------------------------------fin eliminar producto------------------------------------------------------------------
+
+//-------------------------------------Actualizar producto-------------------------------------------------------------------------
     public function actualizar($datos){
         try {
             $query=$this->prepare('UPDATE producto SET detalle=:detalle,id_Unidad_Medida=:UnidadMedida,cantidad_Stock=:Stock,id_Almacen=:Almacen,id_Especifica=:Especifica
@@ -167,6 +219,7 @@ class ProductosModel extends Model{
             return false;
         }
     }
+// ----------------------------------------fin actualizar producto-----------------------------------------------------------------
 
 
 
