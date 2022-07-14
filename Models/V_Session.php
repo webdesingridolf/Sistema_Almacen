@@ -8,13 +8,14 @@ class V_Session{
 class mUsuario{
     public $id;
     public $TDocumento;
-    public $NDocmuento;
+    public $NDocumento;
     public $nombre;
     public $apellido;
     public $fechaNacimiento;
     public $user;
     public $password;
     public $FechaRegistro; 
+    public $TipoUsuario; 
     
 
 }

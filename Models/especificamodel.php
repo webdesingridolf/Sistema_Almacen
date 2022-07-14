@@ -121,7 +121,7 @@ class EspecificaModel extends Model{
         }
     }
 //------------------------------------Fin actualizar Especifica------------------------------------------------------------
-//----------------------------------Mostrar especifica
+
 
 }
 

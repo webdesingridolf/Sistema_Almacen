@@ -133,7 +133,7 @@
           </li>
         
           <li class="nav-item">
-            <a class="nav-link"  href="<?=BASE_URL?>Session/SessionDestroy" role="button">
+            <a class="nav-link"  href="<?=BASE_URL?>Session/SessionDestroy" role="button" id="CerrarSession">
             <i class="fa-solid fa-right-from-bracket"></i>
             </a>
           </li>
@@ -320,7 +320,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
+                <a href="<?php echo constant('BASE_URL');?>Almacenes/ListaAlmacen" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Lista de almacenes</p>
                 </a>
@@ -329,7 +329,7 @@
           </li>
 
           <!--usaurios-->
-          <li class="nav-item">
+          <li class="nav-item" id="Usuarios">
             <a href="#" class="nav-link">
               <i class=" nav-icon fas fa-thin bi bi-people-fill">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
@@ -356,6 +356,26 @@
                   <p>Lista de Usuarios</p>
                 </a>
               </li>
+             
+            </ul>
+          </li>
+          <!--Almacenes-->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas  fa-thin fa-warehouse "> </i>
+              <p>
+              Unidades de medida
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo constant('BASE_URL');?>Almacenes" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Unidades de medida</p>
+                </a>
+              </li>
+              
             </ul>
           </li>
         </ul>
@@ -370,5 +390,13 @@
   </aside>
          <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+<script>
+  document.getElementById("CerrarSession").addEventListener("click", fntCerrar);
+    function fntCerrar() {
+        console.log("cerrando session");
+        localStorage.clear();
+        
+    }
+</script>
         
          

@@ -55,3 +55,4 @@ AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?=BASE_URL?>assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <script src="<?=BASE_URL?>assets/plugins/select2/js/select2.min.js"></script>
 <script src="<?=BASE_URL?>assets/plugins/toastr/toastr.min.js"></script>
+<script src="<?=BASE_URL?>assets/js/session.js"></script>

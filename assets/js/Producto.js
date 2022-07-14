@@ -145,7 +145,7 @@ $("#example1").on("click", "#editar", function(){
   $("#upStock").val(datos.stock);
   $('#upEspecifica').val(datos.idEspecifica).trigger('change.select2');
 
-  console.log(datos);
+  
 });
 
 

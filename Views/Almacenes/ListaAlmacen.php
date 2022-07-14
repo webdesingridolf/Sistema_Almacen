@@ -44,40 +44,7 @@
             <section class="content">
                 <div class="container-fluid">
         
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card card-primary collapsed-card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Nuevo Almacen</h3>
-                                        <div class="card-tools">
-                                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
-                                            </button>
-                                        </div>
-               
-                                </div>
-                                <div class="card-body">
-                                    <form class="container" id="frmAlmacen">
-                                        <div class="row frmFilas">
-                                            <label for=""class="col-md-3">Nombre del Almacen</label>
-                                            <input type="text" name="nombre" id="nombre" class="col-md form-control">
-
-                                        </div>
-                                        <div class="row frmFilas">
-                                            <button type="" class="btn btn-primary toastrDefaultSuccess">
-                                                Registrar Almacen
-                                            </button>   
-
-                                        </div>
-
-
-                                    </form>
-    
-                                </div>
-              
-                            </div>
-
-                        </div>
-                    </div>
+                    
                     <div class="row">
                         <div class="col-md-12">
                             <table id="example1" class="table table-bordered table-striped">
@@ -184,8 +151,7 @@
     <?php
         include_once("Views/Js.php");
     ?>
-    <script src="<?=BASE_URL?>assets/js/almacen.js"></script>
+    <script src="<?=BASE_URL?>assets/js/ListaAlmacen.js"></script>
 
 </body>
 </html>
-

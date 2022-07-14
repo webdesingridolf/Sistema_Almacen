@@ -68,6 +68,8 @@
     
 </body>
 </html>
+
 <?php
     include_once("Views/Js.php");
 ?>
+

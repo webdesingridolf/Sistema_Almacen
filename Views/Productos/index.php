@@ -169,7 +169,7 @@
                                 </div>
                                 <div class="modal-footer justify-content-between">
                                 <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cerrar</button>
-                                <button type="button" id="eliminarProducto"  class="btn btn-outline-light">Eliminar Servicio </button>
+                                <button type="button" id="eliminarProducto"  class="btn btn-outline-light">Eliminar Producto </button>
                                 </div>
                             </div>
                             <!-- /.modal-content -->
