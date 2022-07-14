@@ -330,7 +330,7 @@
 
           <!--usaurios-->
           <li class="nav-item" id="Usuarios">
-            <a href="#" class="nav-link">
+            <a href="<?php echo constant('BASE_URL');?>Usuario" class="nav-link">
               <i class=" nav-icon fas fa-thin bi bi-people-fill">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
                 <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
@@ -340,24 +340,10 @@
             </i>
                             <p>
                 Usuarios
-                <i class="fas fa-angle-left right"></i>
+                
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="<?php echo constant('BASE_URL');?>Usuario" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Usuarios</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Lista de Usuarios</p>
-                </a>
-              </li>
-             
-            </ul>
+           
           </li>
           <!--Almacenes-->
           <li class="nav-item">
