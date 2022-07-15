@@ -79,5 +79,6 @@ CREATE TABLE Usuario(
     fecha_Nacimiento date,
     log_User varchar(50) not null,/*usuario de loguin*/ 
     log_Pass varchar(50) not null,/*pasword de login*/
-    fecha_Registro datetime not null default curtime() 
+    fecha_Registro datetime not null default curtime(),
+    Tipo_Usuario varchar(50) not null
 );
