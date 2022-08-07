@@ -28,7 +28,7 @@
               
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-              <a href="#" class="dropdown-item">
+              <a href="<?php echo constant('BASE_URL');?>Usuario/PerfilUsuario" class="dropdown-item">
                 
                 Perfil de usuario
                 

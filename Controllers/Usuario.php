@@ -10,8 +10,12 @@ class Usuario extends Controller{
         $this->view->render('Usuario/index');
       
     }
+    function PerfilUsuario(){
+        $this->view->render('Usuario/PerfilUsuario');
+      
+    }
 
-
+    
 
     function RegistrarUsuario(){
         $Documento=$_POST['TipoDocumento'];
