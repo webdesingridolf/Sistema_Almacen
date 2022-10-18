@@ -70,7 +70,7 @@ try {
 //----------------------------------Servicios -----------------------------------------------------------------
 public function Servicios(){
 try {
-    $query=$this->prepare('SELECT count(*)  FROM servicio');
+    $query=$this->prepare('SELECT count(*)  FROM usuario');
     $query->execute();
     $Servicios=$query->fetch(PDO::FETCH_ASSOC);
     return $Servicios['count(*)'];

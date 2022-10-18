@@ -82,7 +82,7 @@
                           <div class="inner">
                             <h3><?php echo($this->servicios); ?></h3>
 
-                            <p>Servicios</p>
+                            <p>Usuarios</p>
                           </div>
                           <div class="icon">
                             <i class="ion ion-person-add"></i>

@@ -132,29 +132,14 @@
             </li>
           <!--Servicios-->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<?php echo constant('BASE_URL');?>Reportes" class="nav-link">
               <i class="nav-icon fa-solid fa-toolbox"></i>
               <p>
-                Servicios
-                <i class="fas fa-angle-left right"></i>
+                Ingresos Y Salidas
+                
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="<?php echo constant('BASE_URL');?>Servicios" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Servicios</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?php echo constant('BASE_URL');?>Servicios/ListaServicios" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Lista de Servicios</p>
-                </a>
-              </li>
-              
-             
-            </ul>
+           
           </li>
           <!--Productos-->
          

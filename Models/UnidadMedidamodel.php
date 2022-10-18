@@ -8,12 +8,14 @@ class UnidadMedidamodel extends Model{
 /*---------------------------- funcion insertar Unidad Medida  ----------------------------------------------------------------------------------------------------*/
     public function insertar($datos){
         try {
-            $query=$this->prepare('INSERT INTO unidad_medida(NombreUM,simbolo, fecha_Registro ) 
-                 VALUES(:unidadMedida,:Simbolo,:fecha)');
+            $query=$this->prepare('INSERT INTO unidad_medida(NombreUM,simbolo, fecha_Registro,Extra,Equivalencia ) 
+                 VALUES(:unidadMedida,:Simbolo,:fecha,:extra,:Equivalencia)');
             $query->execute([
                 'fecha'=>$datos['fecha'],
                 'unidadMedida'=>$datos['unidadMedida'],
                 'Simbolo'=>$datos['simbolo'],
+                'extra'=>$datos['extra'],
+                'Equivalencia'=>$datos['Equivalencia'],
        
             ]);
             return true;
@@ -56,7 +58,21 @@ class UnidadMedidamodel extends Model{
                 $item->id=$Unidad['id_Unidad_Medida'];
                 $item->UnidadMedida=$Unidad['NombreUM'];
                 $item->Simbolo=$Unidad['simbolo'];
+                
+
+                if ($Unidad['Extra']==0) {
+                    
+                    $item->Equivalencia="----------";
+                }else{
+                    
+                    $item->Equivalencia=$Unidad['Equivalencia'];
+
+
+                }
+                
                 $item->FechaRegistro=$Unidad['fecha_Registro'];
+
+                
                 array_push($items,$item);
 
             }

@@ -1,4 +1,8 @@
 $(document).ready(function(){
+    document.getElementById("StockUnidadLabel").style.display='none';
+    document.getElementById("StockUnidad").style.display='none';
+    document.getElementById("upStockUnidadLabel").style.display='none';
+    document.getElementById("upStockUnidad").style.display='none';
 //---------------------------------------------cargar tabla de datos--------------------------------------------
     let base_url="/Sistema_Almacen/";
     tablaProductos=$('#example1').DataTable({ 
@@ -54,6 +58,7 @@ $(document).ready(function(){
             {"data": "detalle"},
             {"data": "unidadmedida"},
             {"data": "stock"},
+            {"data": "stockUnidad"},
             {"data": "almacen"},
             {"data": "Especifica"},
             {"data": "fecha"},
@@ -72,15 +77,6 @@ $(document).ready(function(){
             fntGuardar();
         }
         async function fntGuardar() {
-            let detalle=document.querySelector("#detalle").value;
-            let unidadmedida=document.querySelector("#unidadMedida").value;
-            let stock=document.querySelector("#stock").value;
-            let almacen=document.querySelector("#almacen").value;
-            
-            let especifica=document.querySelector("#especifica").value;
-            
-            
-        
             
             try {
                 const data=new FormData(frmProductos);
@@ -107,20 +103,16 @@ $(document).ready(function(){
                 
                     tablaProductos.ajax.reload(null, false);
 
-                
-                
-                    
-
-                
-
 
                 }else{
+                    toastr.error(json.msg);
                     alert("nell",json.msg,"error");
                 }
                 
             
                 
             } catch (err) {
+                toastr.error(json.msg);
                 console.log("ocurrio un error: ".err);
             }
             
@@ -143,7 +135,56 @@ $("#example1").on("click", "#editar", function(){
   $('#upUnidadMedida').val(datos.idUnidadMedida).trigger('change.select2');
   $('#upAlmacen').val(datos.idAlmacen).trigger('change.select2');
   $("#upStock").val(datos.stock);
+  if (datos.stockUnidad==0) {
+    document.getElementById("upStockUnidadLabel").style.display='none';
+    document.getElementById("upStockUnidad").style.display='none';
+  }else{
+    document.getElementById("upStockUnidadLabel").style.display='inherit';
+    document.getElementById("upStockUnidad").style.display='inherit';
+    $("#upStockUnidad").val(datos.stockUnidad);
+    document.getElementById("upUnidadMedida").addEventListener("change", CalcularStockT);
+    function CalcularStockT() {
+        
+        obtenerUM();
+        async function obtenerUM(){
+            try {
+                var id=document.getElementById("upUnidadMedida").value;
+                    const data=new FormData();
+                    data.append('id',id );
+                    let UM=await fetch(base_url+"Productos/ObtenerUM",{
+                        method: 'POST',
+						mode: 'cors',
+						cache: 'no-cache',
+						body: data
+                    });
+                    json=await UM.json();
+                    
+                    if (json[0]["Extra"]==0) {
+                        document.getElementById("upStockUnidadLabel").style.display='none';
+                        document.getElementById("upStockUnidad").style.display='none';
+                    }else{
+                        document.getElementById("upStockUnidadLabel").style.display='inherit';
+                        document.getElementById("upStockUnidad").style.display='inherit';
+                        document.getElementById("upStock").addEventListener("change", CalcularStockT);
+                        function CalcularStockT() {
+                            var Stock=parseFloat(document.querySelector("#upStock").value);
+                            var Equivalencia=json[0]["Equivalencia"];
+                            document.querySelector("#upStockUnidad").value=Stock*Equivalencia;
+                            
+                            
+                            
+                        }
+                    }
+                
+            } catch (error) {
+                alert("ERROR");
+            }
+        }
+    }
+  } 
+ 
   $('#upEspecifica').val(datos.idEspecifica).trigger('change.select2');
+  
 
   
 });

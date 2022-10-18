@@ -63,13 +63,14 @@
                                             <label class="col-md-1" for="">Detalle</label>
                                                 <input type="text" name="detalle" id="detalle"  class="col-md form-control" >
                                             <label class="col-md-3" for="">Unidad de Medida</label>
-                                            <select class=" col-md form-control" id="unidadMedida" name="unidadMedida" >
+                                            <select class=" col-md form-control" id="unidadMedida" onchange="Extra()" name="unidadMedida" >
                                                 <option value="">Seleccione </option>
                                                     <?php foreach($this->mum as $row){
                                                     $unidadMedida=new unidadMedida();
                                                     $unidadMedida=$row;?>
-                                                <option value="<?php echo $unidadMedida->idUnidadMedida ;?>"><?php echo $unidadMedida->nombreUM; ?></option>
-                          
+                                                <option value="<?php echo $unidadMedida->idUnidadMedida ; ?>"><?php echo $unidadMedida->nombreUM; ?></option>
+                                                
+                                                                                              
 
                                                     <?php  } ?>
                                             </select>
@@ -80,7 +81,7 @@
                                         </div>
                                         <br>
                                         <div class="row">
-                                            <label for=""  class="col-md-2 col-form-label">Especifica</label>
+                                            <label for=""  class="col-md col-form-label">Especifica</label>
                                             <select class=" col-md form-control" id="especifica" name="especifica" >
                                                 <option value="Default" >Seleccione</option>
                                                     <?php foreach($this->me as $row){
@@ -91,7 +92,7 @@
 
                                                     <?php  } ?>
                                             </select>
-                                            <label for=""  class="col-md-2 col-form-label">Almacen</label>
+                                            <label for=""  class="col-md col-form-label">Almacen</label>
                                             <select class=" col-md form-control" id="almacen" name="almacen" >
                                                 <option value="Default" >Seleccione</option>
                                                     <?php foreach($this->ma as $row){
@@ -104,7 +105,8 @@
                                             </select>
                                             <label class="col-md-1" for="">Stock</label>
                                                 <input type="number" name="stock" id="stock" class="col-md form-control" min="1">
-
+                                            <label for=""class="col-md" id="StockUnidadLabel">Stock en Unidades</label>
+                                            <input id="StockUnidad" name="StockUnidad" class="col-md form-control" type="number" readonly>
 
                                         </div>
                                         <div class="row">
@@ -135,6 +137,7 @@
                                         <th>Detalle</th>
                                         <th>Unidad de Medida</th>
                                         <th>Stock</th>
+                                        <th>Stock en Unidades</th>
                                         <th>Almacen</th>
                                         <th>Especifica</th>
                                         <th>Fecha de Registro </th>
@@ -224,6 +227,8 @@
                                         <div class="row frmFilas">
                                             <label for="" class="col-md ">Stock</label>
                                             <input type="number" name="upStock" id="upStock" class="col-md form-control" required>
+                                            <label for="" class="col-md " id="upStockUnidadLabel">Stock en Unidades</label>
+                                            <input type="number" name="upStockUnidad" id="upStockUnidad" class="col-md form-control" required>
                                             <label for="" class="col-md ">Especifica</label>
                                             <select class=" col-md form-control" id="upEspecifica" name="upEspecifica" >
                                                 <option value="Default" >Seleccione</option>
@@ -275,6 +280,7 @@
   
     </div>
     <script>
+   let base_url="/Sistema_Almacen/";
         $("#unidadMedida").select2({
             placeholder: 'Seleccione una opcion'
         });
@@ -284,6 +290,45 @@
         $("#almacen").select2({
             placeholder: 'Seleccione una opcion'
         });
+        function Extra() {
+            obtenerUM();
+            async function obtenerUM(){
+                
+                try {
+                    var id=document.getElementById("unidadMedida").value;
+                    const data=new FormData();
+                    data.append('id',id );
+                    let UM=await fetch(base_url+"Productos/ObtenerUM",{
+                        method: 'POST',
+						mode: 'cors',
+						cache: 'no-cache',
+						body: data
+                    });
+                    json=await UM.json();
+                    if (json[0]["Extra"]==0) {
+                        document.getElementById("StockUnidadLabel").style.display='none';
+                        document.getElementById("StockUnidad").style.display='none';
+                    }else{
+                        document.getElementById("StockUnidadLabel").style.display='inherit';
+                        document.getElementById("StockUnidad").style.display='inherit';
+                        document.getElementById("stock").addEventListener("change", CalcularStockT);
+                        function CalcularStockT() {
+                            var Stock=parseFloat(document.querySelector("#stock").value);
+                            var Equivalencia=json[0]["Equivalencia"];
+                            document.querySelector("#StockUnidad").value=Stock*Equivalencia;
+                            console.log(json[0]["Equivalencia"]);
+                            
+                            
+                        }
+                    }
+                    
+                    
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        }
+        
     </script>
     <?php
         include_once("Views/Js.php");

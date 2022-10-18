@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Lista Salidas</title>
+    <title>Salidas</title>
     <!--header aca-->
     <?php 
         include_once("Views/Header.php")
@@ -33,7 +33,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Salidas</h1>
+                            <h1>Lista Salidas</h1>
                         </div>
                     </div>
                 </div>
@@ -54,10 +54,10 @@
                                         <th>Area</th>
                                         <th>Fecha de Salida</th>
                                         <th>Cantidad </th>
+                                        <th>Cantidad en Unidades </th>
                                         <th>O/C </th>
                                         <th>Nº de Pecosa </th>
                                         <th>Especifica </th>
-                                        <th>Estado de devolucion </th>
                                         <th>Acciones </th>
                                     </tr>
                                 </thead>
@@ -79,7 +79,7 @@
                                 </button>
                                 </div>
                                 <div class="modal-body">
-                                <p>Esta seguro de eliminar el Ingreso?&hellip;</p>
+                                <p>Esta seguro de eliminar la salida?&hellip;</p>
                                 <form id="frmEliminar">
                                     <input type="hidden" name="id" id="id">
                                 </form>
@@ -88,7 +88,7 @@
                                 </div>
                                 <div class="modal-footer justify-content-between">
                                 <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cerrar</button>
-                                <button type="button" id="eliminarIngreso"  class="btn btn-outline-light">Eliminar Servicio </button>
+                                <button type="button" id="eliminarIngreso"  class="btn btn-outline-light">Eliminar Salida </button>
                                 </div>
                             </div>
                             <!-- /.modal-content -->
@@ -110,24 +110,17 @@
                                     <form id="frmActualizar">
                                         <div class="row frmFilas">
                                             <label for="" class="col-md-3 ">Producto</label>
-                                                <select class=" col-md form-control" id="upProducto" name="upProducto" required >
-                                                    <option value="">Seleccione un producto</option>
-                                                        <?php foreach($this->mp as $row){
-                                                            $producto=new productos();
-                                                            $producto=$row;?>
-                                                        <option value="<?php echo $producto->idProducto ;?>"><?php echo $producto->detalle; ?></option>
-                          
-
-                                                        <?php  } ?>
-                                                </select>
+                                            <input type="text" id="upProducto" name="upProducto" class="col-md form-control" readonly>
+                                            <input type="hidden" id="upProductoid" name="upProductoid">
+                                             
 
                                         </div>
                                         <div class="row frmFilas">
                                             <label for="" class="col-md ">Cantidad</label>
                                             <input type="number" name="upCantidad" id="upCantidad"  class="col-md form-control" required>
-                                            <label for="" class="col-md ">Area</label>
-                                            <input type="text" name="upArea" id="upArea"  class="col-md form-control" required>
-                                            
+                                            <label for="" class="col-md " id="upCUnidadLabel">Cantidad en unidades</label>
+                                            <input type="number" name="upCUnidad" id="upCUnidad"  class="col-md form-control" required>
+                                           
 
                                         </div>
                                         <div class="row frmFilas">
@@ -152,15 +145,13 @@
 
                                                     <?php  } ?>
                                             </select>
-                                            <label for="" class="col-md ">Estado de devolucion</label>
-                                            <select name="upDevolucion" id="upDevolucion" class=" col-md form-control">
-                                                <option value="">Seleccione una opcion</option>
-                                                <option value="devuelto">Devuelto</option>
-                                                <option value="no devuelto">No devuelto</option>
-                                            </select>
+                                            <label for="" class="col-md ">Area</label>
+                                            <input type="text" name="upArea" id="upArea"  class="col-md form-control" required>
+                                            
+                                            
                                         </div>
+                                        <input type="hidden" name="CUnidadA" id="CUnidadA">
                                         <input type="hidden" name="CantidadA" id="CantidadA">
-                                        
                                         <input type="hidden" name="upId" id="upId">
                                     </form>
                                 
@@ -198,6 +189,12 @@
     <?php
         include_once("Views/Js.php");
     ?>
+    <script>
+        
+        $("#especifica").select2({
+            placeholder: 'Seleccione una opcion'
+        });
+    </script>
     <script src="<?=BASE_URL?>assets/js/ListaSalidas.js"></script>
 
 </body>

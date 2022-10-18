@@ -73,6 +73,8 @@
                                                 </select>
                                             <label class="col-md" for="">Cantidad</label>
                                                 <input type="number" name="cantidad" id="cantidad"  oninput="Total()" class="col-md form-control" min="1" required>
+                                            <label class="col-md" for="" id="CUnidadLabel">Cantidad en Unidades</label>
+                                            <input type="number" name="CUnidad" id="CUnidad"  oninput="" class="col-md form-control" min="1" >
                                             <label class="col-md" for="">Precio</label>
                                                 <input type="number" name="precio" id="precio" oninput="Total()" class="col-md form-control" min="1" required> 
                                             <label class="col-md" for="">Total</label>
@@ -125,6 +127,7 @@
                                         
                                         <th>Fecha</th>
                                         <th>Cantidad</th>
+                                        <th>Cantidad en Unidades</th>
                                         <th>Unidad de Medida</th>
                                         <th>Producto</th>
                                         <th>Especifica</th>
@@ -168,7 +171,7 @@
                                 </div>
                                 <div class="modal-footer justify-content-between">
                                 <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cerrar</button>
-                                <button type="button" id="eliminarIngreso"  class="btn btn-outline-light">Eliminar Servicio </button>
+                                <button type="button" id="eliminarIngreso"  class="btn btn-outline-light">Eliminar Ingreso </button>
                                 </div>
                             </div>
                             <!-- /.modal-content -->
@@ -191,21 +194,21 @@
                                     <form id="frmActualizar">
                                         <div class="row frmFilas">
                                             <label for="" class="col-md-3 ">Producto</label>
-                                                <select class=" col-md form-control" id="upProducto" name="upProducto" required >
-                                                    <option value="">Seleccione un producto</option>
-                                                        <?php foreach($this->mp as $row){
-                                                            $producto=new productos();
-                                                            $producto=$row;?>
-                                                        <option value="<?php echo $producto->idProducto ;?>"><?php echo $producto->detalle; ?></option>
-                          
-
-                                                        <?php  } ?>
-                                                </select>
+                                            <input type="text" id="upProducto" name="upProducto" class="col-md form-control" readonly>
+                                            <input type="hidden" id="upProductoid" name="upProductoid">
+                                               
 
                                         </div>
                                         <div class="row frmFilas">
                                             <label for="" class="col-md ">Cantidad</label>
                                             <input type="number" name="upCantidad" id="upCantidad" oninput="ATotal()" class="col-md form-control">
+                                            <label for="" class="col-md " id="upCantidadUnidadLabel">Cantidad En unidades</label>
+                                            <input type="number" name="upCantidadUnidad" id="upCantidadUnidad"  class="col-md form-control">
+                                            
+                                            
+
+                                        </div>
+                                        <div class="row frmFilas">
                                             <label for="" class="col-md ">Precio</label>
                                             <input type="number" name="upPrecio" id="upPrecio" oninput="ATotal()" class="col-md form-control">
                                             <label for="" class="col-md ">Total</label>
@@ -229,7 +232,7 @@
                                             </select>
                                         </div>
                                         <input type="hidden" name="CantidadA" id="CantidadA">
-                                        
+                                        <input type="hidden" name="CantidadUA" id="CantidadUA">
                                         <input type="hidden" name="upId" id="upId">
                                     </form>
                                 
@@ -237,7 +240,7 @@
                                 </div>
                                 <div class="modal-footer justify-content-between">
                                     <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cerrar</button>
-                                    <button type="button" id="ActualizarIngreso"  class="btn btn-outline-light">Actualizar Producto </button>
+                                    <button type="button" id="ActualizarIngreso"  class="btn btn-outline-light">Actualizar Ingreso </button>
                                 </div>
                             </div>
                             <!-- /.modal-content -->

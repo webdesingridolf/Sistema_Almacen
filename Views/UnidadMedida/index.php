@@ -64,6 +64,17 @@
                                             <label for=" " class="col-md">Simbolo</label>                      
                                             <input type="text" class="col-md form-control" required name="Simbolo" id="Simbolo" placeholder="Simbolo">
                                         </div>
+                                        <div class="row frmFilas">
+                                            <label for=" " class="col-md-3">Extra</label>                      
+                                            <select name="Extra" id="Extra" class="col-md-6 form-control" onchange="CargarExtra()" required>
+                                                    <option value="">Seleccione</option>
+                                                    <option value="1">Agregar Equivalencia</option>
+                                                    <option value="0">No Agregar Equivalencia</option>
+
+                                            </select>
+                                            <label for="" class="col-md" id="EquivalenciaLabel">Equivalencia</label>
+                                            <input type="number" name="Equivalencia" id="Equivalencia" class="col-md form-control">
+                                        </div>
                                         
                                         <div class="row">
                                                 <button  class="btn btn-primary toastrDefaultSuccess">
@@ -87,6 +98,7 @@
                                 <th>#</th>
                                 <th>Unidad de Medida</th>
                                 <th>Simbolo</th>
+                                <th>Equivalencia</th>
                                 <th>Fecha de Registro</th>
                                 <th>Acciones</th>
                             </tr>
@@ -145,6 +157,12 @@
                                             <input type="text" class="col-md form-control" required name="upUnidadMedida" id="upUnidadMedida" placeholder="Unidad de Medida">
                                             <label for=" " class="col-md">Simbolo</label>                      
                                             <input type="text" class="col-md form-control" required name="upSimbolo" id="upSimbolo" placeholder="Simbolo">
+                                            
+                                        </div>
+                                        <div class="row frmFilas">
+                                            <label for=" " id="upEquivalenciaLabel" class="col-md">Equivalencia</label>                      
+                                            <input type="text" class="col-md form-control" required name="upEquivalencia" id="upEquivalencia" placeholder="Equivalencia">
+
                                         </div>
                                           
                                         <input type="hidden" name="upId" id="upId">
@@ -182,6 +200,20 @@
 
   
     </div>
+    <script>
+        function CargarExtra() {
+		let valor=document.getElementById('Extra').value;
+		if (valor==1) {
+            document.getElementById('EquivalenciaLabel').style.display  = "inherit";
+            document.getElementById('Equivalencia').style.display  = "inherit";
+		}
+        else{
+            document.getElementById('EquivalenciaLabel').style.display  = "none";
+	        document.getElementById('Equivalencia').style.display  = "none";
+        }
+		
+	}
+    </script>
     
     <?php
         include_once("Views/Js.php");

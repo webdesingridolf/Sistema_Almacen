@@ -13,6 +13,8 @@ class especifica{
 class unidadMedida{
     public $idUnidadMedida;
     public $nombreUM;
+    public $Extra;
+    
 
 }
 class ListaProductos{
@@ -20,6 +22,7 @@ class ListaProductos{
     public $detalle;
     public $unidadmedida;
     public $stock;
+    public $stockUnidad;
     public $almacen;
     public $Especifica;
     public $fecha;
@@ -28,4 +31,11 @@ class ListaProductos{
     public $idUnidadMedida;
 
 }
+class UM{
+    public $Extra;
+    public $Equivalencia;
+    
+
+}
+
 ?>

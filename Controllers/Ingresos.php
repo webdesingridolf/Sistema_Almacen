@@ -31,7 +31,8 @@ class Ingresos extends Controller{
     function RegistrarIngreso(){
         
         $fecha=date('Y-m-d h:i:s',time());
-        $cantidad=$_POST["cantidad"];
+        $cantidad=$_POST["cantidad"];      
+        $CantidadUnidad=$_POST["CUnidad"];        
         $producto=$_POST["producto"];
         $precio= $_POST["precio"];
         $total=$_POST["total"];
@@ -39,14 +40,11 @@ class Ingresos extends Controller{
         $especifica=$_POST["especifica"];
         $usuario=$_POST["usuario"];
         
-        $mensaje="";
-    
-        
-        
         if (
         $this->model->insertar([
             'fecha'=>$fecha,
             'cantidad'=>$cantidad,
+            'cantidadUnidad'=>$CantidadUnidad,
             'producto'=>$producto,
             'precio'=>$precio,
             'total'=>$total,
@@ -55,9 +53,10 @@ class Ingresos extends Controller{
             'usuario'=>$usuario,
         ])) {
             $arrResponse=array('status'=>true, 'msg'=>'Registro ingresado correctamente');
-            $this->model->AumentarStock([
+            $this->model->AumentarStockI([
                 
                 'cantidad'=>$cantidad,
+                'cantidadUnidad'=>$CantidadUnidad,
                 'producto'=>$producto,
                 
             ]);
@@ -67,7 +66,7 @@ class Ingresos extends Controller{
             
         }
         echo json_encode($arrResponse);
-        $this->view->mensaje=$mensaje;
+        //$this->view->mensaje=$mensaje;
        /* 
         $this->render();
         */ 
@@ -101,19 +100,23 @@ class Ingresos extends Controller{
     function ActualizarIngreso(){
         
         //$fecha=date('Y-m-d h:i:s',time());
-        $upProducto=$_POST["upProducto"];
+        $upProductoid=$_POST["upProductoid"];
         $upCantidad=$_POST["upCantidad"];
+        $upCantidadunidad=$_POST["upCantidadUnidad"];
         $upPrecio= $_POST["upPrecio"];
         $upTotal=$_POST["upTotal"];
         $upOrdenCompra=$_POST["upOrden"];
         $upEspecifica=$_POST["upEspecifica"];
         $upID=$_POST["upId"];
         $CantidadA=$_POST["CantidadA"];
+        $upCantidadUA=$_POST["CantidadUA"];
+        //$mensaje="";
         if (
             $this->model->actualizar([
                
                 'cantidad'=>$upCantidad,
-                'producto'=>$upProducto,
+                'cantidadUnidad'=>$upCantidadunidad,
+                
                 'precio'=>$upPrecio,
                 'total'=>$upTotal,
                 'ordenCompra'=>$upOrdenCompra,
@@ -123,22 +126,46 @@ class Ingresos extends Controller{
                 $arrResponse=array('status'=>true, 'msg'=>'Registro Actualizado correctamente');
                 if ($upCantidad>$CantidadA) {
                     $stock=$upCantidad-$CantidadA;
-                    
                     $this->model->AumentarStock([
                 
                         'cantidad'=>$stock,
-                        'producto'=>$upProducto,
+                        'producto'=>$upProductoid,
                         
                     ]);
+                    
+                    
+                    
+                }
+                if ($upCantidadunidad>$upCantidadUA){
+                    $stockUnidad=$upCantidadunidad-$upCantidadUA;
+                    $this->model->AumentarStockUnidad([
+                
+                        'StockUnidad'=>$stockUnidad,
+                        'producto'=>$upProductoid,
+                        
+                    ]);
+                   
+
                 }
                 if ($CantidadA>$upCantidad) {
                     $stock=$CantidadA-$upCantidad;
                     $this->model->DisminuirStock([
                 
                         'cantidad'=>$stock,
-                        'producto'=>$upProducto,
+                        'producto'=>$upProductoid,
                         
                     ]);
+                }
+                
+                if($upCantidadUA>$upCantidadunidad){
+                    $stockUnidad=$upCantidadUA-$upCantidadunidad;
+                    $this->model->DisminuirStockUnidad([
+                
+                        'StockUnidad'=>$stockUnidad,
+                        'producto'=>$upProductoid,
+                        
+                    ]);
+
                 }
                 
             }else {
@@ -151,6 +178,24 @@ class Ingresos extends Controller{
 
         
     }
+    
+    function ObteneridUM(){
+    
+        $id=$_POST['id'];   
+        $UM=$this->model->ObteneridUM($id);
+        print json_encode($UM, JSON_UNESCAPED_UNICODE);
+       
+    
+    }
+    function ObtenerUMdata(){
+    
+        $id=$_POST['idUM'];   
+        $UM=$this->model->ObtenerUMdata($id);
+        print json_encode($UM, JSON_UNESCAPED_UNICODE);
+       
+    
+    }
+    
     
     
 }

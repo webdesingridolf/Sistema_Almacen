@@ -21,11 +21,20 @@ class UnidadMedida extends Controller{
         $UnidadMedida=$_POST["UnidadMedida"];
         $Simbolo=$_POST["Simbolo"];        
         $fecha=date('Y-m-d h:i:s',time());
+        $extra=$_POST["Extra"];
+        if (empty($_POST["Equivalencia"])) {
+            $Equivalencia=0;
+        }else{
+            $Equivalencia=$_POST["Equivalencia"];
+        }
+        
         if (
         $this->model->insertar([
             'fecha'=>$fecha,
             'unidadMedida'=>$UnidadMedida,
             'simbolo'=>$Simbolo,
+            'extra'=>$extra,
+            'Equivalencia'=>$Equivalencia,
             
             
         ])) {
@@ -36,7 +45,7 @@ class UnidadMedida extends Controller{
         echo json_encode($arrResponse);
         
     }
-/*----------------fin Registrar Servicio-------------------------------------------------------------------------------- */
+/*----------------fin Registrar Unidad de medida-------------------------------------------------------------------------------- */
 
 
 /*----------------Motsrar Unidades de medida-------------------------------------------------------------------------------- */
@@ -70,6 +79,12 @@ function Eliminar(){
 function Actualizar(){
     $upUnidadMedida=$_POST["upUnidadMedida"];
     $upSimbolo=$_POST["upSimbolo"];
+    if(is_numeric($_POST["upEquivalencia"])  ){
+        $upEquivalencia=$_POST["upEquivalencia"];          
+    }else{
+        $upEquivalencia=0;
+    }
+    
     $upID=$_POST["upId"];
     
 
@@ -77,7 +92,7 @@ function Actualizar(){
         $this->model->actualizar([
             'UnidadMedida'=>$upUnidadMedida,
             'Simbolo'=>$upSimbolo,
-            
+            'upEquivalencia'=>$upEquivalencia,
             'id'=>$upID,
             
         ])) {

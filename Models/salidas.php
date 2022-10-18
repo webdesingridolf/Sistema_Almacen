@@ -15,13 +15,20 @@ class ListaSalidas{
     public $cantidad;
     public $detalle;
     public $area;
-    public $devolucion;
+    public $cUnidad;
     public $nPecosa;
     public $oc;
     public $especifica;
 
    
 
+}
+class UM{
+    public $UMid;
+}
+class UMdata{
+    public $Extra;
+    public $Equivalencia;
 }
 
 ?>

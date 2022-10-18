@@ -50,35 +50,59 @@ class Salidas extends Controller{
     function RegistrarSalida(){
            
         $fecha=date('Y-m-d h:i:s',time());
-        $devolucion="no devuelto";
+        //$devolucion="no devuelto";
         $producto=$_POST["producto"];
         $area=$_POST["area"];
-        $cantidad=$_POST["cantidad"];
+        $CRegistro=$_POST["cantidad"];
+        $CU=$_POST["CUnidades"];
         $especifica=$_POST["especifica"];
         $oc= $_POST["oc"];
         $nPecosa=$_POST["nPecosa"];
         $usuario=$_POST["usuario"];
+        $equivalencia=$_POST["equivalencia"];
+       
+        if (!empty($CU)) {
+            if ($CU>$equivalencia) {
+                $cantidadCajas=0;
+                for($i=1;$i<=$CU;$i++){
+                    if($i%$equivalencia==0){
+                        $cantidadCajas++;
+                        $ultimoMultiplo=$i;
+                    }
         
-        
+                }
+                $cantidad=$cantidadCajas+1;
+                
+                    
+            }
+            
+        }else{
+            $cantidad=$_POST["cantidad"];
+            
 
+        }
+       
         
+   
         
         if (
         $this->model->insertar([
             'fecha'=>$fecha,
-            'cantidad'=>$cantidad,
+            'cantidad'=>$CRegistro,
+            'CUnidad'=>$CU,
             'producto'=>$producto,
             'area'=>$area,
-            'devolucion'=>$devolucion,
             'nPecosa'=>$nPecosa,
             'oc'=>$oc,
             'especifica'=>$especifica,
             'usuario'=>$usuario,
         ])) {
+            
             $arrResponse=array('status'=>true, 'msg'=>'Registro ingresado correctamente');
-            $this->model->DisminuirStock([
+            $this->model->DisminuirStockS([
                 
                 'cantidad'=>$cantidad,
+                'CUnidad'=>$CU,
                 'producto'=>$producto,
                 
             ]);
@@ -116,14 +140,15 @@ class Salidas extends Controller{
 /*------------------------------ funcion actualizar salidas ---------------*/
 
     function ActualizarSalida(){
-        $upProducto=$_POST["upProducto"];
+        $upProducto=$_POST["upProductoid"];
         $upCantidad=$_POST["upCantidad"];
+        $upCUnidad=$_POST["upCUnidad"];
         $upArea= $_POST["upArea"];
         $upOC=$_POST["upOC"];
         $upNPecosa=$_POST["upNPecosa"];
         $upEspecifica=$_POST["upEspecifica"];
         $upID=$_POST["upId"];
-        $upDevolucion=$_POST["upDevolucion"];
+        $CUnidadA=$_POST["CUnidadA"];
         $CantidadA=$_POST["CantidadA"];
         
         
@@ -131,13 +156,14 @@ class Salidas extends Controller{
             $this->model->actualizar([
                
                 'cantidad'=>$upCantidad,
+                'CUnidad'=>$upCUnidad,
                 'producto'=>$upProducto,
                 'area'=>$upArea,
                 'oc'=>$upOC,
                 'pecosa'=>$upNPecosa,
                 'especifica'=>$upEspecifica,
                 'id'=>$upID,
-                'devolucion'=>$upDevolucion,
+                
             ])) {
                 $arrResponse=array('status'=>true, 'msg'=>'Registro Actualizado correctamente');
                
@@ -151,6 +177,17 @@ class Salidas extends Controller{
                         
                     ]);
                 }
+                if ($upCUnidad>$CUnidadA){
+                    $stockUnidad=$upCUnidad-$CUnidadA;
+                    $this->model->DisminuirStockUnidad([
+                
+                        'StockUnidad'=>$stockUnidad,
+                        'producto'=>$upProducto,
+                        
+                    ]);
+                   
+
+                }
                 if ($CantidadA>$upCantidad) {
                     $stock=$CantidadA-$upCantidad;
                     $this->model->AumentarStock([
@@ -159,6 +196,16 @@ class Salidas extends Controller{
                         'producto'=>$upProducto,
                         
                     ]);
+                }
+                if($CUnidadA>$upCUnidad){
+                    $stockUnidad=$CUnidadA-$upCUnidad;
+                    $this->model->AumentarStockUnidad([
+                
+                        'StockUnidad'=>$stockUnidad,
+                        'producto'=>$upProducto,
+                        
+                    ]);
+
                 }
                 
                 
@@ -174,23 +221,27 @@ class Salidas extends Controller{
 
 /*------------------------------fin funcion actualizar salidas ---------------*/
 
-/*------------------------------ funcion Registrar salidas ---------------*/
 
 
 
 
 
-/*------------------------------fin funcion Registrar salidas ---------------*/
+function ObteneridUM(){
+    
+    $id=$_POST['id'];   
+    $UM=$this->model->ObteneridUM($id);
+    print json_encode($UM, JSON_UNESCAPED_UNICODE);
+   
 
-/*------------------------------ funcion Registrar salidas ---------------*/
+}
+function ObtenerUMdata(){
 
+    $id=$_POST['idUM'];   
+    $UM=$this->model->ObtenerUMdata($id);
+    print json_encode($UM, JSON_UNESCAPED_UNICODE);
+   
 
-
-
-
-/*------------------------------fin funcion Registrar salidas ---------------*/
-
-
+}
 
 }
 

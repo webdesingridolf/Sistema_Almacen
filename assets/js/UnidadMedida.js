@@ -1,4 +1,6 @@
 $(document).ready(function(){
+	document.getElementById('EquivalenciaLabel').style.display  = "none";
+	document.getElementById('Equivalencia').style.display  = "none";
 	//---------------------------------------Cargar datos-----------------------------------------------------------
 		let base_url="/Sistema_Almacen/";
 		tablaUnidadMedida=$('#example1').DataTable({ 
@@ -54,6 +56,7 @@ $(document).ready(function(){
 				{"data": "id"},
 				{"data": "UnidadMedida"},
 				{"data": "Simbolo"},
+				{"data": "Equivalencia"},
 				{"data": "FechaRegistro"},
 				{"defaultContent": "<div class='text-center'><div class='btn-group'><button type='button' id='editar' class='editar btn btn-primary' data-toggle='modal' data-target='#modalActualizar'><i class='fas fa-edit'></i></button>	<button type='button' id='Eliminar' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fas fa-trash'></i></button></div></div>"}
 			]
@@ -110,6 +113,16 @@ $(document).ready(function(){
 	  $("#upId").val(datos.id);
 	  $("#upUnidadMedida").val(datos.UnidadMedida);
 	  $("#upSimbolo").val(datos.Simbolo);
+	  if (isNaN(datos.Equivalencia)==false) {
+		document.getElementById('upEquivalenciaLabel').style.display  = "inherit";
+        document.getElementById('upEquivalencia').style.display  = "inherit";
+		$("#upEquivalencia").val(datos.Equivalencia)
+		
+	  }else{
+		document.getElementById('upEquivalenciaLabel').style.display  = "none";
+	    document.getElementById('upEquivalencia').style.display  = "none";
+		
+	  }
 	 
 	 
 	

@@ -1,4 +1,14 @@
+
+
+
+
+
+
+
+
+
 $(document).ready(function(){
+    
     
     let base_url="/Sistema_Almacen/";
     tablasalidas=$('#example1').DataTable({ 
@@ -55,17 +65,74 @@ $(document).ready(function(){
             {"data": "area"},
             {"data": "fecha"},
             {"data": "cantidad"},
+            {"data": "cUnidad"},
             {"data": "oc"},
             {"data": "nPecosa"},
             {"data": "especifica"},
-            {"data": "devolucion"},
+            
             
             {"defaultContent": "<div class='text-center'><div class='btn-group'><button type='button' id='editar' class='editar btn btn-primary' data-toggle='modal' data-target='#modalActualizar'><i class='fas fa-edit'></i></button>	<button type='button' id='Eliminar' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fas fa-trash'></i></button></div></div>"}
         ]
     });
 
+//------------------------------- funcion Registar----------------------------------------------------------------
+   
 
+//------------------------------------cambio de select producto-------------------------------------------------
+$("#producto").change(function () {
+//--------------------------------------funcion canbio de producto------------------------------------------------
+    var idProducto=document.getElementById("producto").value;
+    //---------------------------unidad de medida id----------------------------------------------------------------
+    idUnidadMedida();
+    function idUnidadMedida() {
+        idUM();
+        async function idUM() {
+                const data=new FormData();
+                data.append('id',idProducto );
+                let UM=await fetch(base_url+"salidas/ObteneridUM",{
+                method: 'POST',
+				mode: 'cors',
+				cache: 'no-cache',
+				body: data
+                });
+                json=await UM.json();
+                
+                var idUM=json[0]["UMid"]
+                    UnidadMedida(idUM);
+                    async function UnidadMedida(id) {
+                        const dataUM=new FormData();
+                        dataUM.append('idUM',id );
+                       let UMdata=await fetch(base_url+"salidas/ObtenerUMdata",{
+                            method: 'POST',
+                            mode: 'cors',
+                            cache: 'no-cache',
+                            body: dataUM
+                        });
+                        json=await UMdata.json();
+                        
+                        if (json[0]["Extra"]==1) {
+                            document.getElementById("CUnidadesLabel").style.display='inherit';
+                            document.getElementById("CUnidades").style.display='inherit';
+                            $("#cantidad").change(function(){
+                                var equivalencia=json[0]["Equivalencia"];
+                                var cantidad=document.getElementById("cantidad").value;
+                                document.querySelector("#CUnidades").value=cantidad*equivalencia;
 
+                            });
+                        }else{
+                            document.getElementById("CUnidadesLabel").style.display='none';
+                            document.getElementById("CUnidades").style.display='none';
+
+                        }
+                        
+                    }
+            
+        }
+    }
+    //-----------------------------unidad de medida id finnn------------------------------------------------------------------
+//--------------------------------------fin funcion canbio de producto------------------------------------------------
+});
+//------------------------------------fin cambio de select producto-------------------------------------------------
 //-----------------------eliminar ingreso --------------------------------------------------------------------------*
     document.getElementById("eliminarIngreso").addEventListener("click", fntEliminar);
 
@@ -125,7 +192,9 @@ document.getElementById("ActualizarSalida").addEventListener("click", fntActuali
         console.log(datos);
         $("#upId").val(datos.idSalida);
         $("#upCantidad").val(datos.cantidad);
-        $('#upProducto').val(datos.ProductoID).trigger('change.select2');
+        $("#upCUnidad").val(datos.cUnidad);
+        $('#upProducto').val(datos.detalle);
+        $('#upProductoid').val(datos.ProductoID);
         $('#upEspecifica').val(datos.EspecificaID).trigger('change.select2');
         $('#upDevolucion').val(datos.devolucion).trigger('change.select2');
 
@@ -133,7 +202,51 @@ document.getElementById("ActualizarSalida").addEventListener("click", fntActuali
         $("#upOC").val(datos.oc);
         $("#upNPecosa").val(datos.nPecosa);
         $("#CantidadA").val(datos.cantidad);
-        
+        $("#CUnidadA").val(datos.cUnidad);
+        if(document.getElementById("upCUnidad").value==0){
+            document.getElementById("upCUnidadLabel").style.display='none';
+            document.getElementById("upCUnidad").style.display='none';
+        }else{
+            document.getElementById("upCUnidadLabel").style.display='inherit';
+            document.getElementById("upCUnidad").style.display='inherit';
+        }
+        var idProducto=document.getElementById("upProductoid").value;
+        idUM();
+        async function idUM() {
+                const data=new FormData();
+                data.append('id',idProducto );
+                let UM=await fetch(base_url+"salidas/ObteneridUM",{
+                method: 'POST',
+				mode: 'cors',
+				cache: 'no-cache',
+				body: data
+                });
+                json=await UM.json();
+                var idUM=json[0]["UMid"]
+                UnidadMedida(idUM);
+                    async function UnidadMedida(id) {
+                        const dataUM=new FormData();
+                        dataUM.append('idUM',id );
+                       let UMdata=await fetch(base_url+"salidas/ObtenerUMdata",{
+                            method: 'POST',
+                            mode: 'cors',
+                            cache: 'no-cache',
+                            body: dataUM
+                        });
+                        json=await UMdata.json();
+                        
+                        
+                        if (json[0]["Extra"]==1) {
+                            $("#upCantidad").change(function(){
+                                var equivalencia=json[0]["Equivalencia"];
+                                var cantidad=document.getElementById("upCantidad").value;
+                                document.querySelector("#upCUnidad").value=cantidad*equivalencia;
+
+                            });
+                        }
+                    }
+            
+        }
 
      });
 

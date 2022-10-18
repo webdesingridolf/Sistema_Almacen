@@ -8,12 +8,13 @@ class ProductosModel extends Model{
 //--------------------------------------------insertar Productos--------------------------------------------------------
     public function insertar($datos){
         try {
-            $query=$this->prepare('INSERT INTO producto(detalle,id_Unidad_Medida,cantidad_Stock,id_Almacen,id_Especifica,fecha_Registro) 
-                 VALUES(:detalle, :unidadMedida, :stock,:almacen,:especifica,:fecha)');
+            $query=$this->prepare('INSERT INTO producto(detalle,id_Unidad_Medida,Stock,Stock_Unidad,id_Almacen,id_Especifica,fecha_Registro) 
+                 VALUES(:detalle, :unidadMedida, :stock,:ustock,:almacen,:especifica,:fecha)');
             $query->execute([
                 'detalle'=>$datos['detalle'],
                 'unidadMedida'=>$datos['unidadmedida'],
                 'stock'=>$datos['stock'],
+                'ustock'=>$datos['StockUnidad'],
                 'almacen'=>$datos['almacen'],
                 'especifica'=>$datos['especifica'],
                 'fecha'=>$datos['fecha']
@@ -85,6 +86,7 @@ class ProductosModel extends Model{
                 $item=new unidadMedida();
                 $item->idUnidadMedida=$mUnidadMedida['id_Unidad_Medida'];
                 $item->nombreUM=$mUnidadMedida['NombreUM'];
+                $item->Extra=$mUnidadMedida['Extra'];
                 
                 array_push($items,$item);
 
@@ -104,7 +106,7 @@ class ProductosModel extends Model{
         $items=[];
         try {
             $Productos=[];
-            $query=$this->prepare("SELECT    producto.id_Producto,producto.detalle,unidad_medida.NombreUM,producto.id_Almacen,producto.id_Especifica,producto.id_Unidad_Medida,producto.cantidad_Stock,almacen.nombre,especifica.detalle_Especifica,producto.fecha_Registro 
+            $query=$this->prepare("SELECT    producto.id_Producto,producto.detalle,unidad_medida.NombreUM,producto.id_Almacen,producto.id_Especifica,producto.id_Unidad_Medida,producto.Stock,producto.Stock_Unidad,almacen.nombre,especifica.detalle_Especifica,producto.fecha_Registro 
             FROM almacen, producto, especifica,  unidad_medida
             WHERE producto.id_Almacen =almacen.id_Almacen  AND especifica.id_Especifica =producto.id_Especifica  AND producto.id_Unidad_Medida=unidad_medida.id_Unidad_Medida AND producto.fecha_Registro BETWEEN "."'".$fechaA."'"."AND "."'".$fechaS."'"."");
              $query->execute();
@@ -114,7 +116,14 @@ class ProductosModel extends Model{
                  $item->id=$Producto['id_Producto'];
                  $item->detalle=$Producto['detalle'];
                  $item->unidadmedida=$Producto['NombreUM'];
-                 $item->stock=$Producto['cantidad_Stock'];
+                 $item->stock=$Producto['Stock'];
+                 /*if ($Producto['Stock_Unidad']==0) {
+                    $item->stockUnidad="Sin stock en unidades";
+                 }else{
+                    $item->stockUnidad=$Producto['Stock_Unidad'];
+
+                 }*/
+                 $item->stockUnidad=$Producto['Stock_Unidad'];                 
                  $item->almacen=$Producto['nombre'];
                  $item->Especifica=$Producto['detalle_Especifica'];
                  $item->fecha=$Producto['fecha_Registro'];
@@ -142,9 +151,9 @@ public function ListaProductos(){
     $items=[];
     try {
         $Productos=[];
-        $query=$this->prepare("SELECT    producto.id_Producto,producto.detalle,unidad_medida.NombreUM,producto.id_Almacen,producto.id_Especifica,producto.id_Unidad_Medida,producto.cantidad_Stock,almacen.nombre,especifica.detalle_Especifica,producto.fecha_Registro 
-        FROM almacen, producto, especifica,  unidad_medida
-        WHERE producto.id_Almacen =almacen.id_Almacen  AND especifica.id_Especifica =producto.id_Especifica  AND producto.id_Unidad_Medida=unidad_medida.id_Unidad_Medida ");
+        $query=$this->prepare("SELECT    producto.id_Producto,producto.detalle,unidad_medida.NombreUM,producto.id_Almacen,producto.id_Especifica,producto.id_Unidad_Medida,producto.Stock,producto.Stock_Unidad,almacen.nombre,especifica.detalle_Especifica,producto.fecha_Registro 
+            FROM almacen, producto, especifica,  unidad_medida
+            WHERE producto.id_Almacen =almacen.id_Almacen  AND especifica.id_Especifica =producto.id_Especifica  AND producto.id_Unidad_Medida=unidad_medida.id_Unidad_Medida ");
          $query->execute();
          $Productos=$query->fetchAll(PDO::FETCH_ASSOC);
         foreach ($Productos as $Producto) {
@@ -152,7 +161,14 @@ public function ListaProductos(){
              $item->id=$Producto['id_Producto'];
              $item->detalle=$Producto['detalle'];
              $item->unidadmedida=$Producto['NombreUM'];
-             $item->stock=$Producto['cantidad_Stock'];
+             $item->stock=$Producto['Stock'];
+             /*if ($Producto['Stock_Unidad']==0) {
+                $item->stockUnidad="Sin stock en unidades";
+             }else{
+                $item->stockUnidad=$Producto['Stock_Unidad'];
+
+             }*/
+             $item->stockUnidad=$Producto['Stock_Unidad']; 
              $item->almacen=$Producto['nombre'];
              $item->Especifica=$Producto['detalle_Especifica'];
              $item->fecha=$Producto['fecha_Registro'];
@@ -199,13 +215,14 @@ public function ListaProductos(){
 //-------------------------------------Actualizar producto-------------------------------------------------------------------------
     public function actualizar($datos){
         try {
-            $query=$this->prepare('UPDATE producto SET detalle=:detalle,id_Unidad_Medida=:UnidadMedida,cantidad_Stock=:Stock,id_Almacen=:Almacen,id_Especifica=:Especifica
+            $query=$this->prepare('UPDATE producto SET detalle=:detalle,id_Unidad_Medida=:UnidadMedida,Stock=:Stock,Stock_Unidad=:StockUnidad,id_Almacen=:Almacen,id_Especifica=:Especifica
              WHERE id_Producto=:id');
             $query->execute([
                 
                 'detalle'=>$datos['Detalle'],
                 'UnidadMedida'=>$datos['UM'],
                 'Stock'=>$datos['Stock'],
+                'StockUnidad'=>$datos['StockUnidad'],
                 'Almacen'=>$datos['Almacen'],
                 'Especifica'=>$datos['Especifica'],
                 'id'=>$datos['id'],
@@ -221,7 +238,31 @@ public function ListaProductos(){
     }
 // ----------------------------------------fin actualizar producto-----------------------------------------------------------------
 
+//--------------------------------------------Obtener UM-------------------------------------------------------------
+public function ObtenerUM($id){
+    $items=[];
+    try {
+        $DUM=[];
+        $query=$this->query("SELECT * FROM unidad_medida WHERE id_Unidad_Medida=$id");
+        $query->execute();
+        $DUM=$query->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($DUM as $um) {
+            $item=new UM();
+             $item->Extra=$um['Extra'];
+             $item->Equivalencia=$um['Equivalencia'];
+             
+             array_push($items,$item);
 
+        }
+
+        
+         return $items;
+    } catch (PDOException $e) {
+        return $e;
+    }
+
+}
+//--------------------------------------------Fin Obtener UM-----------------------------------------------------------
 
     
 

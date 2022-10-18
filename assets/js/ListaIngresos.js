@@ -1,3 +1,6 @@
+
+
+
 $(document).ready(function(){
     
     let base_url="/Sistema_Almacen/";
@@ -53,6 +56,7 @@ $(document).ready(function(){
             
             {"data": "fecha"},
             {"data": "cantidad"},
+            {"data": "cantidadUnidad"},
             {"data": "unidadmedida"},
             {"data": "producto"},
             {"data": "Especifica"},
@@ -120,19 +124,80 @@ document.getElementById("ActualizarIngreso").addEventListener("click", fntActual
         console.log(datos);
         $("#upId").val(datos.id);
         $("#upCantidad").val(datos.cantidad);
-        $('#upProducto').val(datos.ProductoID).trigger('change.select2');
+        
+        $('#upProducto').val(datos.producto);
+        $('#upProductoid').val(datos.ProductoID);
         $('#upEspecifica').val(datos.EspecificaID).trigger('change.select2');
         $("#upPrecio").val(datos.precio);
         $("#upTotal").val(datos.total);
         $("#upOrden").val(datos.ordenCompra);
+        $("#CantidadA").val(datos.cantidad);
+        $("#CantidadUA").val(datos.cantidadUnidad);
+        $("#upCantidadUnidad").val(datos.cantidadUnidad);
+        if(document.getElementById("upCantidadUnidad").value==0){
+            document.getElementById("upCantidadUnidadLabel").style.display='none';
+            document.getElementById("upCantidadUnidad").style.display='none';
+        }else{
+            document.getElementById("upCantidadUnidadLabel").style.display='inherit';
+            document.getElementById("upCantidadUnidad").style.display='inherit';
+        }
+        $('#upCantidad').change(function (){
+            var idProducto=document.getElementById('upProductoid').value;
+            obtenerid();
+            function obtenerid() {
+            idUM()
+            async function idUM() {
+                const data=new FormData();
+                    data.append('id',idProducto );
+                    let UM=await fetch(base_url+"ingresos/ObteneridUM",{
+                        method: 'POST',
+						mode: 'cors',
+						cache: 'no-cache',
+						body: data
+                    });
+                    json=await UM.json();
+                    var idUM=json[0]["UMid"]
+                    UnidadMedida(idUM);
+                    async function UnidadMedida(id) {
+                        const dataUM=new FormData();
+                        dataUM.append('idUM',id );
+                       let UMdata=await fetch(base_url+"ingresos/ObtenerUMdata",{
+                            method: 'POST',
+                            mode: 'cors',
+                            cache: 'no-cache',
+                            body: dataUM
+                        });
+                        json=await UMdata.json();
+                        
+                        if (json[0]["Extra"]==1) {
+                            document.getElementById("upCantidadUnidadLabel").style.display='inherit';
+                            document.getElementById("upCantidadUnidad").style.display='inherit';
+                            $("#upCantidad").change(function(){
+                                var equivalencia=json[0]["Equivalencia"];
+                                var cantidad=document.getElementById("upCantidad").value;
+                                document.querySelector("#upCantidadUnidad").value=cantidad*equivalencia;
+
+                            });
+                        }else{
+                            document.getElementById("upCantidadUnidadLabel").style.display='none';
+                            document.getElementById("upCantidadUnidad").style.display='none';
+
+                        }
+                        
+                    }
+            }
+        }
+            
+
+        });
         
 
      });
 
      function fntActualizar() {
         frmActualizar=document.querySelector("#frmActualizar");
-        eliminar();
-       async function eliminar(){
+        actualizar();
+       async function actualizar(){
           // id=document.querySelector("#id");
            
 
@@ -167,21 +232,58 @@ document.getElementById("ActualizarIngreso").addEventListener("click", fntActual
 
 //-------------------------------fin funcion actualizar----------------------------------------------------------------
 
-
-
-
-
-
-
-
-
-
-
-
     
     
-    
+//----------------------------cargar datos con select----------------------------------------------------
+    $("#producto").change(function () {
+        var idProducto=document.getElementById('producto').value;
+        obtenerid();
+        function obtenerid() {
+            idUM()
+            async function idUM() {
+                const data=new FormData();
+                    data.append('id',idProducto );
+                    let UM=await fetch(base_url+"ingresos/ObteneridUM",{
+                        method: 'POST',
+						mode: 'cors',
+						cache: 'no-cache',
+						body: data
+                    });
+                    json=await UM.json();
+                    var idUM=json[0]["UMid"]
+                    UnidadMedida(idUM);
+                    async function UnidadMedida(id) {
+                        const dataUM=new FormData();
+                        dataUM.append('idUM',id );
+                       let UMdata=await fetch(base_url+"ingresos/ObtenerUMdata",{
+                            method: 'POST',
+                            mode: 'cors',
+                            cache: 'no-cache',
+                            body: dataUM
+                        });
+                        json=await UMdata.json();
+                        console.log(json);
+                        if (json[0]["Extra"]==1) {
+                            document.getElementById("CUnidadLabel").style.display='inherit';
+                            document.getElementById("CUnidad").style.display='inherit';
+                            $("#cantidad").change(function(){
+                                var equivalencia=json[0]["Equivalencia"];
+                                var cantidad=document.getElementById("cantidad").value;
+                                document.querySelector("#CUnidad").value=cantidad*equivalencia;
 
+                            });
+                        }else{
+                            document.getElementById("CUnidadLabel").style.display='none';
+                            document.getElementById("CUnidad").style.display='none';
+
+                        }
+                        
+                    }
+            }
+        }
+        
+    });
+    
+//----------------------------------fin cargar datos con select--------------------------------------------
 
 });
-

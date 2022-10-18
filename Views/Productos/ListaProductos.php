@@ -54,6 +54,7 @@
                                         <th>Detalle</th>
                                         <th>Unidad de Medida</th>
                                         <th>Stock</th>
+                                        <th>Stock en Unidades</th>
                                         <th>Almacen</th>
                                         <th>Especifica</th>
                                         <th>Fecha de Registro </th>
@@ -143,6 +144,8 @@
                                         <div class="row frmFilas">
                                             <label for="" class="col-md ">Stock</label>
                                             <input type="number" name="upStock" id="upStock" class="col-md form-control" required>
+                                            <label for="" class="col-md " id="upStockUnidadLabel">Stock en Unidades</label>
+                                            <input type="number" name="upStockUnidad" id="upStockUnidad" class="col-md form-control" required>
                                             <label for="" class="col-md ">Especifica</label>
                                             <select class=" col-md form-control" id="upEspecifica" name="upEspecifica" >
                                                 <option value="Default" >Seleccione</option>

@@ -13,8 +13,6 @@ class Productos extends Controller{
 //--------------------Cargar vista-------------------------------------------------------------------------------
     function render(){
         
-       
-       
         $MAlmacen=$this->model->MostrarAlmacen();
         $this->view->ma=$MAlmacen;
         $MEspecifica=$this->model->MostrarEspecifica();
@@ -51,7 +49,13 @@ class Productos extends Controller{
         $almacen= $_POST["almacen"];
         $Especifica=$_POST["especifica"];
         $fecha=date('Y-m-d h:i:s',time()); 
-        $mensaje="";
+        
+        if (empty($_POST['StockUnidad'])) {
+            $StockUnidad=0;
+        }else{
+            $StockUnidad=$_POST['StockUnidad'];
+        }
+        
       
         
         if (
@@ -62,6 +66,7 @@ class Productos extends Controller{
             'stock'=>$stock,
             'almacen'=>$almacen,
             'especifica'=>$Especifica,
+            'StockUnidad'=>$StockUnidad,
             
         ])) {
             $arrResponse=array('status'=>true, 'msg'=>'Registro ingresado correctamente');
@@ -118,6 +123,7 @@ function MostrarListaProductos(){
         $upUM=$_POST["upUnidadMedida"];
         $upAlamacen= $_POST["upAlmacen"];
         $upStock=$_POST["upStock"];
+        $upStockUnidad=$_POST["upStockUnidad"];
         $upEspecifica=$_POST["upEspecifica"];
         $upID=$_POST["upId"];
         
@@ -128,6 +134,7 @@ function MostrarListaProductos(){
                 'UM'=>$upUM,
                 'Almacen'=>$upAlamacen,
                 'Stock'=>$upStock,
+                'StockUnidad'=>$upStockUnidad,
                 'Especifica'=>$upEspecifica,
                 'id'=>$upID,
             ])) {
@@ -145,5 +152,13 @@ function MostrarListaProductos(){
     }
 //-------------------------------------------Fin Actualizar producto--------------------------------------------
     
+function ObtenerUM(){
+    
+    $id=$_POST['id'];   
+    $UM=$this->model->ObtenerUM($id);
+    print json_encode($UM, JSON_UNESCAPED_UNICODE);
+   
+
+}
     
 }

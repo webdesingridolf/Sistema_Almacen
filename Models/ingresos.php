@@ -3,6 +3,7 @@
 class productos{
     public $idProducto;
     public $detalle;
+    public $idUM;
     
 }
 class especifica{
@@ -14,6 +15,7 @@ class H_ingresos{
     public $id;
     public $fecha;
     public $cantidad;
+    public $cantidadUnidad;
     public $unidadmedida;
     public $producto;
     public $precio;
@@ -25,4 +27,12 @@ class H_ingresos{
     public $EspecificaID;
 
 }
+class UM{
+    public $UMid;
+}
+class UMdata{
+    public $Extra;
+    public $Equivalencia;
+}
+
 ?>

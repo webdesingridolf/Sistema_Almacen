@@ -57,8 +57,9 @@
                                 </div>
                                 <div class="card-body">
                                     <form  class="container" id="frmSalidas">
+
                                         <div class="row frmFilas">
-                                            <label for="" class="col-md">Producto</label>
+                                            <label for="" class="col-md-1">Producto</label>
                                             <select name="producto" id="producto" class="col-md form-control">
                                                     <option value="">Seleccione un producto</option>
                                                         <?php foreach($this->mp as $row){
@@ -70,13 +71,21 @@
                                                         <?php  } ?>
 
                                             </select>
-                                            <label for="" class="col-md">Area</label>
+                                            <label for="" class="col-md-1">Area</label>
                                             <input type="text" name="area" id="area"  class="col-md form-control">
-                                            <label for="" class="col-md ">Cantidad</label>
-                                            <input type="number"  name="cantidad" id="cantidad" class="col-md form-control">
+                                            
                                         </div>
                                         <div class="row frmFilas">
-                                            <label for="" class="col-md">Especifica</label>
+                                            
+                                           
+                                            <label for="" class="col-md-1">Cantidad</label>
+                                            <input type="number"  name="cantidad" id="cantidad" class="col-md form-control">
+                                            <label for="" class="col-md-2" id="CUnidadesLabel">Cantidad en Unidades</label>
+                                            <input type="number" name="CUnidades" id="CUnidades"  class="col-md form-control">
+                                        </div>
+
+                                        <div class="row frmFilas">
+                                            <label for="" class="col-md-1">Especifica</label>
                                             <select name="especifica" id="especifica" class="col-md form-control">
                                                 <option value="Default" >Seleccione</option>
                                                     <?php foreach($this->me as $row){
@@ -88,9 +97,9 @@
                                                     <?php  } ?>
 
                                             </select>
-                                             <label for="" class="col-md">O/C</label> 
+                                             <label for="" class="col-md-1">O/C</label> 
                                              <input type="text" name="oc" id="oc" class="col-md form-control">
-                                             <label for="" class="col-md">Nº de pecosa</label> 
+                                             <label for="" class="col-md-2">Nº de PECOSA</label> 
                                              <input type="text"  name="nPecosa" id="nPecosa" class="col-md form-control">
                                              
                                              <!--<label for="">/*</label>-->
@@ -98,6 +107,7 @@
                                         </div>
                                         <div class="row frmFilas">
                                             <input type="hidden" name="usuario" id="usuario" value="<?php echo $_SESSION['id_User']; ?>">
+                                            <input type="hidden" name="equivalencia" id="equivalencia" >
                                             <button type="" class="btn btn-primary toastrDefaultSuccess">
                                                 Registrar Salida
                                             </button> 
@@ -121,10 +131,10 @@
                                         <th>Area</th>
                                         <th>Fecha de Salida</th>
                                         <th>Cantidad </th>
+                                        <th>Cantidad en Unidades </th>
                                         <th>O/C </th>
                                         <th>Nº de Pecosa </th>
                                         <th>Especifica </th>
-                                        <th>Estado de devolucion </th>
                                         <th>Acciones </th>
                                     </tr>
                                 </thead>
@@ -146,7 +156,7 @@
                                 </button>
                                 </div>
                                 <div class="modal-body">
-                                <p>Esta seguro de eliminar el Ingreso?&hellip;</p>
+                                <p>Esta seguro de eliminar la salida?&hellip;</p>
                                 <form id="frmEliminar">
                                     <input type="hidden" name="id" id="id">
                                 </form>
@@ -155,7 +165,7 @@
                                 </div>
                                 <div class="modal-footer justify-content-between">
                                 <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cerrar</button>
-                                <button type="button" id="eliminarIngreso"  class="btn btn-outline-light">Eliminar Servicio </button>
+                                <button type="button" id="eliminarIngreso"  class="btn btn-outline-light">Eliminar Salida </button>
                                 </div>
                             </div>
                             <!-- /.modal-content -->
@@ -177,24 +187,17 @@
                                     <form id="frmActualizar">
                                         <div class="row frmFilas">
                                             <label for="" class="col-md-3 ">Producto</label>
-                                                <select class=" col-md form-control" id="upProducto" name="upProducto" required >
-                                                    <option value="">Seleccione un producto</option>
-                                                        <?php foreach($this->mp as $row){
-                                                            $producto=new productos();
-                                                            $producto=$row;?>
-                                                        <option value="<?php echo $producto->idProducto ;?>"><?php echo $producto->detalle; ?></option>
-                          
-
-                                                        <?php  } ?>
-                                                </select>
+                                            <input type="text" id="upProducto" name="upProducto" class="col-md form-control" readonly>
+                                            <input type="hidden" id="upProductoid" name="upProductoid">
+                                             
 
                                         </div>
                                         <div class="row frmFilas">
                                             <label for="" class="col-md ">Cantidad</label>
                                             <input type="number" name="upCantidad" id="upCantidad"  class="col-md form-control" required>
-                                            <label for="" class="col-md ">Area</label>
-                                            <input type="text" name="upArea" id="upArea"  class="col-md form-control" required>
-                                            
+                                            <label for="" class="col-md " id="upCUnidadLabel">Cantidad en unidades</label>
+                                            <input type="number" name="upCUnidad" id="upCUnidad"  class="col-md form-control" required>
+                                           
 
                                         </div>
                                         <div class="row frmFilas">
@@ -219,15 +222,13 @@
 
                                                     <?php  } ?>
                                             </select>
-                                            <label for="" class="col-md ">Estado de devolucion</label>
-                                            <select name="upDevolucion" id="upDevolucion" class=" col-md form-control">
-                                                <option value="">Seleccione una opcion</option>
-                                                <option value="devuelto">Devuelto</option>
-                                                <option value="no devuelto">No devuelto</option>
-                                            </select>
+                                            <label for="" class="col-md ">Area</label>
+                                            <input type="text" name="upArea" id="upArea"  class="col-md form-control" required>
+                                            
+                                            
                                         </div>
+                                        <input type="hidden" name="CUnidadA" id="CUnidadA">
                                         <input type="hidden" name="CantidadA" id="CantidadA">
-                                        
                                         <input type="hidden" name="upId" id="upId">
                                     </form>
                                 
@@ -265,6 +266,14 @@
     <?php
         include_once("Views/Js.php");
     ?>
+    <script>
+        $("#producto").select2({
+            placeholder: 'Seleccione un producto'
+        });
+        $("#especifica").select2({
+            placeholder: 'Seleccione una opcion'
+        });
+    </script>
     <script src="<?=BASE_URL?>assets/js/Salidas.js"></script>
 
 </body>
